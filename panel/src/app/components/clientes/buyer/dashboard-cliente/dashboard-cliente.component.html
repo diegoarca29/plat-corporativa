@@ -1,0 +1,75 @@
+<div class="d-flex flex-column flex-root">
+    <div class="d-flex flex-row flex-column-fluid page">
+        <app-sidebar></app-sidebar>
+        <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
+            <app-top></app-top>
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Subheader-->
+                <div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
+                    <div class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+                        <!--begin::Info-->
+                        <div class="d-flex align-items-center flex-wrap mr-2">
+                            <!--begin::Page Title-->
+                            <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Clientes</h5>
+                            <!--end::Page Title-->
+                            <!--begin::Actions-->
+                            <div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-4 bg-gray-200"></div>
+                            <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+                                <li class="breadcrumb-item text-muted">
+                                    <a [routerLink]="['/cliente']"  class="text-muted">Listado de clientes</a>
+                                </li>
+                                <li class="breadcrumb-item active">
+                                    <a class="text-muted">Dashboard</a>
+                                </li>
+                            </ul>
+                            <!--end::Actions-->
+                        </div>
+                        <!--end::Info-->
+                        
+                    </div>
+                </div>
+                <!--end::Subheader-->
+                <!--begin::Entry-->
+                <div class="d-flex flex-column-fluid">
+                    <!--begin::Container-->
+                    <div class="container">
+                        <div class="d-flex flex-row">
+                            <!--begin::Aside-->
+                            <app-aside-cliente></app-aside-cliente>
+                            
+                            <!--end::Aside-->
+                            <!--begin::Content-->
+                            <div class="flex-row-fluid ml-lg-8">
+                                <!--begin::Card-->
+                                <div class="card card-custom">
+                                    <!--begin::Header-->
+                                    <div class="card-header py-3">
+                                        <div class="card-title align-items-start flex-column">
+                                            <h3 class="card-label font-weight-bolder text-dark">Dashboard del cliente</h3>
+                                            <span class="text-muted font-weight-bold font-size-sm mt-1">Estadisticas del cliente</span>
+                                        </div>
+                                    </div>
+                                    <!--end::Header-->
+                                    <!--begin::Form-->
+                                    <div class="card-body">
+                                            
+                                    </div>
+                                    <!--end::Form-->
+                                </div>
+                            </div>
+                            <!--end::Content-->
+                        </div>
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Entry-->
+            </div>
+            <!--end::Content-->
+            
+        </div>
+    </div>
+</div>
+
+
+

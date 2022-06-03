@@ -1,0 +1,279 @@
+<div class="d-flex flex-column flex-row-fluid">
+
+    
+    <!--begin::Content-->
+    <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+        <!--begin::Subheader-->
+        
+        <!--end::Subheader-->
+        <!--begin::Entry-->
+        <div class="d-flex flex-column-fluid">
+            <!--begin::Container-->
+            <div class="container">
+                <div class="row mt-7 mb-6">
+                    <div class="col-12 text-center">
+                        <h1 class="font-weight-bolder text-dark mb-0">Encuesta de satisfacción</h1>
+                        <div class="font-size-h4 text-danger mb-8" *ngIf="expiracion">
+                            La encuesta ya expiró, por favor solicite otra a un asesor.
+                        </div>
+                        <div class="font-size-h4 mb-8" *ngIf="!expiracion">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, quas.
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="card card-custom gutter-b form-group">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h5 class="card-label">¿Cómo calificarías el servicio brindado?</h5>
+                                </div>
+                            </div>
+                            <!--begin::Form-->
+                            <form class="form">
+                                <div class="card-body">
+                                    <div class="radio-inline">
+                                        <label class="radio">
+                                        <input type="radio" name="answer_one" [(ngModel)]="answer_one" value="1">1
+                                            <span></span>
+                                        </label>
+                                        <label class="radio">
+                                            <input type="radio" name="answer_one" [(ngModel)]="answer_one" value="2">2
+                                                <span></span>
+                                        </label>
+                                        <label class="radio">
+                                        <input type="radio" name="answer_one" [(ngModel)]="answer_one" value="3">3
+                                            <span></span>
+                                        </label>
+        
+                                        <label class="radio">
+                                        <input type="radio" name="answer_one" [(ngModel)]="answer_one" value="4">4
+                                            <span></span>
+                                        </label>
+                                        <label class="radio">
+                                        <input type="radio" name="answer_one" [(ngModel)]="answer_one" value="5">5
+                                            <span></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                            </form>
+                            <!--end::Form-->
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="card card-custom gutter-b form-group">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h5 class="card-label">¿Cómo calificarías al asesor que te atendio?</h5>
+                                </div>
+                            </div>
+                            <!--begin::Form-->
+                            <form class="form">
+                                <div class="card-body">
+                                    <div class="radio-inline">
+                                        <label class="radio">
+                                        <input type="radio" name="answer_two" [(ngModel)]="answer_two" value="1">1
+                                            <span></span>
+                                        </label>
+                                        <label class="radio">
+                                            <input type="radio" name="answer_two" [(ngModel)]="answer_two" value="2">2
+                                                <span></span>
+                                        </label>
+                                        <label class="radio">
+                                        <input type="radio" name="answer_two" [(ngModel)]="answer_two" value="3">3
+                                            <span></span>
+                                        </label>
+        
+                                        <label class="radio">
+                                        <input type="radio" name="answer_two" [(ngModel)]="answer_two" value="4">4
+                                            <span></span>
+                                        </label>
+                                        <label class="radio">
+                                        <input type="radio" name="answer_two" [(ngModel)]="answer_two" value="5">5
+                                            <span></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                            </form>
+                            <!--end::Form-->
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="card card-custom gutter-b form-group">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h5 class="card-label">¿Cómo calificarías la experiencia de compra?</h5>
+                                </div>
+                            </div>
+                            <!--begin::Form-->
+                            <form class="form">
+                                <div class="card-body">
+                                    <div class="radio-inline">
+                                        <label class="radio">
+                                        <input type="radio" name="answer_three" [(ngModel)]="answer_three" value="1">1
+                                            <span></span>
+                                        </label>
+                                        <label class="radio">
+                                            <input type="radio" name="answer_three" [(ngModel)]="answer_three" value="2">2
+                                                <span></span>
+                                        </label>
+                                        <label class="radio">
+                                        <input type="radio" name="answer_three" [(ngModel)]="answer_three" value="3">3
+                                            <span></span>
+                                        </label>
+        
+                                        <label class="radio">
+                                        <input type="radio" name="answer_three" [(ngModel)]="answer_three" value="4">4
+                                            <span></span>
+                                        </label>
+                                        <label class="radio">
+                                        <input type="radio" name="answer_three" [(ngModel)]="answer_three" value="5">5
+                                            <span></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                            </form>
+                            <!--end::Form-->
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="card card-custom gutter-b form-group">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h5 class="card-label">¿Cómo te enteraste del servicio?</h5>
+                                </div>
+                            </div>
+                            <!--begin::Form-->
+                            <form class="form">
+                                <div class="card-body">
+                                    <div class="radio-inline">
+                                        <label class="radio">
+                                        <input type="radio" name="answer_four" [(ngModel)]="answer_four" value="Facebook">Facebook
+                                            <span></span>
+                                        </label>
+                                        <label class="radio">
+                                            <input type="radio" name="answer_four" [(ngModel)]="answer_four" value="Instragram">Instragram
+                                                <span></span>
+                                        </label>
+                                        <label class="radio">
+                                        <input type="radio" name="answer_four" [(ngModel)]="answer_four" value="Web">Web
+                                            <span></span>
+                                        </label>
+        
+                                        <label class="radio">
+                                        <input type="radio" name="answer_four" [(ngModel)]="answer_four" value="Local">Local
+                                            <span></span>
+                                        </label>
+                                        <label class="radio">
+                                        <input type="radio" name="answer_four" [(ngModel)]="answer_four" value="Un amigo">Un amigo
+                                            <span></span>
+                                        </label>
+                                        <label class="radio">
+                                            <input type="radio" name="answer_four" [(ngModel)]="answer_four" value="Soy cliente">Soy cliente
+                                                <span></span>
+                                            </label>
+                                    </div>
+                                </div>
+                                
+                            </form>
+                            <!--end::Form-->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-6">
+                        <div class="card card-custom gutter-b form-group">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h5 class="card-label">¿Volverias a adquirir el serivicio nuevamente?</h5>
+                                </div>
+                            </div>
+                            <!--begin::Form-->
+                            <form class="form">
+                                <div class="card-body">
+                                    <div class="radio-inline">
+                                        <label class="radio">
+                                        <input type="radio" name="answer_five" [(ngModel)]="answer_five" value="Si">Si
+                                            <span></span>
+                                        </label>
+                                        <label class="radio">
+                                            <input type="radio" name="answer_five" [(ngModel)]="answer_five" value="No">No
+                                                <span></span>
+                                        </label>
+                                        
+                                    </div>
+                                </div>
+                                
+                            </form>
+                            <!--end::Form-->
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="card card-custom gutter-b form-group">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h5 class="card-label">¿Desde cuando es usted cliente?</h5>
+                                </div>
+                            </div>
+                            <!--begin::Form-->
+                            <form class="form">
+                                <div class="card-body">
+                                    <div class="radio-inline">
+                                        <label class="radio">
+                                        <input type="radio" name="answer_six" [(ngModel)]="answer_six" value="Primera compra">Primera compra
+                                            <span></span>
+                                        </label>
+        
+                                        <label class="radio">
+                                        <input type="radio" name="answer_six" [(ngModel)]="answer_six" value="Menos de un año">Menos de un año
+                                            <span></span>
+                                        </label>
+                                        <label class="radio">
+                                            <input type="radio" name="answer_six" [(ngModel)]="answer_six" value="Entre 1 - 2 años">Entre 1 - 2 años
+                                                <span></span>
+                                        </label>
+                                        <label class="radio">
+                                        <input type="radio" name="answer_six" [(ngModel)]="answer_six" value="Entre 2 - 4 años">Entre 2 - 4 años
+                                            <span></span>
+                                        </label>
+        
+                                        
+                                       
+                                    </div>
+                                </div>
+                                
+                            </form>
+                            <!--end::Form-->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-4 mx-auto text-center">
+                        <button class="btn btn-success btn-lg"  *ngIf="!expiracion" (click)="enviar_encuesta()">Enviar encuesta</button>
+                        <button class="btn btn-danger btn-lg" disabled *ngIf="expiracion">Enviar encuesta</button>
+                    </div>
+                </div>
+
+                <div class="row mt-7" *ngIf="send">
+                    <div class="col-12 text-center">
+                        <img src="assets/logos/sonriendo.png" style="width: 60px;" alt="">
+                        <h1 class="font-weight-bolder text-dark mt-3">Gracias por darnos su opinion</h1>
+                        <div class="font-size-h4 mb-8">Mejoramos con tus experiencias, <br> esta pestaña se cerrara en 5 segundos</div>
+                    </div>
+                </div>
+
+                
+            </div>
+            <!--end::Container-->
+        </div>
+        <!--end::Entry-->
+    </div>
+    <!--end::Content-->
+</div>

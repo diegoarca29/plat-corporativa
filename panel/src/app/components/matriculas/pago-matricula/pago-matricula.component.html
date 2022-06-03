@@ -1,0 +1,514 @@
+<div class="d-flex flex-column flex-root">
+    <div class="d-flex flex-row flex-column-fluid page">
+        <app-sidebar></app-sidebar>
+        <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
+            <app-top></app-top>
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Subheader-->
+                <div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
+                    <div class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+                        <!--begin::Info-->
+                        <div class="d-flex align-items-center flex-wrap mr-2">
+                            <!--begin::Page Title-->
+                            <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Dashboard</h5>
+                            <!--end::Page Title-->
+                            <!--begin::Actions-->
+                            <div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-4 bg-gray-200"></div>
+                            <span class="text-muted font-weight-bold mr-4">#XRS-45670</span>
+                            <a href="#" class="btn btn-light-warning font-weight-bolder btn-sm">Add New</a>
+                            <!--end::Actions-->
+                        </div>
+                        <!--end::Info-->
+                        
+                    </div>
+                </div>
+                <!--end::Subheader-->
+                <div class="d-flex flex-column-fluid">
+                    <!--begin::Container-->
+                    <div class="container">
+                        <!--begin::Page Layout-->
+                        <div *ngIf="load_data" class="card card-custom card-shadowless rounded-top-0 mb-7">
+                            <div class="card-body p-0">
+                                <div class="row">
+                                    <div class="col-12 text-center mt-7 mb-7">
+                                        <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                            <span class="sr-only">Loading...</span>
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <ng-container *ngIf="!load_data">
+                            <div class="d-flex flex-row" *ngIf="data">
+                                <!--begin::Aside-->
+                                <div class="flex-column offcanvas-mobile w-300px w-xl-325px" id="kt_profile_aside">
+                                    <div class="card card-custom gutter-b">
+                                        <div class="card-header border-0 pt-5">
+                                            <h3 class="card-title font-weight-bolder">Resumen de matricula</h3>
+                                           
+                                        </div>
+                                        <div class="card-body pt-4">
+                                           
+                                            <!--begin::Contact-->
+                                            <div class="pt-8 pb-6">
+                                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                                    <span class="font-weight-bold mr-2">Código:</span>
+                                                    <a class="text-muted text-hover-primary">
+                                                        {{matricula._id}}
+                                                    </a>
+                                                </div>
+                                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                                    <span class="font-weight-bold mr-2">Asesor:</span>
+                                                    <span class="text-muted" *ngIf="matricula.asesor">
+                                                        {{matricula.asesor.nombres}} {{matricula.asesor.apellidos}}
+                                                    </span>
+                                                </div>
+                                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                                    <span class="font-weight-bold mr-2">Canal:</span>
+                                                    <span class="text-muted">{{matricula.canal}}</span>
+                                                </div>
+                                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                                    <span class="font-weight-bold mr-2">Monto:</span>
+                                                    <span class="text-muted">{{matricula.monto|currency:'USD'}}</span>
+                                                </div>
+                                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                                    <span class="font-weight-bold mr-2">Matricula:</span>
+                                                    <span class="text-muted">{{matricula.matricula|currency:'USD'}}</span>
+                                                </div>
+                                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                                    <span class="font-weight-bold mr-2">Descuento:</span>
+                                                    <span class="text-muted">{{matricula.descuento|currency:'USD'}}</span>
+                                                </div>
+                                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                                    <span class="font-weight-bold mr-2">Fecha:</span>
+                                                    <span class="text-muted">{{matricula.createdAt|date}}</span>
+                                                </div>
+                                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                                    <span class="font-weight-bold mr-2">Estado:</span>
+                                                    <span class="text-muted">{{matricula.estado}}</span>
+                                                </div>
+    
+                                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                                    <span class="font-weight-bold mr-2">Firma:</span>
+                                                    <span class="text-muted" *ngIf="matricula.firma">Firmado</span>
+                                                    <span class="text-muted" *ngIf="!matricula.firma">No firmado</span>
+                                                </div>
+                                                <div class="d-flex align-items-center justify-content-between mb-2"  *ngIf="matricula.firma">
+                                                    <span class="font-weight-bold mr-2">Fecha de firma:</span>
+                                                    <span class="text-muted">{{matricula.date_firma|date:'short'}}</span>
+                                                </div>
+                                               
+                                            </div>
+                                            <!--end::Contact-->
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="card card-custom gutter-b">
+                                        <!--begin::Header-->
+                                        <div class="card-header border-0 pt-5">
+                                            <h3 class="card-title align-items-start flex-column mb-5">
+                                                <span class="card-label font-weight-bolder text-dark mb-1">Cursos matriculados</span>
+                                                <span class="text-muted mt-2 font-weight-bold font-size-sm">{{detalles.length}} cursos</span>
+                                            </h3>
+                                        </div>
+                                        <!--end::Header-->
+                                        <!--begin::Body-->
+                                        <div class="card-body pt-2">
+                                            <!--begin::Item-->
+                                            <div class="d-flex mb-8" *ngFor="let item of detalles">
+                                                <!--begin::Symbol-->
+                                                <div class="symbol symbol-50 symbol-2by3 flex-shrink-0 mr-4">
+                                                    <div class="d-flex flex-column">
+                                                        <div class="symbol-label mb-3" style="background-image: url('{{url}}get_image_curso/{{item.curso.banner}}')"></div>
+                                                    </div>
+                                                </div>
+                                                <!--end::Symbol-->
+                                                <!--begin::Title-->
+                                                <div class="d-flex flex-column flex-grow-1 my-lg-0 my-2 pr-3">
+                                                    <a href="#" class="text-dark-75 font-weight-bolder text-hover-primary font-size-lg">{{item.curso.titulo}}</a>
+                                                    <span class="text-muted font-weight-bold font-size-sm">Salón: 
+                                                    <span class="text-dark-75 font-weight-bolder">{{item.ciclo_salon.salon}}</span></span>
+                                                    <span class="text-muted font-weight-bold font-size-sm">Precio: 
+                                                        <span class="text-dark-75 font-weight-bolder">{{item.precio|currency:'USD'}}</span></span>
+                                                </div>
+                                                <!--end::Title-->
+                                            </div>
+                                            <!--end::Item-->
+                                         
+                                        </div>
+                                        <!--end::Body-->
+                                    </div>
+                                    
+                    
+                                </div>
+                                <!--end::Aside-->
+                                <!--begin::Layout-->
+                                <div class="flex-row-fluid ml-lg-8">
+                                    <!--begin::Card-->
+                                    <div class="card card-custom gutter-b">
+                                        <div class="card-header border-0 pt-5">
+                                            <h3 class="card-title align-items-start flex-column mb-5">
+                                                <span class="card-label font-weight-bolder text-dark mb-1">Pagos de matricula</span>
+                                                <span class="text-muted mt-2 font-weight-bold font-size-sm">{{pagos.length}} pagos registrados</span>
+                                            </h3>
+                                            <div class="card-toolbar">
+                                                <a style="cursor: pointer;" data-toggle="modal" [attr.data-target]="'#modalPago'" class="btn btn-light-primary font-weight-bolder py-2 font-size-sm">Generar pago</a>
+                                                <div class="modal fade" id="modalPago" tabindex="-1" aria-labelledby="exampleModalLabel" style="display: none;" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">Generar pago</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <i aria-hidden="true" class="ki ki-close"></i>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                
+                                                                <div class="row">
+                                                                    <div class="col-xl-6">
+                                                                        <!--begin::Input-->
+                                                                        <div class="form-group fv-plugins-icon-container">
+                                                                            <label>Curso</label>
+                                                                            <select class="form-control form-control-solid" name="destino_pago" [(ngModel)]="destino_pago">
+                                                                                <option value="" selected disabled>Seleccionar</option>
+                                                                                <option value="Matricula" *ngIf="matricula.matricula>=1">Matricula</option>
+                                                                                <option value="{{item._id}}" *ngFor="let item of detalles">{{item.curso.titulo}} {{item.ciclo_salon.salon}}</option>
+                                                                            </select>
+                                                                        </div>
+                                                                        <!--end::Input-->
+                                                                    </div>
+                                                                    <div class="col-xl-6">
+                                                                        <!--begin::Input-->
+                                                                        <div class="form-group fv-plugins-icon-container">
+                                                                            <label>Metodo</label>
+                                                                            <div class="dropdown">
+                                                                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMetodo" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: 100%;text-align: left;">
+                                                                                    Seleccionar
+                                                                                </button>
+                                                                                <div class="dropdown-menu" style="width: 100%;" aria-labelledby="dropdownMetodo">
+                                                                                    <a class="dropdown-item" style="cursor: pointer;" (click)="select_metodo('Paypal')">
+                                                                                        <img src="assets/logos/paypal.png" style="width: 17px;">
+                                                                                        &nbsp; Paypal
+                                                                                    </a>
+                                                                                    <a class="dropdown-item" style="cursor: pointer;" (click)="select_metodo('Transferencia')">
+                                                                                        <img src="assets/logos/transferencia-de-dinero.png" style="width: 17px;">
+                                                                                        &nbsp; Transferencia
+                                                                                    </a>
+                                                                                    <a class="dropdown-item" style="cursor: pointer;" (click)="select_metodo('Deposito')">
+                                                                                        <img src="assets/logos/depositar.png" style="width: 17px;">
+                                                                                        &nbsp; Deposito
+                                                                                    </a>
+                                                                                    <a class="dropdown-item" style="cursor: pointer;" (click)="select_metodo('Tarjeta crédito')">
+                                                                                        <img src="assets/logos/tarjeta-de-credito.png" style="width: 17px;">
+                                                                                        &nbsp; Tarjeta crédito
+                                                                                    </a>
+                                                                                </div>
+                                                                            </div>
+                                                                           
+                                                                        </div>
+                                                                        <!--end::Input-->
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-xl-6">
+                                                                        <!--begin::Input-->
+                                                                        <div class="form-group fv-plugins-icon-container">
+                                                                            <label>Banco</label>
+                                                                            <div class="dropdown">
+                                                                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownBanco" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: 100%;text-align: left;">
+                                                                                    Seleccionar
+                                                                                </button>
+                                                                                <div class="dropdown-menu" style="width: 100%;" aria-labelledby="dropdownBanco">
+                                                                                    <a class="dropdown-item" style="cursor: pointer;" (click)="select_banco('BBVA')">
+                                                                                        <img src="assets/logos/bbva.png" style="width: 17px;">
+                                                                                        &nbsp; BBVA
+                                                                                    </a>
+                                                                                    <a class="dropdown-item" style="cursor: pointer;" (click)="select_banco('Interbank')">
+                                                                                        <img src="assets/logos/interbank.png" style="width: 17px;">
+                                                                                        &nbsp; Interbank
+                                                                                    </a>
+                                                                                    <a class="dropdown-item" style="cursor: pointer;" (click)="select_banco('Santander')">
+                                                                                        <img src="assets/logos/santander.png" style="width: 17px;">
+                                                                                        &nbsp; Santander
+                                                                                    </a>
+                                                                                   
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <!--end::Input-->
+                                                                    </div>
+                                                                    <div class="col-xl-6">
+                                                                        <!--begin::Input-->
+                                                                        <div class="form-group fv-plugins-icon-container">
+                                                                            <label>Fecha de pago</label>
+                                                                            <input type="date" class="form-control form-control-solid" name="fecha" [(ngModel)]="pago.fecha">
+                                                                        </div>
+                                                                        <!--end::Input-->
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-xl-6">
+                                                                        <!--begin::Input-->
+                                                                        <div class="form-group fv-plugins-icon-container">
+                                                                            <label>Código T</label>
+                                                                            <input type="text" class="form-control form-control-solid" placeholder="ID transacción"  name="transaccion" [(ngModel)]="pago.transaccion">
+                                                                        </div>
+                                                                        <!--end::Input-->
+                                                                    </div>
+                                                                    <div class="col-xl-6">
+                                                                        <!--begin::Input-->
+                                                                        <div class="form-group fv-plugins-icon-container">
+                                                                            <label>Monto</label>
+                                                                            <input type="number" class="form-control form-control-solid" placeholder="Monto pago" name="monto" [(ngModel)]="pago.monto">
+                                                                        </div>
+                                                                        <!--end::Input-->
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Cerrar</button>
+                                                                <button *ngIf="!load_btn" type="button" class="btn btn-primary font-weight-bold" (click)="generar_pago()">Generar pago</button>
+                                                                <button *ngIf="load_btn" class="btn btn-primary" type="button" disabled>
+                                                                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                                                    Procesando...
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="text-dark-50 line-height-lg">
+                                                <div class="table-responsive">
+                                                    <table class="table" style="margin-bottom: 0px;">
+                                                        <thead>
+                                                            <tr>
+                                                                <th class="pl-0 font-weight-bold text-muted text-uppercase">Método de pago</th>
+                                                                <th class="text-right font-weight-bold text-muted text-uppercase">ID transacción</th>
+                                                                <th class="text-right font-weight-bold text-muted text-uppercase">Fecha</th>
+                                                                <th class="text-right font-weight-bold text-muted text-uppercase">Monto</th>
+                                                                <th class="text-right pr-0 font-weight-bold text-muted text-uppercase">
+                                                                    <i class="flaticon2-settings"></i>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <ng-container *ngIf="load_pagos">
+                                                            <tr>
+                                                                <td colspan="5" class="text-center">
+                                                                    <div class="spinner-border" role="status">
+                                                                        <span class="sr-only">Loading...</span>
+                                                                      </div>
+                                                                </td>
+                                                            </tr>
+                                                        </ng-container>
+                                                        <ng-container *ngIf="!load_pagos">
+                                                            <ng-container *ngIf="pagos.length == 0">
+                                                                <tr>
+                                                                    <td colspan="5">
+                                                                        <div class="row mt-7" style="width: 100%;">
+                                                                            <div class="col-12 text-center">
+                                                                                <img src="assets/images/search.png" alt="" style="width: 50px;">
+                                                                                <h3 class="font-weight-bolder text-dark mt-5">Resultado de pagos</h3>
+                                                                                <div class="font-size-h4 mb-8">No se encontraron pagos que mostrar</div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </ng-container>
+                                                            <ng-container *ngIf="pagos.length >=1">
+                                                                <tbody *ngFor="let item of pagos">
+                                                                    <tr class="font-weight-boldest">
+                                                                        
+                                                                        <td class="border-0 d-flex pl-0 pt-7 align-items-center">
+                                                                        <!--begin::Symbol-->
+                                                                            <ng-container *ngIf="item.matricula_detalle">
+                                                                                <div class="symbol symbol-40 flex-shrink-0 mr-4 bg-light">
+                                                                                    <div class="symbol-label" style="background-image: url('{{url}}get_image_curso/{{item.matricula_detalle.curso.banner}}')"></div>
+                                                                                </div>
+                                                                                <!--end::Symbol-->
+                                                                                {{item.matricula_detalle.curso.titulo}}
+                                                                            </ng-container>
+                                                                            <ng-container *ngIf="!item.matricula_detalle">
+                                                                                Matricula
+                                                                            </ng-container>
+                                                                        </td>
+                                                                        
+                                                                        <td class="text-right pt-7 align-middle">
+                                                                            {{item.transaccion}}
+                                                                            <span class="text-muted font-weight-bold text-muted d-block">
+                                                                                {{item.createdAt|date:'yyyy'}}-{{item.correlativo|fzill:7}}
+                                                                            </span>
+                                                                        </td>
+                                                                        <td class="text-right pt-7 align-middle">
+                                                                            {{item.fecha|date}}
+                                                                        </td>
+                                                                        <td class="text-primary pr-0 pt-7 text-right align-middle">
+                                                                            {{item.monto|currency:'USD'}}
+                                                                        </td>
+                                                                        <td class="text-primary pr-0 pt-7 text-right align-middle">
+                                                                            <a class="btn btn-icon btn-info btn-sm mr-2" style="cursor: pointer;" data-toggle="modal" [attr.data-target]="'#ticket-'+item._id">
+                                                                                <i class="flaticon2-paper"></i>
+                                                                            </a>
+
+                                                                            
+                                                                        </td>
+
+                                                                        <div class="modal fade" id="ticket-{{item._id}}" tabindex="-1" aria-labelledby="exampleModalLabel" style="display: none;" aria-hidden="true">
+                                                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                                <div class="modal-content">
+                                                                                    <div class="modal-header">
+                                                                                        <h5 class="modal-title" id="exampleModalLabel">Ticket N°{{item.createdAt|date:'yyyy'}}-{{item.correlativo|fzill:7}}</h5>
+                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                            <i aria-hidden="true" class="ki ki-close"></i>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                    <div class="modal-body" id="contdiv-{{item._id}}">
+                                                                                        --------------------------------------------------------<br>
+                                
+                                                                                        <div style="width: 300px;display: flex; justify-content: center">
+                                                                                            NOMBRE-EMPRESA<br>
+                                                                                        </div>
+                                                                                        --------------------------------------------------------<br>
+                                                                                        <div style="width: 300px;display: flex; justify-content: center">
+                                                                                            RUC: 12345678798<br>
+                                                                                        </div>
+                                                                                        <div style="width: 300px;display: flex; justify-content: center">
+                                                                                            CÓDIGO: {{matricula._id}}<br>
+                                                                                        </div>
+                                                                                        <div style="width: 300px;display: flex; justify-content: center">
+                                                                                            N°: {{item.createdAt|date:'yyyy'}}-{{item.correlativo|fzill:7}}<br>
+                                                                                        </div>
+                                                                                        <div style="width: 300px;display: flex; justify-content: center">
+                                                                                            Av. Del Ejército 1059 - Magdalena del Mar
+                                                                                        </div>
+                                                                                            
+                                                                                        --------------------------------------------------------<br>
+                                                                                        
+                                                                                        <b>Cliente</b>: {{matricula.cliente.nombres}} {{matricula.cliente.apellidos}}<br>
+                                                                                        <b>Correo</b>: {{matricula.cliente.email}}<br>
+                                                                                        <b>Telefono</b>: {{matricula.cliente.telefono}}<br>
+                                                                                        
+                                                                                        --------------------------------------------------------<br>
+                                                                                        
+                                                                                        <b>Correo</b>: informes@domain.com<br>
+                                                                                        <b>Fecha</b>: {{item.fecha|date}}<br>
+                                                                                        <b>Tipo</b>: {{item.tipo}}<br>
+                                                                                        
+                                                                                        --------------------------------------------------------<br>
+                                                                                        
+                                                                                        <div style="width: 300px">
+                                                                                            <span style="display: flex; justify-content: space-between">
+                                                                                                <span style="width: 15%"><b>Qtd</b></span>
+                                                                                                <span style="width: 60%"><b>Concepto</b></span> 
+                                                                                                <span style="width: 25%"><b>Subotal</b></span>
+                                                                                            </span>
+                                                                                        </div>
+                                                                                        
+                                                                                        ===============================<br>
+                                                                                        
+                                                                                        <div style="width: 300px">
+                                                                                            <span style="display: flex; justify-content: space-between">
+                                                                                            <span style="width: 15%">x1</span>
+                                                                                            <span style="width: 60%">
+                                                                                                    <ng-container *ngIf="item.matricula_detalle">
+                                                                                                        {{item.matricula_detalle.curso.titulo}}
+                                                                                                    </ng-container>
+                                                                                                    <ng-container *ngIf="!item.matricula_detalle">
+                                                                                                        Matricula
+                                                                                                    </ng-container>
+                                                                                                    <br>
+                                                                                                    <span>
+                                                                                                        {{item.transaccion}}
+                                                                                                    </span>
+                                                                                            </span> 
+                                                                                            <span style="width: 25%">{{item.monto|currency:'USD'}}</span>
+                                                                                            </span>
+                                                                                        </div>
+                                                                                        
+                                                                                        ===============================<br>
+                                                                                        
+                                                                                        <div style="width: 300px">
+                                                                                            <span style="display: flex; justify-content: space-between">
+                                                                                        
+                                                                                            <span style="width: 75%">
+                                                                                                TOTAL
+                                                                                            </span> 
+                                                                                            <span style="width: 25%">{{item.monto|currency:'USD'}}</span>
+                                                                                            </span>
+                                                                                        </div>
+                                                                                        --------------------------------------------------------<br>
+                                                                                        
+                                                                                        <div style="width: 300px;display: flex; justify-content: center">
+                                                                                            <b>Lorem ipsum dolor sit amet consectetur adipisicing elit.</b> <br>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="modal-footer">
+                                                                                        <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Cerrar</button>
+                                                                                        <button type="button" class="btn btn-primary font-weight-bold" (click)="imprimir_ticket(item._id)">Imprimir</button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </tr>
+                                                                </tbody>
+                                                                <tr>
+                                                                    <td colspan="2"></td>
+                                                                    <td class="font-weight-bolder text-right">Total</td>
+                                                                    <td class="font-weight-bolder text-right pr-0">
+                                                                        {{matricula.monto + matricula.matricula|currency: 'USD'}}
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td colspan="2" class="border-0 pt-0"></td>
+                                                                    <td class="border-0 pt-0 font-weight-bolder text-right">Monto pagado</td>
+                                                                    <td class="border-0 pt-0 font-weight-bolder text-right pr-0">{{total_payment|currency:'USD'}}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td colspan="2" class="border-0 pt-0"></td>
+                                                                    <td class="border-0 pt-0 font-weight-bolder text-right">Deuda</td>
+                                                                    <td class="border-0 pt-0 font-weight-bolder text-right pr-0">{{(matricula.monto + matricula.matricula)-total_payment|currency:'USD'}}</td>
+                                                                </tr>
+                                                                <!-- <tr>
+                                                                    <td colspan="2" class="border-0 pt-0"></td>
+                                                                    <td class="border-0 pt-0 font-weight-bolder font-size-h5 text-right">Grand Total</td>
+                                                                    <td class="border-0 pt-0 font-weight-bolder font-size-h5 text-success text-right pr-0">$1553.00</td>
+                                                                </tr> -->
+                                                            </ng-container>
+                                                            
+                                                        </ng-container>
+                                                        
+                                                        
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--end::Card-->
+                                </div>
+                                <!--end::Layout-->
+                            </div>
+                            <ng-container *ngIf="!data">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <app-notfound></app-notfound>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </ng-container>
+                        
+                        <!--end::Page Layout-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+            </div>
+            <!--end::Content-->
+            
+        </div>
+    </div>
+</div>
+
+
+

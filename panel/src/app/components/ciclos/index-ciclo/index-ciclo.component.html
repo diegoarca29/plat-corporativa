@@ -1,0 +1,315 @@
+<div class="d-flex flex-column flex-root">
+    <div class="d-flex flex-row flex-column-fluid page">
+        <app-sidebar></app-sidebar>
+        <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
+            <app-top></app-top>
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Subheader-->
+                <div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
+                    <div class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+                        <!--begin::Info-->
+                        <div class="d-flex align-items-center flex-wrap mr-2">
+                            <!--begin::Page Title-->
+                            <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Dashboard</h5>
+                            <!--end::Page Title-->
+                            <!--begin::Actions-->
+                            <div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-4 bg-gray-200"></div>
+                            <span class="text-muted font-weight-bold mr-4">#XRS-45670</span>
+                            <a href="#" class="btn btn-light-warning font-weight-bolder btn-sm">Add New</a>
+                            <!--end::Actions-->
+                        </div>
+                        <!--end::Info-->
+                        
+                    </div>
+                </div>
+                <!--end::Subheader-->
+                <!--begin::Entry-->
+                <div class="d-flex flex-column-fluid">
+                    <!--begin::Container-->
+                    <div class="container">
+
+                        <div class="row mt-5" *ngIf="load_data">
+                            <div class="col-12 text-center">
+                                <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                    <span class="sr-only">Loading...</span>
+                                  </div>
+                            </div>
+                        </div>
+
+                        <ng-container *ngIf="!load_data">
+                            <ng-container *ngIf="data">
+                                <div class="card card-custom card-stretch gutter-b">
+                                    <!--begin::Header-->
+                                    <div class="card-header border-0 mt-5">
+                                        <h3 class="card-title align-items-start flex-column text-dark">
+                                            <span class="font-weight-bolder text-dark">Ciclos vigentes</span>
+                                            <span class="text-muted mt-3 font-weight-bold font-size-sm">Solo se muestran cursos con clases vigentes</span>
+                                        </h3>
+                                        <div class="card-toolbar">
+                                            <a [routerLink]="['/cursos/'+id+'/ciclo/vencidos']" class="btn btn-info btn-sm font-weight-bold font-size-sm mr-3">
+                                                <span class="svg-icon svg-icon-md"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo1/dist/../src/media/svg/icons/Code/Lock-overturning.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                        <rect x="0" y="0" width="24" height="24"/>
+                                                        <path d="M7.38979581,2.8349582 C8.65216735,2.29743306 10.0413491,2 11.5,2 C17.2989899,2 22,6.70101013 22,12.5 C22,18.2989899 17.2989899,23 11.5,23 C5.70101013,23 1,18.2989899 1,12.5 C1,11.5151324 1.13559454,10.5619345 1.38913364,9.65805651 L3.31481075,10.1982117 C3.10672013,10.940064 3,11.7119264 3,12.5 C3,17.1944204 6.80557963,21 11.5,21 C16.1944204,21 20,17.1944204 20,12.5 C20,7.80557963 16.1944204,4 11.5,4 C10.54876,4 9.62236069,4.15592757 8.74872191,4.45446326 L9.93948308,5.87355717 C10.0088058,5.95617272 10.0495583,6.05898805 10.05566,6.16666224 C10.0712834,6.4423623 9.86044965,6.67852665 9.5847496,6.69415008 L4.71777931,6.96995273 C4.66931162,6.97269931 4.62070229,6.96837279 4.57348157,6.95710938 C4.30487471,6.89303938 4.13906482,6.62335149 4.20313482,6.35474463 L5.33163823,1.62361064 C5.35654118,1.51920756 5.41437908,1.4255891 5.49660017,1.35659741 C5.7081375,1.17909652 6.0235153,1.2066885 6.2010162,1.41822583 L7.38979581,2.8349582 Z" fill="#000000" opacity="0.3"/>
+                                                        <path d="M14.5,11 C15.0522847,11 15.5,11.4477153 15.5,12 L15.5,15 C15.5,15.5522847 15.0522847,16 14.5,16 L9.5,16 C8.94771525,16 8.5,15.5522847 8.5,15 L8.5,12 C8.5,11.4477153 8.94771525,11 9.5,11 L9.5,10.5 C9.5,9.11928813 10.6192881,8 12,8 C13.3807119,8 14.5,9.11928813 14.5,10.5 L14.5,11 Z M12,9 C11.1715729,9 10.5,9.67157288 10.5,10.5 L10.5,11 L13.5,11 L13.5,10.5 C13.5,9.67157288 12.8284271,9 12,9 Z" fill="#000000"/>
+                                                    </g>
+                                                </svg><!--end::Svg Icon--></span>
+                                                Ir a vencidos
+                                            </a>
+                                
+                                            <a [routerLink]="['/cursos/'+id+'/ciclo/create']"  class="btn btn-primary btn-sm font-weight-bold font-size-sm mr-3">
+                                                <span class="svg-icon svg-icon-md"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo1/dist/../src/media/svg/icons/Code/Git3.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                        <rect x="0" y="0" width="24" height="24"/>
+                                                        <path d="M7,11 L15,11 C16.1045695,11 17,10.1045695 17,9 L17,8 L19,8 L19,9 C19,11.209139 17.209139,13 15,13 L7,13 L7,15 C7,15.5522847 6.55228475,16 6,16 C5.44771525,16 5,15.5522847 5,15 L5,9 C5,8.44771525 5.44771525,8 6,8 C6.55228475,8 7,8.44771525 7,9 L7,11 Z" fill="#000000" opacity="0.3"/>
+                                                        <path d="M6,21 C7.1045695,21 8,20.1045695 8,19 C8,17.8954305 7.1045695,17 6,17 C4.8954305,17 4,17.8954305 4,19 C4,20.1045695 4.8954305,21 6,21 Z M6,23 C3.790861,23 2,21.209139 2,19 C2,16.790861 3.790861,15 6,15 C8.209139,15 10,16.790861 10,19 C10,21.209139 8.209139,23 6,23 Z" fill="#000000" fill-rule="nonzero"/>
+                                                        <path d="M18,7 C19.1045695,7 20,6.1045695 20,5 C20,3.8954305 19.1045695,3 18,3 C16.8954305,3 16,3.8954305 16,5 C16,6.1045695 16.8954305,7 18,7 Z M18,9 C15.790861,9 14,7.209139 14,5 C14,2.790861 15.790861,1 18,1 C20.209139,1 22,2.790861 22,5 C22,7.209139 20.209139,9 18,9 Z" fill="#000000" fill-rule="nonzero"/>
+                                                        <path d="M6,7 C7.1045695,7 8,6.1045695 8,5 C8,3.8954305 7.1045695,3 6,3 C4.8954305,3 4,3.8954305 4,5 C4,6.1045695 4.8954305,7 6,7 Z M6,9 C3.790861,9 2,7.209139 2,5 C2,2.790861 3.790861,1 6,1 C8.209139,1 10,2.790861 10,5 C10,7.209139 8.209139,9 6,9 Z" fill="#000000" fill-rule="nonzero"/>
+                                                    </g>
+                                                </svg><!--end::Svg Icon--></span>
+                                                Nuevo ciclo
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <!--end::Header-->
+                                    <!--begin::Body-->
+                                    <div class="card-body py-0 mt-n3">
+                                        
+                                        <!--begin::Search Form-->
+                                        <div class="mb-7 ">
+                                            <div class="row align-items-center">
+                                                <div class="col-lg-9 col-xl-8">
+                                                    <div class="row align-items-center">
+                                                      
+                                                        <div class="col-md-5 my-2 my-md-0">
+                                                            <div class="d-flex align-items-center">
+                                                                <label class="mr-3 mb-0 d-none d-md-block">Nivel:</label>
+                                                                <select class="form-control" name="filtro" [(ngModel)]="filtro">
+                                                                    <option value="Todos">Todos</option>
+                                                                    <option value="Basico 1">Basico 1</option>
+                                                                    <option value="Basico 2">Basico 2</option>
+                                                                    <option value="Basico 3">Basico 3</option>
+                                                                    <option value="Intermedio 1">Intermedio 1</option>
+                                                                    <option value="Intermedio 2">Intermedio 2</option>
+                                                                    <option value="Intermedio 2">Intermedio 3</option>
+                                                                    <option value="Avanzado 1">Avanzado 1</option>
+                                                                    <option value="Avanzado 2">Avanzado 2</option>
+                                                                    <option value="Avanzado 3">Avanzado 3</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <a (click)="filtrar()" style="cursor: pointer;" class="btn btn-light-primary px-6 font-weight-bold">Buscar</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                               
+                                            </div>
+                                        </div>
+                                        
+                                
+                                
+                                        <table class="table table-borderless table-vertical-center">
+                                            <thead>
+                                                <tr>
+                                                    <th class="p-0" style="width: 50px"></th>
+                                                    <th class="p-0" style="min-width: 120px"></th>
+                                                    <th class="p-0" style="min-width: 100px"></th>
+                                                    <th class="p-0" style="min-width: 50px"></th>
+                                                    <th class="p-0" style="min-width: 70px"></th>
+                                                    <th class="p-0" style="min-width: 70px"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                               <ng-container *ngFor="let item of ciclos">
+                                                <tr style="background: #f6f4ff;">
+                                                    <td colspan="6">
+                                                        <div>
+                                                            <p style="margin-bottom: 0px;"><b class="badge badge-dark">Código ciclo:</b> &nbsp; #{{item.ciclo._id}}</p>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr style="background: #f6f4ff;">
+                                                    <td class="pl-4">
+                                                        <div class="symbol symbol-50 symbol-fixed mr-2 mt-2">
+                                                            <div class="symbol-label" style="background-image: url('{{url}}get_image_curso/{{item.ciclo.curso.banner}}')"></div>
+                                                        </div>
+                                                    </td>
+                                                    <td class="pl-0">
+                                                        <a class="text-dark font-weight-bolder text-hover-primary mb-1 font-size-lg">
+                                                            {{item.ciclo.nivel}}
+                                                        </a>
+                                                        <span class="text-muted font-weight-bold d-block">
+                                                            {{item.ciclo.f_inicio|date}} - {{item.ciclo.f_fin|date}}
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <span class="text-dark font-weight-bolder text-hover-primary mb-1 font-size-lg">
+                                                            <ng-container *ngFor="let subitem of item.ciclo.meses; let ultimo = last">
+                                                                    <span *ngIf="subitem == 1">Ene<ng-container *ngIf="!ultimo">, </ng-container>  
+                                                                    </span>
+                                                                    <span *ngIf="subitem == 2">Feb<ng-container *ngIf="!ultimo">, </ng-container> 
+                                                                    </span>
+                                                                    <span *ngIf="subitem == 3">Mar<ng-container *ngIf="!ultimo">, </ng-container> 
+                                                                    </span>
+                                                                    <span *ngIf="subitem == 4">Abr<ng-container *ngIf="!ultimo">, </ng-container> 
+                                                                    </span>
+                                                                    <span *ngIf="subitem == 5">May<ng-container *ngIf="!ultimo">, </ng-container> 
+                                                                    </span>
+                                                                    <span *ngIf="subitem == 6">Jun<ng-container *ngIf="!ultimo">, </ng-container> 
+                                                                    </span>
+                                                                    <span *ngIf="subitem == 7">Jul<ng-container *ngIf="!ultimo">, </ng-container> 
+                                                                    </span>
+                                                                    <span *ngIf="subitem == 8">Ago<ng-container *ngIf="!ultimo">, </ng-container> 
+                                                                    </span>
+                                                                    <span *ngIf="subitem == 9">Sep<ng-container *ngIf="!ultimo">, </ng-container> 
+                                                                    </span>
+                                                                    <span *ngIf="subitem == 10">Oct<ng-container *ngIf="!ultimo">, </ng-container> 
+                                                                    </span>
+                                                                    <span *ngIf="subitem == 11">Nov<ng-container *ngIf="!ultimo">, </ng-container> 
+                                                                    </span>
+                                                                    <span *ngIf="subitem == 12">Dic<ng-container *ngIf="!ultimo">, </ng-container> 
+                                                                    </span>
+                                                            </ng-container>
+                                                         
+
+                                                        </span>
+                                                        <span class="text-muted font-weight-bold d-block">
+                                                            Ciclos
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <ng-container *ngIf="item.ciclo.estado">
+                                                            <span class="badge badge-warning">Publicado</span>
+                                                        </ng-container>
+                                                        <ng-container  *ngIf="!item.ciclo.estado">
+                                                            <span class="badge badge-success">Borrador</span>
+                                                        </ng-container>
+                                                    </td>
+                                                    
+                                                    <td class="text-right">
+                                                        <span class="text-dark font-weight-bolder text-hover-primary mb-1 font-size-lg">
+                                                            {{item.ciclo.createdAt|date}}
+                                                        </span>
+                                                        <span class="text-muted font-weight-bold d-block">
+                                                            Creación
+                                                        </span>
+                                                    </td>
+                                                    <td class="text-right pr-4" >
+                                                        <div class="dropdown dropdown-inline dropleft">
+                                                            <button type="button" class="btn btn-light-primary btn-icon btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                <i class="ki ki-bold-more-ver"></i>
+                                                            </button>
+                                                            <div class="dropdown-menu">
+                                                                <a class="dropdown-item" [routerLink]="['/cursos/'+id+'/ciclo/edit/'+item.ciclo._id]" >
+                                                                    <i class="icon-1x text-dark-50 flaticon-edit"></i> &nbsp; Editar ciclo
+                                                                </a>
+                                                                <a style="cursor: pointer;" class="dropdown-item" *ngIf="item.ciclo.estado" data-toggle="modal" [attr.data-target]="'#state-'+item.ciclo._id">
+                                                                    <i class="icon-1x text-dark-50 flaticon2-cross"></i> &nbsp; Ocultar
+                                                                </a>
+                                                                <a style="cursor: pointer;" class="dropdown-item" *ngIf="!item.ciclo.estado"  data-toggle="modal" [attr.data-target]="'#state-'+item.ciclo._id">
+                                                                    <i class="icon-1x text-dark-50 flaticon2-check-mark"></i> &nbsp; Publicar
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                
+                                                        <div class="modal fade" id="state-{{item.ciclo._id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog" role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="exampleModalLabel">Title Modal</h5>
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                            <i aria-hidden="true" class="ki ki-close"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Atque vero odio sunt sequi. Fugit ipsum possimus placeat eum cum perspiciatis! Est, cupiditate nostrum maiores quo ad cumque consequatur laudantium? Excepturi.</p>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-warning font-weight-bold" data-dismiss="modal">Cerrar</button>
+                                                                        <button *ngIf="!load_estado" type="button" class="btn btn-danger font-weight-bold" (click)="set_state(item.ciclo._id,item.ciclo.estado)">Enviar</button>
+                                                        
+                                                                        <button *ngIf="load_estado" class="btn btn-danger" type="button" disabled>
+                                                                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                                                            Enviando...
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="6">
+                                                        <table class="table table-bordered table-sm table-striped" style="margin-bottom: 0px;">
+                                                            <ng-container>
+                                                                <thead>
+                                                                    <th class="text-primary">Salón</th>
+                                                                    <th class="text-primary">Horario</th>
+                                                                    <th class="text-primary">Días</th>
+                                                                    <th class="text-primary">Aforo</th>
+                                                                </thead>
+                                                                <tr *ngFor="let subitem of item.salones">
+                                                                    <td>
+                                                                        {{subitem.salon}}
+                                                                    </td>
+                                                                    <td>
+                                                                        <span>{{subitem.h_inicio}}</span> - <span>{{subitem.h_fin}}</span>
+                                                                    </td>
+                                                                    <td>
+                                                                        <span class="text-dark-75 font-weight-bolder d-block font-size-lg">
+                                                                            <ng-container *ngFor="let dia of subitem.f_dias; let ultimo = last">
+                                                                                <span *ngIf="!ultimo">{{dia.substr(0,3)}}, </span>
+                                                                                <span *ngIf="ultimo">{{dia.substr(0,3)}}</span>
+                                                                            </ng-container>
+                                                                        </span>
+                                                                        <span class="text-muted font-weight-bold">Días</span>
+                                                                    </td>
+                                                                    <td>
+                                                                        <strong>{{subitem.aforo_total}}</strong>
+                                                                        <span>({{subitem.aforo_actual}})</span>
+                                                                    </td>
+                                                                </tr>
+                                                            </ng-container>
+                                                            
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                               </ng-container>
+                                               
+                                            </tbody>
+                                            <!-- <tbody>
+                                                <tr>
+                                                    <td colspan="6" class="text-center">
+                                                        <span class="text-muted">No se encontraron resultados.</span>
+                                                    </td>
+                                                </tr>
+                                            </tbody>   -->
+                                            
+                                            
+                                        </table>
+                                
+                                                
+                                        <!--end::Table-->
+                                    </div>
+                                   
+                                    <!--end::Body-->
+                                </div>
+                            </ng-container>
+                            <ng-container *ngIf="!data">
+                                <app-notfound></app-notfound>
+                            </ng-container>
+                        </ng-container>
+                        
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Entry-->
+            </div>
+            <!--end::Content-->
+            
+        </div>
+    </div>
+</div>

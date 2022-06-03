@@ -1,0 +1,21 @@
+{
+    "categorias": [
+        {
+            "titulo":"Licencias",
+            "id":"1"
+        },
+        {
+            "titulo":"Perifericos",
+            "id":"2"
+        },
+        {
+            "titulo":"Laptops",
+            "id":"3"
+        },
+        {
+            "titulo":"Oficina",
+            "id":"4"
+        }
+    ],
+    "ganacia_producto": 30
+}

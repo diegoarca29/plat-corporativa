@@ -1,0 +1,225 @@
+<div class="d-flex flex-column flex-root">
+    <div class="d-flex flex-row flex-column-fluid page">
+        <app-sidebar></app-sidebar>
+        <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
+            <app-top></app-top>
+            
+            <!--begin::Content-->
+            
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Subheader-->
+                <div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
+                    <div class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+                        <!--begin::Info-->
+                        <div class="d-flex align-items-center flex-wrap mr-2">
+                            <!--begin::Page Title-->
+                            <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Dashboard</h5>
+                            <!--end::Page Title-->
+                            <!--begin::Actions-->
+                            <div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-4 bg-gray-200"></div>
+                            <span class="text-muted font-weight-bold mr-4">#XRS-45670</span>
+                            <a href="#" class="btn btn-light-warning font-weight-bolder btn-sm">Add New</a>
+                            <!--end::Actions-->
+                        </div>
+                        <!--end::Info-->
+                        
+                    </div>
+                </div>
+                <!--end::Subheader-->
+                <!--begin::Entry-->
+                <div class="d-flex flex-column-fluid">
+                    <!--begin::Container-->
+                    <div class="container">
+                        <div class="card card-custom gutter-b">
+                            <!--begin::Header-->
+                            <div class="card-header flex-wrap border-0 pt-6 pb-0">
+                                <h3 class="card-title align-items-start flex-column">
+                                    <span class="card-label font-weight-bolder font-size-h3 text-dark">Inventario</span>
+                                </h3>
+                                <div class="card-toolbar">
+                                    <div class="dropdown dropdown-inline">
+                                        <a data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-primary font-weight-bolder font-size-sm">Nuevo ingreso</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end::Header-->
+                            <div class="card-body">
+                                <!--begin::Shopping Cart-->
+
+                                <div class="mb-7">
+                                    <div class="row align-items-center">
+                                        <div class="col-lg-9 col-xl-8">
+                                            <div class="row align-items-center">
+                                                <div class="col-md-4 my-2 my-md-0">
+                                                    <div class="input-icon">
+                                                        <input type="text" class="form-control" placeholder="Producto" name="filtro_producto" [(ngModel)]="filtro_producto">
+                                                        <span>
+                                                            <i class="flaticon2-search-1 text-muted"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 my-2 my-md-0">
+                                                    <div class="d-flex align-items-center">
+                                                        <label class="mr-3 mb-0 d-none d-md-block">Inicio:</label>
+                                                        <input type="date" class="form-control" name="filtro_finicio" [(ngModel)]="filtro_finicio">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 my-2 my-md-0">
+                                                    <div class="d-flex align-items-center">
+                                                        <label class="mr-3 mb-0 d-none d-md-block">Fin:</label>
+                                                        <input type="date" class="form-control" name="filtro_ffin" [(ngModel)]="filtro_ffin">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-xl-4 mt-5 mt-lg-0">
+                                            <button class="btn btn-light-primary px-6 font-weight-bold" (click)="filtrar_data()">Buscar</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <!--begin::Cart Header-->
+                                        <thead>
+                                            <tr>
+                                                <th>Producto</th>
+                                                <th class="text-center">SKU</th>
+                                                <th class="text-center">Variedad</th>
+                                                <th class="text-center">Qty</th>
+                                                <th class="text-right">CostoxUnidad</th>
+                                                <th class="text-right">Fecha</th>
+                                            </tr>
+                                        </thead>
+                                        <!--end::Cart Header-->
+                                        <ng-container *ngIf="load_data">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="text-center" colspan="6">
+                                                        <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                                            <span class="sr-only">Loading...</span>
+                                                          </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </ng-container>
+                                        <ng-container *ngIf="!load_data">
+                                            <tbody *ngFor="let item of invetario">
+                                                <!--begin::Cart Content-->
+                                                <tr>
+                                                    <td class="d-flex align-items-center font-weight-bolder">
+                                                        <!--begin::Symbol-->
+                                                        <div class="symbol symbol-60 flex-shrink-0 mr-4 bg-light">
+                                                            <div class="symbol-label" style="background-image: url('{{url}}get_image_productos/{{item.producto.portada}}')"></div>
+                                                        </div>
+                                                        <!--end::Symbol-->
+                                                        <a class="text-dark text-hover-primary">{{item.producto.titulo}}</a>
+                                                        
+                                                    </td>
+                                                    <td class="text-center align-middle">
+                                                        <a class="text-right align-middle font-weight-bolder ">{{item.variedad.sku}}</a> 
+                                                    </td>
+                                                    <td class="text-center align-middle">
+                                                        <a class="text-right align-middle font-weight-bolder ">{{item.variedad.titulo}}</a> 
+                                                        <br>
+                                                        <span class="text-muted font-weight-bold">{{item.producto.tipo_variedad}}</span>
+                                                    </td>
+                                                    <td class="text-center align-middle">
+                                                        <a class="text-right align-middle font-weight-bolder ">x{{item.cantidad}}</a> 
+                                                    </td>
+                                                    <td class="text-right align-middle font-weight-bolder ">{{item.costo_unidad|currency:'USD'}}</td>
+                                                    <td class="text-right align-middle">
+                                                        <a class="text-right align-middle font-weight-bolder">{{item.createdAt|date}}</a> 
+                                                    </td>
+                                                </tr>
+                                                
+                                            </tbody>
+                                        </ng-container>
+                                        
+                                    </table>
+                                </div>
+                                <!--end::Shopping Cart-->
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Entry-->
+            </div>
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalLabel" style="display: none;" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 500px;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Nuevo ingreso</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <i aria-hidden="true" class="ki ki-close"></i>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <h3 class="font-size-lg text-dark font-weight-bold mb-6">1. Producto:</h3>
+                            <div class="mb-15">
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label text-left">Producto(*):</label>
+                                    <div class="col-lg-9">
+                                        <select class="form-control selectpicker" data-live-search="true" name="producto" [(ngModel)]="inventario.producto" (change)="select_producto()">
+                                            <option value="" disabled selected>Seleccionar</option>
+                                            <option value="{{item._id}}" *ngFor="let item of productos">{{item.titulo}}</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label text-left">Variedad(*):</label>
+                                    <div class="col-lg-9">
+                                        <select class="form-control selectpicker" data-live-search="true" name="variedad" [(ngModel)]="inventario.variedad">
+                                            <option value="" disabled selected>Seleccionar</option>
+                                            <option value="{{item._id}}" *ngFor="let item of variedades">{{item.titulo}}</option>
+                                           
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <h3 class="font-size-lg text-dark font-weight-bold mb-6">1. Ingreso:</h3>
+                            <div class="">
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label text-left">Costo unidad(*):</label>
+                                    <div class="col-lg-9">
+                                        <input type="number" class="form-control" placeholder="Costo unidas" name="costo_unidad" [(ngModel)]="inventario.costo_unidad">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label text-left">Cantidad(*):</label>
+                                    <div class="col-lg-9">
+                                        <input type="number" class="form-control" placeholder="Cantidad" name="cantidad" [(ngModel)]="inventario.cantidad">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label text-left">Proveedor(?):</label>
+                                    <div class="col-lg-9">
+                                        <input type="text" class="form-control" placeholder="Costo unidas" name="proveedor" [(ngModel)]="inventario.proveedor">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Cerrar</button>
+                            <button type="button" (click)="save()" class="btn btn-primary font-weight-bold">Ingresar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end::Content-->
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+

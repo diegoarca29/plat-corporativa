@@ -1,0 +1,175 @@
+<div class="d-flex flex-column flex-root">
+    <div class="d-flex flex-row flex-column-fluid page">
+        <app-sidebar></app-sidebar>
+        <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
+            <app-top></app-top>
+            
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Subheader-->
+                <div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
+                    <div class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+                        <!--begin::Info-->
+                        <div class="d-flex align-items-center flex-wrap mr-2">
+                            <!--begin::Page Title-->
+                            <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Configuraciones</h5>
+                            <!--end::Page Title-->
+                            <!--begin::Actions-->
+                            <div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-4 bg-gray-200"></div>
+                            <span class="text-muted font-weight-bold mr-4">#XRS-45670</span>
+                            <a href="#" class="btn btn-light-warning font-weight-bolder btn-sm">Add New</a>
+                            <!--end::Actions-->
+                        </div>
+                        <!--end::Info-->
+                        
+                    </div>
+                </div>
+                <!--end::Subheader-->
+                <!--begin::Entry-->
+                <div class="d-flex flex-column-fluid">
+                    <!--begin::Container-->
+                    <div class="container">
+                        
+                        <div class="card card-custom card-transparent">
+                            <div class="card-body p-0">
+                                <!--begin::Wizard-->
+                                <div class="wizard wizard-4" id="kt_wizard" data-wizard-state="step-first" data-wizard-clickable="true">
+                                    <!--begin::Wizard Nav-->
+                                    <div class="wizard-nav">
+                                        <div class="wizard-steps">
+                                            <div class="wizard-step" [ngClass]="{'active-wirzard': op == 1}" data-wizard-type="step" (click)="set_op(1)">
+                                                <div class="wizard-wrapper">
+                                                    <div class="wizard-number">1</div>
+                                                    <div class="wizard-label">
+                                                        <div class="wizard-title">General</div>
+                                                        <div class="wizard-desc">Configura el panel</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="wizard-step" [ngClass]="{'active-wirzard': op == 2}" data-wizard-type="step" (click)="set_op(2)">
+                                                <div class="wizard-wrapper">
+                                                    <div class="wizard-number">2</div>
+                                                    <div class="wizard-label">
+                                                        <div class="wizard-title">Finanzas</div>
+                                                        <div class="wizard-desc">Configura matriculas y ventas</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                           
+                                        </div>
+                                    </div>
+                                    <!--end::Wizard Nav-->
+                                    <!--begin::Card-->
+                                    <div class="card card-custom card-shadowless rounded-top-0">
+                                        <!--begin::Body-->
+                                        <div class="card-body p-0">
+                                            <div class="row justify-content-center py-8 px-8 py-lg-15 px-lg-10">
+                                                <div class="col-xl-12 col-xxl-10">
+                                                    <!--begin::Wizard Form-->
+                                                    <form class="form" id="kt_form">
+                                                        <div class="row justify-content-center">
+                                                            <div class="col-xl-9">
+                                                               
+                                                                <div class="my-5 step" *ngIf="op == 1">
+                                                                    <h5 class="text-dark font-weight-bold mb-10">Configuraciones del panel:</h5>
+                                                                    <div class="form-group row">
+                                                                        <label class="col-xl-3 col-lg-3 col-form-label text-left">Isotipo</label>
+                                                                        <div class="col-lg-9 col-xl-9">
+                                                                            <div class="image-input image-input-outline" id="kt_user_add_avatar">
+                                                                                <div class="image-input-wrapper" style="background-image: url({{str_portada}})"></div>
+                                                                                <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="Change avatar">
+                                                                                    <i class="fa fa-pen icon-sm text-muted"></i>
+                                                                                    <input type="file" name="profile_avatar" accept=".png, .jpg, .jpeg" (change)="fileEventChange($event)"/>
+                                                                                
+                                                                                </label>
+                                                                                
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group row">
+                                                                        <label class="col-xl-3 col-lg-3 col-form-label">Razón social</label>
+                                                                        <div class="col-lg-9 col-xl-9">
+                                                                            <input class="form-control form-control-solid form-control-lg" type="text" placeholder="Razón social" name="razon_social" [(ngModel)]="config.razon_social">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group row">
+                                                                        <label class="col-xl-3 col-lg-3 col-form-label">Slogan</label>
+                                                                        <div class="col-lg-9 col-xl-9">
+                                                                            <input class="form-control form-control-solid form-control-lg" type="text" placeholder="Slogan" name="slogan" [(ngModel)]="config.slogan"/>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group row">
+                                                                        <label class="col-xl-3 col-lg-3 col-form-label">Color principal</label>
+                                                                        <div class="col-lg-9 col-xl-9">
+                                                                            <input id="color-picker" class="form-control form-control-solid form-control-lg" type="text" placeholder="Color picker" name="background" [(ngModel)]="config.background"/>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group row">
+                                                                        <label class="col-xl-3 col-lg-3 col-form-label">Canales de venta</label>
+                                                                        <div class="col-lg-9 col-xl-9">
+                                                                            <textarea class="form-control form-control-solid form-control-lg" type="text" placeholder="Facebook, WhattsApp, Instagram..." name="canales" [(ngModel)]="config.canales"></textarea>    
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group row">
+                                                                        <label class="col-xl-3 col-lg-3 col-form-label">Categorías</label>
+                                                                        <div class="col-lg-9 col-xl-9">
+                                                                            <textarea class="form-control form-control-solid form-control-lg" type="text" placeholder="Tecnología, Licencias, Miscellaneos..." name="categorias" [(ngModel)]="config.categorias"></textarea>    
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <span class="text-muted mt-3 font-weight-bold font-size-sm">
+                                                                            Ultima actualización {{config.updatedAt|date:'medium'}}
+                                                                        </span>
+                                                                    </div>
+                                                                    <div class="d-flex justify-content-between border-top pt-10 mt-15">
+                                                                        <div>
+                                                                            <button type="button" (click)="update()" class="btn btn-success font-weight-bolder px-9 py-4">Guardar cambios</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                               
+                                                                <div class="my-5 step" *ngIf="op == 2">
+                                                                    <h5 class="text-dark font-weight-bold mb-10">Configuraciones de ERP:</h5>
+                                                                    <div class="form-group row">
+                                                                        <label class="col-xl-3 col-lg-3 col-form-label">Ganancia producto (%)</label>
+                                                                        <div class="col-lg-9 col-xl-9">
+                                                                            <input class="form-control form-control-solid form-control-lg" type="number" placeholder="10" name="ganancia_producto" [(ngModel)]="config_finanza.ganancia_producto"/>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <span class="text-muted mt-3 font-weight-bold font-size-sm">
+                                                                            Ultima actualización {{config_finanza.updatedAt|date:'medium'}}
+                                                                        </span>
+                                                                    </div>
+                                                                    <div class="d-flex justify-content-between border-top pt-10 mt-15">
+                                                                        <div>
+                                                                            <button (click)="update_finanza()" type="button" class="btn btn-success font-weight-bolder px-9 py-4">Guardar cambios</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                    <!--end::Wizard Form-->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--end::Body-->
+                                    </div>
+                                    <!--end::Card-->
+                                </div>
+                                <!--end::Wizard-->
+                            </div>
+                        </div>
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Entry-->
+            </div>
+            <!--end::Content-->
+        </div>
+    </div>
+</div>
+
+

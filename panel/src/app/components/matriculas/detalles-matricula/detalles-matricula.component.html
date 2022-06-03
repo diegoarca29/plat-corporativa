@@ -1,0 +1,309 @@
+<div class="d-flex flex-column flex-root">
+    <div class="d-flex flex-row flex-column-fluid page">
+        <app-sidebar></app-sidebar>
+        <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
+            <app-top></app-top>
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Subheader-->
+                <div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
+                    <div class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+                        <!--begin::Info-->
+                        <div class="d-flex align-items-center flex-wrap mr-2">
+                            <!--begin::Page Title-->
+                            <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Dashboard</h5>
+                            <!--end::Page Title-->
+                            <!--begin::Actions-->
+                            <div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-4 bg-gray-200"></div>
+                            <span class="text-muted font-weight-bold mr-4">#XRS-45670</span>
+                            <a href="#" class="btn btn-light-warning font-weight-bolder btn-sm">Add New</a>
+                            <!--end::Actions-->
+                        </div>
+                        <!--end::Info-->
+                        
+                    </div>
+                </div>
+                <!--end::Subheader-->
+                <div class="d-flex flex-column-fluid">
+                    <!--begin::Container-->
+                    <div class="container">
+                        <!--begin::Page Layout-->
+                        <div *ngIf="load_data" class="card card-custom card-shadowless rounded-top-0 mb-7">
+                            <div class="card-body p-0">
+                                <div class="row">
+                                    <div class="col-12 text-center mt-7 mb-7">
+                                        <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                            <span class="sr-only">Loading...</span>
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <ng-container *ngIf="!load_data">
+                            <div class="d-flex flex-row" *ngIf="data">
+                                <!--begin::Aside-->
+                                <div class="flex-column offcanvas-mobile w-300px w-xl-325px" id="kt_profile_aside">
+                                    <!--begin::List Widget 17-->
+                                    <div class="card card-custom gutter-b">
+                                        <div class="card-body pt-4">
+                                            <!--begin::Toolbar-->
+                                            
+                                            <!--end::Toolbar-->
+                                            <!--begin::User-->
+                                            <div class="d-flex align-items-center mt-5">
+                                                <div class="symbol symbol-60 symbol-xxl-100 mr-5 align-self-start align-self-xxl-center">
+                                                    <div class="symbol-label" style="background-image:url('assets/imgs/user.png')"></div>
+                                                    <i class="symbol-badge bg-success"></i>
+                                                </div>
+                                                <div>
+                                                    <a [routerLink]="['/cliente/buyer/'+matricula.cliente._id+'/dashboard']" class="font-weight-bold font-size-h5 text-dark-75 text-hover-primary">
+                                                        {{matricula.cliente.nombres}} {{matricula.cliente.apellidos}}
+                                                    </a>
+                                                    <div class="text-muted">{{matricula.cliente.tipo}}</div>
+                                                    <div class="mt-2">
+                                                        <a  [routerLink]="['/cliente/buyer/'+matricula.cliente._id+'/dashboard']" class="btn btn-sm btn-primary font-weight-bold mr-2 py-2 px-3 px-xxl-5 my-1">Buyer</a>
+                                                   
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--end::User-->
+                                            <!--begin::Contact-->
+                                            <div class="pt-8 pb-6">
+                                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                                    <span class="font-weight-bold mr-2">Email:</span>
+                                                    <a  class="text-muted text-hover-primary">{{matricula.cliente.email}}</a>
+                                                </div>
+                                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                                    <span class="font-weight-bold mr-2">Phone:</span>
+                                                    <span class="text-muted">{{matricula.cliente.telefono}}</span>
+                                                </div>
+                                                <div class="d-flex align-items-center justify-content-between">
+                                                    <span class="font-weight-bold mr-2">País:</span>
+                                                    <span class="text-muted" *ngIf="matricula.cliente.pais">{{matricula.cliente.pais}}</span>
+                                                    <span class="text-muted" *ngIf="!matricula.cliente.pais">No registrado</span>
+                                                </div>
+                                            </div>
+                                            <!--end::Contact-->
+                                            <!--begin::Contact-->
+                                            <div class="pb-6">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical.</div>
+                                            <!--end::Contact-->
+                                            <a  [routerLink]="['/matriculas/contrato',matricula._id]" class="btn btn-light-success font-weight-bold py-3 px-6 mb-2 text-center btn-block">Contrato</a>
+                                        </div>
+                                    </div>
+                                    <!--end::List Widget 17-->
+                                    <!--begin::List Widget 21-->
+                                    <div class="card card-custom gutter-b">
+                                        <div class="card-header border-0 pt-5">
+                                            <h3 class="card-title font-weight-bolder">Resumen de matricula</h3>
+                                           
+                                        </div>
+                                        <div class="card-body pt-4">
+                                           
+                                            <!--begin::Contact-->
+                                            <div class="pt-8 pb-6">
+                                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                                    <span class="font-weight-bold mr-2">Código:</span>
+                                                    <a class="text-muted text-hover-primary">
+                                                        {{matricula._id}}
+                                                    </a>
+                                                </div>
+                                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                                    <span class="font-weight-bold mr-2">Asesor:</span>
+                                                    <span class="text-muted">
+                                                        {{matricula.asesor.nombres}} {{matricula.asesor.apellidos}}
+                                                    </span>
+                                                </div>
+                                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                                    <span class="font-weight-bold mr-2">Canal:</span>
+                                                    <span class="text-muted">{{matricula.canal}}</span>
+                                                </div>
+                                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                                    <span class="font-weight-bold mr-2">Monto:</span>
+                                                    <span class="text-muted">{{matricula.monto|currency:'USD'}}</span>
+                                                </div>
+                                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                                    <span class="font-weight-bold mr-2">Matricula:</span>
+                                                    <span class="text-muted">{{matricula.matricula|currency:'USD'}}</span>
+                                                </div>
+                                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                                    <span class="font-weight-bold mr-2">Descuento:</span>
+                                                    <span class="text-muted">{{matricula.descuento|currency:'USD'}}</span>
+                                                </div>
+                                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                                    <span class="font-weight-bold mr-2">Fecha:</span>
+                                                    <span class="text-muted">{{matricula.createdAt|date}}</span>
+                                                </div>
+                                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                                    <span class="font-weight-bold mr-2">Estado:</span>
+                                                    <span class="text-muted">{{matricula.estado}}</span>
+                                                </div>
+
+                                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                                    <span class="font-weight-bold mr-2">Firma:</span>
+                                                    <span class="text-muted" *ngIf="matricula.firma">Firmado</span>
+                                                    <span class="text-muted" *ngIf="!matricula.firma">No firmado</span>
+                                                </div>
+                                                <div class="d-flex align-items-center justify-content-between mb-2"  *ngIf="matricula.firma">
+                                                    <span class="font-weight-bold mr-2">Fecha de firma:</span>
+                                                    <span class="text-muted">{{matricula.date_firma|date:'short'}}</span>
+                                                </div>
+                                               
+                                            </div>
+                                            <!--end::Contact-->
+                                            
+                                        </div>
+                                    </div>
+                                    <!--end::List Widget 21-->
+                                </div>
+                                <!--end::Aside-->
+                                <!--begin::Layout-->
+                                <div class="flex-row-fluid ml-lg-8">
+                                    <!--begin::Card-->
+                                    <div class="card card-custom gutter-b">
+                                        <div class="card-body p-0">
+                                            <!-- begin: Invoice-->
+                                            <!-- begin: Invoice header-->
+                                            <div class="row justify-content-center py-8 px-8 py-md-27 px-md-0">
+                                                <div class="col-md-10">
+                                                    <div class="d-flex justify-content-between pb-10 pb-md-20 flex-column flex-md-row">
+                                                        <h1 class="display-4 font-weight-boldest mb-10">ORDER DE MATRICULA</h1>
+                                                        <div class="d-flex flex-column align-items-md-end px-0">
+                                                            <!--begin::Logo-->
+                                                            
+                                                            <!--end::Logo-->
+                                                            <span class="d-flex flex-column align-items-md-end opacity-70">
+                                                                <span>Cecilia Chapman, 711-2880 Nulla St, Mankato</span>
+                                                                <span>Mississippi 96522</span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="border-bottom w-100"></div>
+                                                    <div class="d-flex justify-content-between pt-6">
+                                                        <div class="d-flex flex-column flex-root">
+                                                            <span class="font-weight-bolder mb-2">FECHA</span>
+                                                            <span class="opacity-70">{{matricula.createdAt|date:'fullDate'}}</span>
+                                                        </div>
+                                                        <div class="d-flex flex-column flex-root">
+                                                            <span class="font-weight-bolder mb-2">CÓDIGO.</span>
+                                                            <span class="opacity-70">{{matricula._id}}</span>
+                                                        </div>
+                                                        <div class="d-flex flex-column flex-root">
+                                                            <span class="font-weight-bolder mb-2">CLIENTE.</span>
+                                                            <span class="opacity-70">
+                                                                {{matricula.cliente.nombres}} {{matricula.cliente.apellidos}}
+                                                            <br>{{matricula.cliente.email}}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- end: Invoice header-->
+                                            <!-- begin: Invoice body-->
+                                            <div class="row justify-content-center py-8 px-8 py-md-10 px-md-0">
+                                                <div class="col-md-10">
+                                                    <div class="table-responsive">
+                                                        <table class="table">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="pl-0 font-weight-bold text-muted text-uppercase">Curso</th>
+                                                                    <th class="text-right font-weight-bold text-muted text-uppercase">Salón</th>
+                                                                    <th class="text-right font-weight-bold text-muted text-uppercase">Horario</th>
+                                                                    <th class="text-right pr-0 font-weight-bold text-muted text-uppercase">Precio</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody *ngFor="let item of detalles">
+                                                                <tr class="font-weight-boldest">
+                                                                    <td class="border-0 pl-0 pt-7 d-flex align-items-center">
+                                                                        <!--begin::Symbol-->
+                                                                        <div class="symbol symbol-40 flex-shrink-0 mr-4 bg-light" >
+                                                                            <div class="symbol-label" style="background-image: url('{{url}}get_image_curso/{{item.curso.banner}}');width: 80px !important;"></div>
+                                                                        </div>
+                                                                        <!--end::Symbol-->
+                                                                        {{item.curso.titulo}}
+                                                                    </td>
+                                                                    <td class="text-right pt-7 align-middle">{{item.ciclo_salon.salon}}</td>
+                                                                    <td class="text-right pt-7 align-middle">
+                                                                        <ng-container *ngFor="let dia of item.ciclo_salon.f_dias; let ultimo = last">
+                                                                            <span *ngIf="!ultimo">{{dia.substr(0,3)}}, </span>
+                                                                            <span *ngIf="ultimo">{{dia.substr(0,3)}}</span>
+                                                                        </ng-container>
+                                                                    </td>
+                                                                    <td class="text-primary pr-0 pt-7 text-right align-middle">{{item.precio|currency:'USD'}}</td>
+                                                                </tr>
+                                                                
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- end: Invoice body-->
+                                            <!-- begin: Invoice footer-->
+                                            <div class="row justify-content-center bg-gray-100 py-8 px-8 py-md-10 px-md-0 mx-0">
+                                                <div class="col-md-10">
+                                                    <div class="table-responsive">
+                                                        <table class="table">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="font-weight-bold text-muted text-uppercase">MÉTODO DE PAGO</th>
+                                                                    <th class="font-weight-bold text-muted text-uppercase">ESTADO</th>
+                                                                    <th class="font-weight-bold text-muted text-uppercase">FECHA</th>
+                                                                    <th class="font-weight-bold text-muted text-uppercase text-right">TOTAL</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr class="font-weight-bolder">
+                                                                    <td>Credit Card</td>
+                                                                    <td>{{matricula.estado}}</td>
+                                                                    <td>{{matricula.createdAt|date}}</td>
+                                                                    <td class="text-primary font-size-h3 font-weight-boldest text-right">
+                                                                        {{matricula.monto+matricula.matricula|currency:'USD'}}
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- end: Invoice footer-->
+                                            <!-- begin: Invoice action-->
+                                            <div class="row justify-content-center py-8 px-8 py-md-10 px-md-0">
+                                                <div class="col-md-10">
+                                                    <div class="d-flex justify-content-between">
+                                                        <button type="button" class="btn btn-light-primary font-weight-bold" onclick="window.print();">Descargar orden</button>
+                                                        <button type="button" class="btn btn-primary font-weight-bold" onclick="window.print();">Imprimir orden</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- end: Invoice action-->
+                                            <!-- end: Invoice-->
+                                        </div>
+                                    </div>
+                                    <!--end::Card-->
+                                </div>
+                                <!--end::Layout-->
+                            </div>
+                            <ng-container *ngIf="!data">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <app-notfound></app-notfound>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </ng-container>
+                        
+                        
+                        
+                        <!--end::Page Layout-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+            </div>
+            
+            <!--end::Content-->
+            
+        </div>
+    </div>
+</div>
+
+
+

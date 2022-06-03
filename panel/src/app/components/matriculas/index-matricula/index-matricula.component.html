@@ -1,0 +1,503 @@
+<div class="d-flex flex-column flex-root">
+    <div class="d-flex flex-row flex-column-fluid page">
+        <app-sidebar></app-sidebar>
+        <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
+            <app-top></app-top>
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Subheader-->
+                <div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
+                    <div class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+                        <!--begin::Info-->
+                        <div class="d-flex align-items-center flex-wrap mr-2">
+                            <!--begin::Page Title-->
+                            <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Dashboard</h5>
+                            <!--end::Page Title-->
+                            <!--begin::Actions-->
+                            <div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-4 bg-gray-200"></div>
+                            <span class="text-muted font-weight-bold mr-4">#XRS-45670</span>
+                            <a href="#" class="btn btn-light-warning font-weight-bolder btn-sm">Add New</a>
+                            <!--end::Actions-->
+                        </div>
+                        <!--end::Info-->
+                        
+                    </div>
+                </div>
+                <!--end::Subheader-->
+                <!--begin::Entry-->
+                <div class="d-flex flex-column-fluid">
+                    <!--begin::Container-->
+                    <div class="container">
+                        <div class="card card-custom mb-7">
+                            <div class="card-header flex-wrap border-0 pt-6 pb-0">
+                                <div class="card-title">
+                                    <h3 class="card-label">Matriculas
+                                    <span class="text-muted pt-2 font-size-sm d-block">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugiat, tempore.</span></h3>
+                                </div>
+                                <div class="card-toolbar">
+                                    <a class="btn btn-light-danger btn-sm font-weight-bold font-size-sm mr-3" style="cursor: pointer;">
+                                        <i class="flaticon-computer"></i> &nbsp; Encuesta
+                                    </a>
+            
+                                    <!-- <a class="btn btn-light-success btn-sm font-weight-bold font-size-sm mr-3">
+                                        <i class="flaticon-doc"></i>
+                                        Exportar
+                                    </a> -->
+                                    <!-- <button class="btn btn-light-success btn-sm font-weight-bold font-size-sm mr-3" type="button" disabled>
+                                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                        Preparando...
+                                    </button> -->
+                                  
+                                    <a [routerLink]="['/matriculas/create']" class="btn btn-light-info btn-sm font-weight-bold font-size-sm">
+                                        <i class="flaticon-add-circular-button"></i>
+                                        Nueva matricula
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <!--begin: Search Form-->
+                                <!--begin::Search Form-->
+                                <div class="">
+                                    <div class="row align-items-center">
+                                        <div class="col-lg-12 col-xl-12">
+                                            <div class="row mb-5">
+                                                
+                                                <div class="col-md-2 col-sm-6 my-2 my-md-0">
+                                                    <label class="mr-3 mb-0 d-md-block"><b>Fecha inicio</b></label>
+                                                    <input type="date" class="form-control" placeholder="Fecha de inicio" name="inicio" [(ngModel)]="inicio">
+                                                </div>
+                                                <div class="col-md-2 col-sm-6 my-2 my-md-0">
+                                                    <label class="mr-3 mb-0 d-md-block"><b>Fecha fin</b></label>
+                                                    <input type="date" class="form-control" placeholder="Fecha fin" name="hasta" [(ngModel)]="hasta">
+                                                </div>
+                                                <div class="col-md-3 col-sm-6 my-2 my-md-0">
+                                                    <label class="mr-3 mb-0 d-md-block"><b>Asesor</b></label>
+                                                    <select class="form-control selectpicker" data-size="7" data-live-search="true" name="asesor" [(ngModel)]="asesor">
+                                                        <option value="" selected disabled>Seleccionar</option>
+                                                        <option value="Todos">Todos</option>
+                                                        <option value="{{item._id}}" *ngFor="let item of asesores">{{item.nombres}} {{item.apellidos}}</option>
+                                                    </select>
+                                                </div>
+                                         
+                                                <div class="col-md-3 my-2 my-md-0">
+                                                    <label class="mr-3 mb-0 d-none d-md-block text-white">*</label>
+                                                    <a style="cursor: pointer;" class="btn btn-light-primary px-6 font-weight-bold" (click)="filtrar()">
+                                                       <i class="flaticon-search"></i> Buscar
+                                                    </a>
+                                                    <!-- <button type="button" class="btn btn-light-primary spinner spinner-white spinner-left">
+                                                        Buscando
+                                                    </button> -->
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                        <!-- <div class="col-lg-3 col-xl-4 mt-5 mt-lg-0">
+                                            
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card card-custom">
+                            <!--begin::Header-->
+                            <div class="card-header border-0 py-5">
+                                <h3 class="card-title align-items-start flex-column">
+                                    <span class="card-label font-weight-bolder text-dark">Matriculas</span>
+                                    <span class="text-muted mt-3 font-weight-bold font-size-sm">Actividades de apertura cursos</span>
+                                </h3>
+                                <div class="card-toolbar">
+                                    <div class="dropdown dropdown-inline mr-2">
+                                        <button type="button" class="btn btn-light-primary font-weight-bolder dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                           <i class="flaticon-file-2"></i> Exportar
+                                        </button>
+                                        <!--begin::Dropdown Menu-->
+                                        <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right" style="">
+                                            <!--begin::Navigation-->
+                                            <ul class="navi flex-column navi-hover py-2">
+                                                <li class="navi-header font-weight-bolder text-uppercase font-size-sm text-primary pb-2">
+                                                    Formatos:
+                                                </li>
+                                                
+                                                <li class="navi-item">
+                                                    <a style="cursor: pointer;" class="navi-link" (click)="toExcel()">
+                                                        <span class="navi-icon">
+                                                            <i class="la la-file-excel-o"></i>
+                                                        </span>
+                                                        <span class="navi-text">Excel</span>
+                                                    </a>
+                                                </li>
+                                                <li class="navi-item">
+                                                    <a style="cursor: pointer;" class="navi-link" (click)="toCSV()">
+                                                        <span class="navi-icon">
+                                                            <i class="la la-file-text-o"></i>
+                                                        </span>
+                                                        <span class="navi-text">CSV</span>
+                                                    </a>
+                                                </li>
+                                                
+                                            </ul>
+                                            <!--end::Navigation-->
+                                        </div>
+                                        <!--end::Dropdown Menu-->
+                                    </div>
+
+                                    <button data-toggle="modal" [attr.data-target]="'#modalAdvanced'" class="btn btn-light-warning px-6 font-weight-bold">
+                                        <i class="flaticon2-console"></i> Avanzado
+                                    </button>
+                                </div>
+                            </div>
+                            <!--end::Header-->
+                            <!--begin::Body-->
+                            <div class="card-body pt-0 pb-7">
+                                <!--begin::Table-->
+                                
+                                <div class="row" *ngIf="!load_data">
+                                    <ng-container *ngIf="matriculas.length == 0">
+                                        <div class="col-12 text-center">
+                                            <img src="assets/images/search.png" alt="" style="width: 80px;">
+                                            <h1 class="font-weight-bolder text-dark mt-5">Resultado de matriculas</h1>
+                                            <div class="font-size-h4 mb-8">No se encontraron matriculas que mostrar</div>
+                                        </div>
+                                    </ng-container>
+                                    <ng-container *ngIf="matriculas.length >= 1">
+                                        <div class="col-12 mb-5" *ngFor="let item of matriculas | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
+                                            <div class="card card-custom card-border">
+                                                <div class="card-header">
+                                                    <div class="card-title">
+                                                        <span class="card-icon">
+                                                            <i class="flaticon2-mail text-primary"></i>
+                                                        </span>
+                                                        <h3 class="card-label">Matricula
+                                                        <small>#{{item._id}}</small></h3>
+
+                                                        <span class="badge badge-info mr-3" *ngIf="item.firma">Firmado</span>
+                                                        <span class="badge badge-dark" *ngIf="item.encuesta">Encuestado</span>
+                                                    </div>
+                                                    <div class="card-toolbar">
+                                                        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                                                            <ng-container *ngIf="user.rol == 'Administrador'">
+                                                                <button *ngIf="item.estado != 'Cancelado'" type="button" class="btn btn-danger font-weight-bold" data-toggle="modal" [attr.data-target]="'#delete-'+item._id">
+                                                                    <i class="flaticon2-cancel-music"></i> Cancelar
+                                                                </button>
+                                                            </ng-container>
+                                                            
+                                                            
+                                                            <a [routerLink]="['/matriculas/pagos',item._id]" class="btn btn-success font-weight-bold">
+                                                               <i class="flaticon-piggy-bank"></i> Pagos
+                                                            </a>
+                                                            <!-- <button type="button" class="btn btn-danger font-weight-bold">3</button> -->
+                                                            <a [routerLink]="['/matriculas/contrato',item._id]" class="btn btn-warning font-weight-bold">
+                                                                <i class="flaticon2-google-drive-file"></i> Contrato
+                                                            </a>
+                              
+                                                            <div class="btn-group dropleft" role="group">
+                                                                <button id="btnGroupDrop1" type="button" class="btn btn-dark font-weight-bold dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                    <i class="flaticon-settings"></i>
+                                                                </button>
+                                                                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                                                    <a class="dropdown-item" style="cursor: pointer;" data-toggle="modal" [attr.data-target]="'#resendmail-'+item._id">
+                                                                       <i class="flaticon-email" style="font-size: 1rem;"></i> &nbsp; Reenviar orden
+                                                                    </a>
+                                                                    <a class="dropdown-item" [routerLink]="['/matriculas/detalles',item._id]" routerLinkActive="router-link-active" >
+                                                                        <i class="flaticon-bag" style="font-size: 1rem;"></i> &nbsp; Detalles
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        
+                                                        <div class="modal fade" id="resendmail-{{item._id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog" role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="exampleModalLabel">Reenviar la orden</h5>
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                            <i aria-hidden="true" class="ki ki-close"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <p>Esta ventana es para confirmar el reenvio de la orden de matricula al cliente.</p>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-warning font-weight-bold" data-dismiss="modal">Cerrar</button>
+                                                                        <button *ngIf="!btn_mail" type="button" class="btn btn-danger font-weight-bold" (click)="enviar_orden(item._id)">Enviar</button>
+                                                        
+                                                                        <button *ngIf="btn_mail" class="btn btn-danger" type="button" disabled>
+                                                                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                                                            Enviando...
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="modal fade" id="delete-{{item._id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog" role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="exampleModalLabel">Confirmación de eliminación</h5>
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                            <i aria-hidden="true" class="ki ki-close"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <p>Desea cancelar la matricula y sus pagos?.</p>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-warning font-weight-bold" data-dismiss="modal">Cerrar</button>
+                                                                        <button *ngIf="!load_cancel" type="button" class="btn btn-danger font-weight-bold" (click)="cancelar_matricula(item._id)">Cancelar</button>
+                                                        
+                                                                        <button *ngIf="load_cancel" class="btn btn-danger" type="button" disabled>
+                                                                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                                                            Cancelando...
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="row mb-5">
+                                                        <div class="col">
+                                                            <a class="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg">
+                                                              {{item.cliente.nombres}} {{item.cliente.apellidos}}
+                                                            </a>
+                                                            <span class="text-muted font-weight-bold d-block">
+                                                                {{item.cliente.email}}
+                                                            </span>
+                                                        </div>
+                                                        <div class="col text-center">
+                                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">
+                                                                {{item.asesor.nombres}} {{item.asesor.apellidos}}
+                                                            </span>
+                                                            <span class="text-muted font-weight-bold">Asesor comercial</span>
+                                                        </div>
+                                                        <div class="col text-center">
+                                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">
+                                                                {{item.canal}}
+                                                            </span>
+                                                            <span class="text-muted font-weight-bold">Canal</span>
+                                                        </div>
+                                                        <div class="col text-right">
+                                                            <span class="badge badge-primary mb-3 mr-3" *ngIf="item.estado == 'Procesando'">Procesando</span>
+                                                            <span class="badge badge-danger mb-3 mr-3" *ngIf="item.estado == 'Cancelado'">Cancelado</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="separator separator-dashed mt-8 mb-5"></div>
+                                                    <div class="d-flex align-items-center flex-wrap">
+                                                        <!--begin: Item-->
+                                                        <div class="d-flex align-items-center flex-lg-fill mr-5 my-1">
+                                                            <span class="mr-4">
+                                                                <i class="flaticon-piggy-bank icon-2x text-muted font-weight-bold"></i>
+                                                            </span>
+                                                            <div class="d-flex flex-column text-dark-75">
+                                                                <span class="font-weight-bolder font-size-sm">Total</span>
+                                                                <span class="font-weight-bolder font-size-h5">
+                                                                    {{item.monto|currency:'USD'}}
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <!--end: Item-->
+                                                        <!--begin: Item-->
+                                                        <div class="d-flex align-items-center flex-lg-fill mr-5 my-1">
+                                                            <span class="mr-4">
+                                                                <i class="flaticon-confetti icon-2x text-muted font-weight-bold"></i>
+                                                            </span>
+                                                            <div class="d-flex flex-column text-dark-75">
+                                                                <span class="font-weight-bolder font-size-sm">Matricula</span>
+                                                                <span class="font-weight-bolder font-size-h5">
+                                                                    {{item.matricula|currency:'USD'}}
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <!--end: Item-->
+                                                        <!--begin: Item-->
+                                                        <div class="d-flex align-items-center flex-lg-fill mr-5 my-1">
+                                                            <span class="mr-4">
+                                                                <i class="flaticon-pie-chart icon-2x text-muted font-weight-bold"></i>
+                                                            </span>
+                                                            <div class="d-flex flex-column text-dark-75">
+                                                                <span class="font-weight-bolder font-size-sm">Fecha</span>
+                                                                <span class="font-weight-bolder font-size-h5">
+                                                                    {{item.createdAt|date}}
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <!--end: Item-->
+                                                        <!--begin: Item-->
+                                                        <div class="d-flex align-items-center flex-lg-fill mr-5 my-1">
+                                                            <span class="mr-4">
+                                                                <i class="flaticon-file-2 icon-2x text-muted font-weight-bold"></i>
+                                                            </span>
+                                                            <div class="d-flex flex-column flex-lg-fill">
+                                                                <span class="text-dark-75 font-weight-bolder font-size-sm">Encuesta</span>
+                                                                <a *ngIf="item.encuesta" [routerLink]="['/matriculas/encuesta',item._id]"  class="text-primary font-weight-bolder">Ver</a>
+                                                                <a style="cursor: pointer;" *ngIf="!item.encuesta" (click)="generar_token(item._id,item.cliente._id)" class="text-primary font-weight-bolder">Generar</a>
+                                                            </div>
+                                                        </div>
+                                                        <!--end: Item-->
+                                                        <!--begin: Item-->
+                                                        <div class="d-flex align-items-center flex-lg-fill mr-5 my-1">
+                                                            <span class="mr-4">
+                                                                <i class="flaticon-chat-1 icon-2x text-muted font-weight-bold"></i>
+                                                            </span>
+                                                            <div class="d-flex flex-column">
+                                                                <span class="text-dark-75 font-weight-bolder font-size-sm">Comentarios</span>
+                                                                <a style="cursor: pointer;" class="text-primary font-weight-bolder" data-toggle="modal" [attr.data-target]="'#comentario-'+item._id" (click)="init_comentarios(item._id)">Ver</a>
+                                                            </div>
+
+                                                            
+                                                            <div class="modal fade" id="comentario-{{item._id}}" tabindex="-1" aria-labelledby="exampleModalLabel" style="display: none;" aria-hidden="true">
+                                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title" id="exampleModalLabel">Comentarios</h5>
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                <i aria-hidden="true" class="ki ki-close"></i>
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class="modal-body pt-4" style="max-height: 480px;min-height:480px;
+                                                                        overflow: hidden;
+                                                                        overflow-y: auto;">
+                                                                            <ng-container  *ngIf="load_comentarios">
+                                                                                <div class="row">
+                                                                                    <div class="col-12 text-center">
+                                                                                        <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                                                                            <span class="sr-only">Loading...</span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </ng-container>
+                                                                            <!--begin::Timeline-->
+                                                                            <div class="timeline timeline-5 mt-3" *ngIf="!load_comentarios">
+                                                                                <!--begin::Item-->
+                                                                                <div class="timeline-item align-items-start" *ngFor="let subitem of comentarios">
+                                                                                    <!--begin::Label-->
+                                                                                    <div class="timeline-label font-weight-bolder text-dark-75 font-size-lg text-right pr-3" style="width: 60px;">
+                                                                                        {{subitem.createdAt|date:'shortDate'}}
+                                                                                        
+                                                                                    </div>
+                                                                                    <!--end::Label-->
+                                                                                    <!--begin::Badge-->
+                                                                                    <div class="timeline-badge">
+                                                                                        <i class="fa fa-genderless text-success icon-xxl"></i>
+                                                                                    </div>
+                                                                                    <!--end::Badge-->
+                                                                                    <!--begin::Text-->
+                                                                                    <div class="timeline-content text-dark-50">
+                                                                                        <b>{{subitem.createdAt|date:'shortTime'}}</b>
+                                                                                        <br>
+                                                                                        {{subitem.activadad}}
+                                                                                    </div>
+                                                                                    <!--end::Text-->
+                                                                                </div>
+                                                                            </div>
+                                                                            <!--end::Timeline-->
+                                                                        </div>
+                                                                       
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!--end: Item-->
+                                                        <!--begin: Item-->
+                                                        <div class="d-flex align-items-center flex-lg-fill my-1">
+                                                            <span class="mr-4">
+                                                                <i class="flaticon-network icon-2x text-muted font-weight-bold"></i>
+                                                            </span>
+                                                            <div class="symbol-group symbol-hover">
+                                                                <div class="symbol symbol-30 symbol-circle" data-toggle="tooltip" title="" data-original-title="Mark Stone">
+                                                                    <a [routerLink]="['/cliente/buyer/'+item.cliente._id+'/dashboard']" >
+                                                                        <img alt="Pic" src="assets/imgs/user.png" style="width: 30px;">
+                                                                    </a>
+                                                                </div>
+                                                                <div class="symbol symbol-30 symbol-circle" data-toggle="tooltip" title="" data-original-title="Charlie Stone">
+                                                                    <img alt="Pic" src="assets/media/users/300_19.jpg">
+                                                                </div>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                        <!--end: Item-->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ng-container>
+                                    
+                                </div>
+                                <div class="row" *ngIf="load_data">
+                                    <div class="col-12 text-center">
+                                        <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                            <span class="sr-only">Loading...</span>
+                                          </div>
+                                    </div>
+                                </div>
+                               
+                            </div>
+                            <div class="card-footer">
+                                <ngb-pagination [collectionSize]="matriculas.length" [pageSize]="pageSize" [(page)]="page" [maxSize]="10" [rotate]="true" [boundaryLinks]="true"></ngb-pagination>
+                            </div>
+                            <!--end::Body-->
+                        </div>
+                        
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Entry-->
+            </div>
+            <!--end::Content-->
+            
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="modalAdvanced" tabindex="-1" aria-labelledby="exampleModalLabel" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Buscador avanzado</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i aria-hidden="true" class="ki ki-close"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group row">
+                    <div class="col-lg-12">
+                        <label>Código:</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <select name="tipo_filtro" [(ngModel)]="tipo_filtro" class="form-control form-control-solid" (change)="obtener_tipo_filtro()">
+                                    <option value="" disabled selected>Seleccionar</option>
+                                    <option value="codigo">Código de matricula</option>
+                                    <option value="nombres">Cliente</option>
+                                    <option value="canal">Canal</option>
+                                </select>
+                            </div>
+                            <input *ngIf="interruptor_form =='input'" type="text" class="form-control" placeholder="Filtro a buscar" name="filtro_valor" [(ngModel)]="filtro_valor">
+                            <select *ngIf="interruptor_form =='select'" class="custom-select form-control" name="filtro_valor" [(ngModel)]="filtro_valor">
+                                <option value="" selected disabled>Seleccionar</option>
+                                <option value="WhatsApp">WhatsApp</option>
+                                <option value="Facebook">Facebook</option>
+                                <option value="Instagram">Instagram</option>
+                                <option value="Campaña EM">Campaña EM</option>
+                                <option value="Publicidad FB">Publicidad FB</option>
+                                <option value="Tienda">Tienda</option>
+                            </select>
+                        </div>
+                    </div>
+                   
+                </div>
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-info font-weight-bold" (click)="restablecer_const()">Restablecer</button>
+                <button type="button" class="btn btn-primary font-weight-bold" (click)="buscador_avanzado()">Buscar</button>
+            </div>
+        </div>
+    </div>
+</div>

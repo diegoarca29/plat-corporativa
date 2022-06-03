@@ -1,0 +1,166 @@
+<div class="d-flex flex-column flex-row-fluid">
+
+    
+    <!--begin::Content-->
+    <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+        <!--begin::Subheader-->
+        
+        <!--end::Subheader-->
+        <!--begin::Entry-->
+        <div class="d-flex flex-column-fluid">
+            <!--begin::Container-->
+            <div class="container">
+
+                <div *ngIf="load_data">
+                    <div class="row">
+                        <div class="col-12 text-center mt-7 mb-7">
+                            <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                <span class="sr-only">Loading...</span>
+                              </div>
+                        </div>
+                    </div>
+                </div>
+
+                <ng-container *ngIf="!load_data">
+                    <ng-container *ngIf="!data">
+                        <div class="row">
+                            <div class="col-12">
+                                <app-notfound></app-notfound>
+                            </div>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="data">
+                        <div class="row mt-7 mb-6">
+                            <div class="col-12 text-center">
+                                <h1 class="font-weight-bolder text-dark mb-0">Encuesta de satisfacción</h1>
+        
+                                <div class="font-size-h4 mb-8">
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, quas.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="card card-custom gutter-b form-group">
+                                    <div class="card-header">
+                                        <div class="card-title">
+                                            <h5 class="card-label">¿Cómo calificarías el servicio brindado?</h5>
+                                        </div>
+                                    </div>
+                                    <!--begin::Form-->
+                                    <form class="form">
+                                        <div class="card-body">
+                                            <a class="font-weight-bold text-dark-75 text-hover-primary font-size-lg mb-1">
+                                                {{encuesta.answer_one}}
+                                            </a>
+                                        </div>
+                                        
+                                    </form>
+                                    <!--end::Form-->
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="card card-custom gutter-b form-group">
+                                    <div class="card-header">
+                                        <div class="card-title">
+                                            <h5 class="card-label">¿Cómo calificarías al asesor que te atendio?</h5>
+                                        </div>
+                                    </div>
+                                    <!--begin::Form-->
+                                    <form class="form">
+                                        <div class="card-body">
+                                            {{encuesta.answer_two}}
+                                        </div>
+                                        
+                                    </form>
+                                    <!--end::Form-->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="card card-custom gutter-b form-group">
+                                    <div class="card-header">
+                                        <div class="card-title">
+                                            <h5 class="card-label">¿Cómo calificarías la experiencia de compra?</h5>
+                                        </div>
+                                    </div>
+                                    <!--begin::Form-->
+                                    <form class="form">
+                                        <div class="card-body">
+                                            {{encuesta.answer_three}}
+                                        </div>
+                                        
+                                    </form>
+                                    <!--end::Form-->
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="card card-custom gutter-b form-group">
+                                    <div class="card-header">
+                                        <div class="card-title">
+                                            <h5 class="card-label">¿Cómo te enteraste del servicio?</h5>
+                                        </div>
+                                    </div>
+                                    <!--begin::Form-->
+                                    <form class="form">
+                                        <div class="card-body">
+                                            {{encuesta.answer_four}}
+                                        </div>
+                                        
+                                    </form>
+                                    <!--end::Form-->
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="card card-custom gutter-b form-group">
+                                    <div class="card-header">
+                                        <div class="card-title">
+                                            <h5 class="card-label">¿Volverias a adquirir el serivicio nuevamente?</h5>
+                                        </div>
+                                    </div>
+                                    <!--begin::Form-->
+                                    <form class="form">
+                                        <div class="card-body">
+                                            {{encuesta.answer_five}}
+                                        </div>
+                                        
+                                    </form>
+                                    <!--end::Form-->
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="card card-custom gutter-b form-group">
+                                    <div class="card-header">
+                                        <div class="card-title">
+                                            <h5 class="card-label">¿Desde cuando es usted cliente?</h5>
+                                        </div>
+                                    </div>
+                                    <!--begin::Form-->
+                                    <form class="form">
+                                        <div class="card-body">
+                                            {{encuesta.answer_six}}
+                                        </div>
+                                        
+                                    </form>
+                                    <!--end::Form-->
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                    
+                </ng-container>
+                
+
+
+                
+            </div>
+            <!--end::Container-->
+        </div>
+        <!--end::Entry-->
+    </div>
+    <!--end::Content-->
+</div>

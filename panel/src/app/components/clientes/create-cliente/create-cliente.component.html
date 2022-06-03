@@ -1,0 +1,259 @@
+<div class="d-flex flex-column flex-root">
+    <div class="d-flex flex-row flex-column-fluid page">
+        <app-sidebar></app-sidebar>
+        <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
+            <app-top></app-top>
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Subheader-->
+                <div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
+                    <div class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+                        <!--begin::Info-->
+                        <div class="d-flex align-items-center flex-wrap mr-2">
+                            <!--begin::Page Title-->
+                            <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Clientes</h5>
+                            <!--end::Page Title-->
+                            <!--begin::Actions-->
+                            <div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-4 bg-gray-200"></div>
+                            <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+                                <li class="breadcrumb-item text-muted">
+                                    <a [routerLink]="['/cliente']"  class="text-muted">Listado de clientes</a>
+                                </li>
+                                <li class="breadcrumb-item active">
+                                    <a class="text-muted">Nuevo cliente</a>
+                                </li>
+                            </ul>
+                            <!--end::Actions-->
+                        </div>
+                        <!--end::Info-->
+                        
+                    </div>
+                </div>
+                <!--end::Subheader-->
+                <!--begin::Entry-->
+                <div class="d-flex flex-column-fluid">
+                    <!--begin::Container-->
+                    <div class="container">
+                        
+                        <div class="card card-custom card-shadowless rounded-top-0">
+                            <!--begin::Body-->
+                            <div class="card-header border-0 pt-5">
+                                <h3 class="card-title align-items-start flex-column">
+                                    <span class="card-label font-weight-bolder text-dark">Nuevo cliente</span>
+                                    <span class="text-muted mt-3 font-weight-bold font-size-sm">Formulario de un nuevo cliente</span>
+                                </h3>
+                                <div class="card-toolbar">
+                                   <a class="btn btn-primary" [routerLink]="['/cliente']">
+                                    <span class="svg-icon svg-icon-md"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo1/dist/../src/media/svg/icons/Navigation/Arrow-left.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                            <polygon points="0 0 24 0 24 24 0 24"/>
+                                            <rect fill="#000000" opacity="0.3" transform="translate(12.000000, 12.000000) scale(-1, 1) rotate(-90.000000) translate(-12.000000, -12.000000) " x="11" y="5" width="2" height="14" rx="1"/>
+                                            <path d="M3.7071045,15.7071045 C3.3165802,16.0976288 2.68341522,16.0976288 2.29289093,15.7071045 C1.90236664,15.3165802 1.90236664,14.6834152 2.29289093,14.2928909 L8.29289093,8.29289093 C8.67146987,7.914312 9.28105631,7.90106637 9.67572234,8.26284357 L15.6757223,13.7628436 C16.0828413,14.136036 16.1103443,14.7686034 15.7371519,15.1757223 C15.3639594,15.5828413 14.7313921,15.6103443 14.3242731,15.2371519 L9.03007346,10.3841355 L3.7071045,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(9.000001, 11.999997) scale(-1, -1) rotate(90.000000) translate(-9.000001, -11.999997) "/>
+                                        </g>
+                                    </svg><!--end::Svg Icon--></span>
+                                       Regresar
+                                    </a> 
+                                </div>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="row justify-content-center py-8 px-8 py-lg-15 px-lg-10">
+                                    <div class="col-xl-12 col-xxl-10">
+                                        <!--begin::Wizard Form-->
+                                        <form class="form" id="kt_form" #registroForm="ngForm" (ngSubmit)="registrar(registroForm)">
+                                            <div class="row justify-content-center">
+                                                <div class="col-xl-9">
+                                                    <!--begin::Wizard Step 1-->
+                                                    <div class="my-5 step" data-wizard-type="step-content" data-wizard-state="current">
+                                                        <h5 class="text-dark font-weight-bold mb-10">Datos personales:</h5>
+                                                        
+                                                        <!--begin::Group-->
+                                                        <div class="form-group row">
+                                                            <label class="col-xl-3 col-lg-3 col-form-label">Nombres (*)</label>
+                                                            <div class="col-lg-9 col-xl-9">
+                                                                <input required class="form-control form-control-solid form-control-lg" name="nombres" [(ngModel)]="cliente.nombres" type="text" placeholder="Nombres"/>
+                                                            </div>
+                                                        </div>
+                                                        <!--end::Group-->
+                                                        <!--begin::Group-->
+                                                        <div class="form-group row">
+                                                            <label class="col-xl-3 col-lg-3 col-form-label">Apellidos (*)</label>
+                                                            <div class="col-lg-9 col-xl-9">
+                                                                <input required class="form-control form-control-solid form-control-lg" name="apellidos" [(ngModel)]="cliente.apellidos" type="text" placeholder="Apellidos"/>
+                                                            </div>
+                                                        </div>
+                                                        <!--end::Group-->
+                                                        <!--begin::Group-->
+                                                        <div class="form-group row">
+                                                            <label class="col-xl-3 col-lg-3 col-form-label">Genero (*)</label>
+                                                            <div class="col-lg-9 col-xl-9">
+                                                                <select required name="genero" [(ngModel)]="cliente.genero" class="form-control form-control-solid form-control-lg">
+                                                                    <option value="" selected disabled>Seleccionar</option>
+                                                                    <option value="Masculino">Masculino</option>
+                                                                    <option value="Femenino">Femenino</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <!--end::Group-->
+                                                        <!--begin::Group-->
+                                                        <div class="form-group row">
+                                                            <label class="col-xl-3 col-lg-3 col-form-label">Correo eletrónico (*)</label>
+                                                            <div class="col-lg-9 col-xl-9">
+                                                                <input required class="form-control form-control-solid form-control-lg" name="email" [(ngModel)]="cliente.email" type="email" placeholder="Correo eletrónico"/>
+                                                            </div>
+                                                        </div>
+                                                        <!--end::Group-->
+                                                        <!--begin::Group-->
+                                                        <div class="form-group row">
+                                                            <label class="col-xl-3 col-lg-3 col-form-label">Telefono (*)</label>
+                                                            <div class="col-lg-9 col-xl-9">
+                                                                <div class="input-group input-group-solid input-group-lg">
+                                                                    <div class="input-group-prepend">
+                                                                        <span class="input-group-text">
+                                                                            <i class="la la-phone"></i>
+                                                                        </span>
+                                                                    </div>
+                                                                    <input required type="text" class="form-control form-control-solid form-control-lg" name="telefono" [(ngModel)]="cliente.telefono" placeholder="Telefono"/>
+                                                                </div>
+                                                              
+                                                            </div>
+                                                        </div>
+                                                        <!--end::Group-->
+                                                        <!--begin::Group-->
+                                                        <div class="form-group row">
+                                                            <label class="col-xl-3 col-lg-3 col-form-label">Documento</label>
+                                                            <div class="col-lg-9 col-xl-9">
+                                                                <div class="input-group input-group-solid input-group-lg">
+                                                                    <div class="input-group-prepend">
+                                                                        <span class="input-group-text">
+                                                                            <i class="la la-phone"></i>
+                                                                        </span>
+                                                                    </div>
+                                                                    <input type="text" class="form-control form-control-solid form-control-lg" name="n_doc" [(ngModel)]="cliente.n_doc" placeholder="Número de documento"/>
+                                                                </div>
+                                                              
+                                                            </div>
+                                                        </div>
+                                                        <!--end::Group-->
+                                                        
+                                                        <!--begin::Group-->
+                                                        <div class="form-group row">
+                                                            <label class="col-xl-3 col-lg-3 col-form-label">País</label>
+                                                            <div class="col-lg-9 col-xl-9">
+                                                                <select name="pais" [(ngModel)]="cliente.pais" class="form-control form-control-solid form-control-lg">
+                                                                    <option value="" selected disabled>Seleccionar país...</option>
+                                                                    <option value="Argentina">Argentina</option>
+                                                                    <option value="Bolivia">Bolivia</option>
+                                                                    <option value="Brasil">Brasil</option>
+                                                                    <option value="Chile">Chile</option>
+                                                                    <option value="Colombia">Colombia</option>
+                                                                    <option value="Costa Rica">Costa Rica</option>
+                                                                    <option value="Cuba">Cuba</option>
+                                                                    <option value="Ecuador">Ecuador</option>
+                                                                    <option value="El Salvador">El Salvador</option>
+                                                                    <option value="España">España</option>
+                                                                    <option value="Estados Unidos">Estados Unidos</option>
+                                                                    <option value="Guatemala">Guatemala</option>
+                                                                    <option value="Haití">Haití</option>
+                                                                    <option value="Honduras">Honduras</option>
+                                                                    <option value="México">México</option>
+                                                                    <option value="Nicaragua">Nicaragua</option>
+                                                                    <option value="Panamá">Panamá</option>
+                                                                    <option value="Paraguay">Paraguay</option>
+                                                                    <option value="Perú">Perú</option>
+                                                                    <option value="República Dominican">República Dominican</option>
+                                                                    <option value="Uruguay">Uruguay</option>
+                                                                    <option value="Venezuela">Venezuela</option>
+                                                                    <option value="Otro">Otro</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <!--end::Group-->
+                                                        <!--begin::Group-->
+                                                        <div class="form-group row">
+                                                            <label class="col-xl-3 col-lg-3 col-form-label">Ciudad</label>
+                                                            <div class="col-lg-9 col-xl-9">
+                                                                <div class="input-group input-group-solid input-group-lg">
+                                                                    <div class="input-group-prepend">
+                                                                        <span class="input-group-text">
+                                                                            <i class="la la-phone"></i>
+                                                                        </span>
+                                                                    </div>
+                                                                    <input type="text" class="form-control form-control-solid form-control-lg" name="ciudad" [(ngModel)]="cliente.ciudad" placeholder="Ciudad"/>
+                                                                </div>
+                                                            
+                                                            </div>
+                                                        </div>
+                                                        <!--end::Group-->
+                                                        <!--begin::Group-->
+                                                        <div class="form-group row">
+                                                            <label class="col-xl-3 col-lg-3 col-form-label">Nacimiento</label>
+                                                            <div class="col-lg-9 col-xl-9">
+                                                                <div class="input-group input-group-solid input-group-lg">
+                                                                    <div class="input-group-prepend">
+                                                                        <span class="input-group-text">
+                                                                            <i class="la la-phone"></i>
+                                                                        </span>
+                                                                    </div>
+                                                                    <input type="date" class="form-control form-control-solid form-control-lg" name="nacimiento" [(ngModel)]="cliente.nacimiento"/>
+                                                                </div>
+                                                            
+                                                            </div>
+                                                        </div>
+                                                        <!--end::Group-->
+                                                    </div>
+                                                    <!--end::Wizard Step 1-->
+                                                 
+                                                    <!--begin::Wizard Actions-->
+                                                    <div class="d-flex justify-content-between border-top pt-10 mt-15">
+                                                        <div class="mr-2">
+                                                            <a [routerLink]="['/cliente']" class="btn btn-light-primary font-weight-bolder px-9 py-4" >
+                                                                <span class="svg-icon svg-icon-md"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo1/dist/../src/media/svg/icons/Navigation/Arrow-left.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                                        <polygon points="0 0 24 0 24 24 0 24"/>
+                                                                        <rect fill="#000000" opacity="0.3" transform="translate(12.000000, 12.000000) scale(-1, 1) rotate(-90.000000) translate(-12.000000, -12.000000) " x="11" y="5" width="2" height="14" rx="1"/>
+                                                                        <path d="M3.7071045,15.7071045 C3.3165802,16.0976288 2.68341522,16.0976288 2.29289093,15.7071045 C1.90236664,15.3165802 1.90236664,14.6834152 2.29289093,14.2928909 L8.29289093,8.29289093 C8.67146987,7.914312 9.28105631,7.90106637 9.67572234,8.26284357 L15.6757223,13.7628436 C16.0828413,14.136036 16.1103443,14.7686034 15.7371519,15.1757223 C15.3639594,15.5828413 14.7313921,15.6103443 14.3242731,15.2371519 L9.03007346,10.3841355 L3.7071045,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(9.000001, 11.999997) scale(-1, -1) rotate(90.000000) translate(-9.000001, -11.999997) "/>
+                                                                    </g>
+                                                                </svg><!--end::Svg Icon--></span>
+                                                                Regresar
+                                                            </a>
+                                                        </div>
+                                                        <div>
+                                                            <button *ngIf="!btn_registrar" type="submit" class="btn btn-success font-weight-bolder px-9 py-4">
+                                                                <span class="svg-icon svg-icon-md"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo1/dist/../src/media/svg/icons/Navigation/Check.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                                        <polygon points="0 0 24 0 24 24 0 24"/>
+                                                                        <path d="M6.26193932,17.6476484 C5.90425297,18.0684559 5.27315905,18.1196257 4.85235158,17.7619393 C4.43154411,17.404253 4.38037434,16.773159 4.73806068,16.3523516 L13.2380607,6.35235158 C13.6013618,5.92493855 14.2451015,5.87991302 14.6643638,6.25259068 L19.1643638,10.2525907 C19.5771466,10.6195087 19.6143273,11.2515811 19.2474093,11.6643638 C18.8804913,12.0771466 18.2484189,12.1143273 17.8356362,11.7474093 L14.0997854,8.42665306 L6.26193932,17.6476484 Z" fill="#000000" fill-rule="nonzero" transform="translate(11.999995, 12.000002) rotate(-180.000000) translate(-11.999995, -12.000002) "/>
+                                                                    </g>
+                                                                </svg><!--end::Svg Icon--></span>
+                                                                Registrar
+                                                            </button>
+                                                            <button *ngIf="btn_registrar" class="btn btn-success font-weight-bolder px-9 py-4" type="button" disabled>
+                                                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                                                Registrando...
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <!--end::Wizard Actions-->
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <!--end::Wizard Form-->
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end::Body-->
+                        </div>
+                      
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Entry-->
+            </div>
+            <!--end::Content-->
+            
+        </div>
+    </div>
+</div>
+
+
+

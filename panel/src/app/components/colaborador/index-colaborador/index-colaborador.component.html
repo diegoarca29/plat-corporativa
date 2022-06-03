@@ -1,0 +1,187 @@
+<div class="d-flex flex-column flex-root">
+    <div class="d-flex flex-row flex-column-fluid page">
+        <app-sidebar></app-sidebar>
+        <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
+            <app-top></app-top>
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Subheader-->
+                <div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
+                    <div class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+                        <!--begin::Info-->
+                        <div class="d-flex align-items-center flex-wrap mr-2">
+                            <!--begin::Page Title-->
+                            <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Dashboard</h5>
+                            <!--end::Page Title-->
+                            <!--begin::Actions-->
+                            <div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-4 bg-gray-200"></div>
+                            <span class="text-muted font-weight-bold mr-4">#XRS-45670</span>
+                            <a href="#" class="btn btn-light-warning font-weight-bolder btn-sm">Add New</a>
+                            <!--end::Actions-->
+                        </div>
+                        <!--end::Info-->
+                        
+                    </div>
+                </div>
+                <!--end::Subheader-->
+                <!--begin::Entry-->
+                <div class="d-flex flex-column-fluid">
+                    <!--begin::Container-->
+                    <div class="container">
+                        
+                        <div class="card card-custom mb-7">
+                            <div class="card-header flex-wrap border-0 pt-6 pb-0">
+                                <div class="card-title">
+                                    <h3 class="card-label">Colaboradores
+                                    <span class="text-muted pt-2 font-size-sm d-block">Listado completos de todos los colaboradores</span></h3>
+                                </div>
+                                <div class="card-toolbar">
+                                    <!--begin::Button-->
+                                    <a [routerLink]="['/colaborador/create']"  class="btn btn-info">Nuevo colaborador</a>
+                        
+                                    <!--end::Button-->
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <!--begin: Search Form-->
+                               
+                                <div class="mb-7" >
+                                    <div class="row align-items-center">
+                                        <div class="col-lg-9 col-xl-8">
+                                            <div class="row align-items-center">
+                                                <div class="col-md-6 my-2 my-md-0">
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" placeholder="Buscador general" name="filtro" [(ngModel)]="filtro">
+                                                        <div class="input-group-append">
+                                                            <button class="btn btn-primary" type="button" (click)="filtrar()">Go!</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                       
+                                        <div class="table-responsive">
+                                            <table class="table table-head-custom table-head-bg table-borderless table-vertical-center" style="margin-bottom: 0px;">
+                                                <thead>
+                                                    <tr class="text-left text-uppercase">
+                                                        <th style="min-width: 250px" class="pl-7">
+                                                            <span class="text-dark-75">Nombres</span>
+                                                        </th>
+                                                        <th style="min-width: 100px">Correo</th>
+                                                        <th style="min-width: 100px">Telefono</th>
+                                                        <th style="min-width: 100px">Rol</th>
+                                                 
+                                                        <th style="min-width: 80px"></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let item of colaboradores | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
+                                                        <td class="pl-0 py-5">
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="symbol symbol-40 flex-shrink-0 mr-3" [ngClass]="{
+                                                                    'symbol-success': item.nombres.charAt(0) >='A' && item.nombres.charAt(0) <= 'H',
+                                                                    'symbol-info': item.nombres.charAt(0) >='I' && item.nombres.charAt(0) <= 'O',
+                                                                    'symbol-warning': item.nombres.charAt(0) >='P' && item.nombres.charAt(0) <= 'U',
+                                                                    'symbol-primary': item.nombres.charAt(0) >='V' && item.nombres.charAt(0) <= 'Z'}">
+                                                                    <div class="symbol-label">{{item.nombres.charAt(0)}}</div>								
+                                                                </div>
+                                                                <div>
+                                                                    <a class="text-primary font-weight-bolder text-hover-primary mb-1 font-size-lg">
+                                                                       {{item.nombres}} {{item.apellidos}}
+                                                                    </a>
+                                                                    <span class="text-muted font-weight-bold d-block">#{{item._id}}</span>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">{{item.email}}</span>
+                                                            <span class="text-muted font-weight-bold">Correo</span>
+                                                        </td>
+                                                        <td>
+                                                            <span class="badge badge-success" *ngIf="item.estado">Activo</span>
+                                                            <span class="badge badge-danger"  *ngIf="!item.estado">Desactivado</span>
+                                                            <br>
+
+                                                            <span class="text-muted font-weight-bold">Estado</span>
+                                                        </td>
+                                                        <td>
+                                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">{{item.rol}}</span>
+                                                            <span class="text-muted font-weight-bold">Rol</span>
+                                                        </td>
+                                                
+                                                        
+                                                        <td class="pr-0 text-right">
+                                                            <div class="dropdown dropleft">
+                                                                <button type="button" class="btn btn-light-primary btn-icon btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                    <i class="ki ki-bold-more-ver"></i>
+                                                                </button>
+                                                                <div class="dropdown-menu">
+                                                                    <a style="cursor: pointer;" class="dropdown-item" *ngIf="item.estado" data-toggle="modal" [attr.data-target]="'#delete-'+item._id">
+                                                                        <i class="icon-1x text-dark-50 flaticon2-cross"></i> &nbsp; Desactivar
+                                                                    </a>
+                                                                    <a style="cursor: pointer;" class="dropdown-item" *ngIf="!item.estado"  data-toggle="modal" [attr.data-target]="'#delete-'+item._id">
+                                                                        <i class="icon-1x text-dark-50 flaticon2-check-mark"></i> &nbsp; Activar
+                                                                    </a>
+                                                                    <a class="dropdown-item" [routerLink]="['/colaborador',item._id]"  >
+                                                                        <i class="icon-1x text-dark-50 flaticon-edit"></i> &nbsp; Editar
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="modal fade" id="delete-{{item._id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                <div class="modal-dialog" role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title" id="exampleModalLabel">Title Modal</h5>
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                <i aria-hidden="true" class="ki ki-close"></i>
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Atque vero odio sunt sequi. Fugit ipsum possimus placeat eum cum perspiciatis! Est, cupiditate nostrum maiores quo ad cumque consequatur laudantium? Excepturi.</p>
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-warning font-weight-bold" data-dismiss="modal">Cerrar</button>
+                                                                            <button *ngIf="!load_estado" type="button" class="btn btn-danger font-weight-bold" (click)="set_state(item._id,item.estado)">Enviar</button>
+                                                            
+                                                                            <button *ngIf="load_estado" class="btn btn-danger" type="button" disabled>
+                                                                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                                                                Enviando...
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    
+                                                </tbody>
+                                                
+                                            </table>
+                                        </div>
+                                    </div>
+                                  
+                                </div>
+                            </div>
+                        </div>
+                      
+                        <ngb-pagination [collectionSize]="colaboradores.length" [pageSize]="pageSize" [(page)]="page" [maxSize]="10" [rotate]="true" [boundaryLinks]="true"></ngb-pagination>
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Entry-->
+            </div>
+            <!--end::Content-->
+            
+        </div>
+    </div>
+</div>
+
+
+

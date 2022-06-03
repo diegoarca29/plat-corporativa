@@ -1,0 +1,284 @@
+<div class="d-flex flex-column flex-root">
+    <div class="d-flex flex-row flex-column-fluid page">
+        <app-sidebar></app-sidebar>
+        <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
+            <app-top></app-top>
+            
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Subheader-->
+                <div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
+                    <div class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+                        <!--begin::Info-->
+                        <div class="d-flex align-items-center flex-wrap mr-2">
+                            <!--begin::Page Title-->
+                            <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Dashboard</h5>
+                            <!--end::Page Title-->
+                            <!--begin::Actions-->
+                            <div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-4 bg-gray-200"></div>
+                            <span class="text-muted font-weight-bold mr-4">#XRS-45670</span>
+                            <a href="#" class="btn btn-light-warning font-weight-bolder btn-sm">Add New</a>
+                            <!--end::Actions-->
+                        </div>
+                        <!--end::Info-->
+                        
+                    </div>
+                </div>
+                <!--end::Subheader-->
+                <!--begin::Entry-->
+                <div class="d-flex flex-column-fluid">
+                    <!--begin::Container-->
+                    <div class="container">
+                        <div *ngIf="load_data" class="card card-custom card-shadowless rounded-top-0 mb-7">
+                            <div class="card-body p-0">
+                                <div class="row">
+                                    <div class="col-12 text-center mt-7 mb-7">
+                                        <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                            <span class="sr-only">Loading...</span>
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <ng-container *ngIf="!load_data">
+                            <ng-container *ngIf="!data">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <app-notfound></app-notfound>
+                                    </div>
+                                </div>
+                            </ng-container>
+                            <ng-container *ngIf="data">
+                                <div class="card card-custom">
+                                    <div class="card-body p-0">
+                                        <div class="row justify-content-center my-10 px-8 my-lg-15 px-lg-10">
+                                            <div class="col-xl-12 col-xxl-7">
+                                                <!--begin::Form Wizard-->
+                                                <!--begin::Step 1-->
+                                                <div class="pb-5">
+                                                    <h3 class="mb-10 font-weight-bold text-dark">Producto:</h3>
+                                                    <div class="row">
+                                                        <div class="col-xl-12">
+                                                            <div class="form-group row">
+                                                                <label class="col-xl-3 col-lg-3 col-form-label">Nombre</label>
+                                                                <div class="col-lg-9 col-xl-9">
+                                                                    <input class="form-control form-control-lg form-control-solid" type="text" placeholder="Nombre del producto" name="titulo" [(ngModel)]="producto.titulo"/>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-xl-3 col-lg-3 col-form-label">Categoría</label>
+                                                                <div class="col-lg-9 col-xl-9">
+                                                                    <select class="form-control form-control-lg form-control-solid selectpicker" data-size="7" data-live-search="true"  name="categoria" [(ngModel)]="producto.categoria">
+                                                                        <option value="" selected disabled>Seleccionar</option>
+                                                                        <option value="{{item.titulo}}" *ngFor="let item of categorias">{{item.titulo}}</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-xl-3 col-lg-3 col-form-label">Tipo</label>
+                                                                <div class="col-lg-9 col-xl-9">
+                                                                    <select class="form-control form-control-lg form-control-solid"  name="tipo" [(ngModel)]="producto.tipo">
+                                                                        <option value="" disabled selected>Seleccionar</option>
+                                                                        <option value="Fisico">Fisico</option>
+                                                                        <option value="Digital">Digital</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-xl-3 col-lg-3 col-form-label">Variedad</label>
+                                                                <div class="col-lg-9 col-xl-9">
+                                                                    <input class="form-control form-control-lg form-control-solid" name="projectname" type="text" placeholder="Color, Talla, etc"  name="tipo_variedad" [(ngModel)]="producto.tipo_variedad"/>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-xl-3 col-lg-3 col-form-label">Descripción</label>
+                                                                <div class="col-lg-9 col-xl-9">
+                                                                    <textarea class="form-control form-control-lg form-control-solid" name="projectname" type="text" placeholder="Resumen del producto" name="descripcion" [(ngModel)]="producto.descripcion"></textarea>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-xl-3 col-lg-3 col-form-label">Portada</label>
+                                                                <div class="col-9">
+                                                                    <div class="image-input image-input-empty image-input-outline" id="kt_user_edit_avatar" style="background-image: url({{str_portada}})">
+                                                                        <div class="image-input-wrapper"></div>
+                                                                        <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="Portada">
+                                                                            <i class="fa fa-pen icon-sm text-muted"></i>
+                                                                            <input type="file" name="profile_avatar" accept=".png, .jpg, .jpeg" (change)="fileEventChange($event)"/>
+                                                           
+                                                                        </label>
+                                                                      
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex justify-content-between mt-5">
+                                                    <div class="mr-2">
+                                                        <button type="button" class="btn btn-light-primary font-weight-bolder text-uppercase px-9 py-4">Regresar</button>
+                                                    </div>
+                                                    <div>
+                                                        <button type="button" class="btn btn-success font-weight-bolder text-uppercase px-9 py-4 mr-3" (click)="actualizar()">Actualizar</button>
+                                                    </div>
+                                                </div>
+                                                <!--end::Step 1-->
+                                                <hr style="margin-top: 4rem !important;
+                                                margin-bottom: 4rem !important;">
+                                                <!--begin::Step 1-->
+                                                <div class="pb-5">
+                                                    <h3 class="mb-10 font-weight-bold text-dark">Variedades:</h3>
+                                                    <div class="row">
+                                                        <div class="col-xl-12">
+                                                            <div class="form-group row">
+                                                                <label class="col-xl-3 col-lg-3 col-form-label">Variedad</label>
+                                                                <div class="col-lg-9 col-xl-9">
+                                                                    <input class="form-control form-control-lg form-control-solid" name="titulo" [(ngModel)]="variedad.titulo" type="text" placeholder="Azul, Rojo, M, XL, etx" />
+                                                                </div>
+                                                            </div>
+                                                        
+                                                            <div class="form-group row">
+                                                                <label class="col-xl-3 col-lg-3 col-form-label">SKU</label>
+                                                                <div class="col-lg-9 col-xl-9">
+                                                                    <div class="input-group">
+                                                                        <input readonly class="form-control form-control-lg form-control-solid" type="text" placeholder="AS54WE45465" name="sku" [(ngModel)]="variedad.sku"/>
+                                                                        <div class="input-group-append">
+                                                                            <button class="btn btn-dark" type="button" (click)="generar_sku()">Generar!</button>
+                                                                        </div>
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div class="form-group row">
+                                                               <div class="col-12">
+                                                                <button class="btn btn-primary mb-7" (click)="agregar_variedad()">
+                                                                    Agregar
+                                                                </button>
+                                                                <div class="table-responsive">
+                                                                    <table class="table table-head-custom table-vertical-center" id="kt_advance_table_widget_2">
+                                                                        <thead>
+                                                                            <tr class="text-uppercase">
+                                                                              
+                                                                                <th class="pl-0" style="min-width: 100px">SKU</th>
+                                                                                <th style="min-width: 120px">Cantidad</th>
+                                                                               
+                                                                                <th style="min-width: 150px">Variedad</th>
+                                                                           
+                                                                                <th class="pr-0 text-right" style="min-width: 160px">action</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <ng-container *ngIf="load_variedades">
+                                                                            <tr>
+                                                                                <td colspan="4" class="text-center">
+                                                                                 <div class="spinner-border" role="status">
+                                                                                     <span class="sr-only">Loading...</span>
+                                                                                   </div>
+                                                                                </td>
+                                                                            </tr> 
+                                                                         </ng-container>
+                                                                        <tbody  *ngIf="!load_variedades">
+                                                                            <tr *ngFor="let item of variedades">
+                                                                             
+                                                                                <td class="pl-0">
+                                                                                    <a href="#" class="text-dark-75 font-weight-bolder text-hover-primary font-size-lg">
+                                                                                        {{item.sku}}
+                                                                                    </a>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <span class="text-dark-75 font-weight-bolder d-block font-size-lg">{{item.stock}} unids.</span>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <span class="text-dark-75 font-weight-bolder d-block font-size-lg">{{item.titulo}}</span>
+                                                           
+                                                                                </td>
+                                                                                
+                                                                                <td class="pr-0 text-right">
+                                                                                   
+                                                                                    <a *ngIf="item.stock == 0" style="cursor: pointer;" data-toggle="modal" [attr.data-target]="'#delete-'+item._id" class="btn btn-icon btn-light btn-hover-danger btn-sm">
+                                                                                        <span class="svg-icon svg-icon-md svg-icon-danger">
+                                                                                            <!--begin::Svg Icon | path:/metronic/theme/html/demo1/dist/assets/media/svg/icons/General/Trash.svg-->
+                                                                                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                                                                    <rect x="0" y="0" width="24" height="24"></rect>
+                                                                                                    <path d="M6,8 L6,20.5 C6,21.3284271 6.67157288,22 7.5,22 L16.5,22 C17.3284271,22 18,21.3284271 18,20.5 L18,8 L6,8 Z" fill="#000000" fill-rule="nonzero"></path>
+                                                                                                    <path d="M14,4.5 L14,4 C14,3.44771525 13.5522847,3 13,3 L11,3 C10.4477153,3 10,3.44771525 10,4 L10,4.5 L5.5,4.5 C5.22385763,4.5 5,4.72385763 5,5 L5,5.5 C5,5.77614237 5.22385763,6 5.5,6 L18.5,6 C18.7761424,6 19,5.77614237 19,5.5 L19,5 C19,4.72385763 18.7761424,4.5 18.5,4.5 L14,4.5 Z" fill="#000000" opacity="0.3"></path>
+                                                                                                </g>
+                                                                                            </svg>
+                                                                                            <!--end::Svg Icon-->
+                                                                                        </span>
+                                                                                    </a>
+
+                                                                                    <button style="cursor: not-allowed;" *ngIf="item.stock >= 1" disabled class="btn btn-icon btn-light btn-hover-danger btn-sm">
+                                                                                        <span class="svg-icon svg-icon-md svg-icon-danger">
+                                                                                            <!--begin::Svg Icon | path:/metronic/theme/html/demo1/dist/assets/media/svg/icons/General/Trash.svg-->
+                                                                                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                                                                    <rect x="0" y="0" width="24" height="24"></rect>
+                                                                                                    <path d="M6,8 L6,20.5 C6,21.3284271 6.67157288,22 7.5,22 L16.5,22 C17.3284271,22 18,21.3284271 18,20.5 L18,8 L6,8 Z" fill="#000000" fill-rule="nonzero"></path>
+                                                                                                    <path d="M14,4.5 L14,4 C14,3.44771525 13.5522847,3 13,3 L11,3 C10.4477153,3 10,3.44771525 10,4 L10,4.5 L5.5,4.5 C5.22385763,4.5 5,4.72385763 5,5 L5,5.5 C5,5.77614237 5.22385763,6 5.5,6 L18.5,6 C18.7761424,6 19,5.77614237 19,5.5 L19,5 C19,4.72385763 18.7761424,4.5 18.5,4.5 L14,4.5 Z" fill="#000000" opacity="0.3"></path>
+                                                                                                </g>
+                                                                                            </svg>
+                                                                                            <!--end::Svg Icon-->
+                                                                                        </span>
+                                                                                    </button>
+
+                                                                                    <div class="modal fade" id="delete-{{item._id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                                        <div class="modal-dialog" role="document">
+                                                                                            <div class="modal-content">
+                                                                                                <div class="modal-header">
+                                                                                                    <h5 class="modal-title" id="exampleModalLabel">Title Modal</h5>
+                                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                        <i aria-hidden="true" class="ki ki-close"></i>
+                                                                                                    </button>
+                                                                                                </div>
+                                                                                                <div class="modal-body">
+                                                                                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Atque vero odio sunt sequi. Fugit ipsum possimus placeat eum cum perspiciatis! Est, cupiditate nostrum maiores quo ad cumque consequatur laudantium? Excepturi.</p>
+                                                                                                </div>
+                                                                                                <div class="modal-footer">
+                                                                                                    <button type="button" class="btn btn-warning font-weight-bold" data-dismiss="modal">Cerrar</button>
+                                                                                                    <button *ngIf="!load_delete" type="button" class="btn btn-danger font-weight-bold" (click)="delete_variedad(item._id)">Eliminar</button>
+                                                                                                    <button *ngIf="load_delete" class="btn btn-danger" type="button" disabled>
+                                                                                                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                                                                                        Eliminando...
+                                                                                                    </button>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                               </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--end::Form Wizard-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-container>
+                            
+                        </ng-container>
+                        
+                      
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Entry-->
+            </div>
+            <!--end::Content-->
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+

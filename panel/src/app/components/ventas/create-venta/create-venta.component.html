@@ -1,0 +1,393 @@
+<div class="d-flex flex-column flex-root">
+    <div class="d-flex flex-row flex-column-fluid page">
+        <app-sidebar></app-sidebar>
+        <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
+            <app-top></app-top>
+            
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Subheader-->
+                <div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
+                    <div class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+                        <!--begin::Info-->
+                        <div class="d-flex align-items-center flex-wrap mr-2">
+                            <!--begin::Page Title-->
+                            <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Dashboard</h5>
+                            <!--end::Page Title-->
+                            <!--begin::Actions-->
+                            <div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-4 bg-gray-200"></div>
+                            <span class="text-muted font-weight-bold mr-4">#XRS-45670</span>
+                            <a href="#" class="btn btn-light-warning font-weight-bolder btn-sm">Add New</a>
+                            <!--end::Actions-->
+                        </div>
+                        <!--end::Info-->
+                        
+                    </div>
+                </div>
+                <!--end::Subheader-->
+                <!--begin::Entry-->
+                <div class="d-flex flex-column-fluid">
+                    <!--begin::Container-->
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="card card-custom card-stretch gutter-b">
+                                    <div class="card-header border-0 pt-5">
+                                        <h3 class="card-title">
+                                            <span class="font-weight-bolder text-dark">Nueva venta</span>
+                                        </h3>
+                                 
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row form-group">
+                                            <label class="col-lg-3 col-form-label text-lg-end">
+                                                <b>Cliente:</b>
+                                            </label>
+                                            <div class="col-lg-9 col-xl-9">
+                                                <div class="input-group">
+                                                    <input type="text" id="inp_cliente" readonly class="form-control form-control-solid" placeholder="Seleccionar cliente">
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-primary" data-toggle="modal" [attr.data-target]="'#modalCliente'" type="button">Go!</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="modal fade" id="modalCliente" tabindex="-1" aria-labelledby="exampleModalLabel" style="display: none;" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Seleccionar cliente</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <i aria-hidden="true" class="ki ki-close"></i>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-header" style="padding-right: 0px !important;">
+                                                            <div class="row" style="width: 100%;">
+                                                                <div class="col-12">
+                                                                    <div class="input-group">
+                                                                        <input type="text" class="form-control" placeholder="Buscar cliente" name="filtro_cliente" [(ngModel)]="filtro_cliente">
+                                                                        <div class="input-group-append">
+                                                                            <button class="btn btn-primary" type="button" (click)="init_clientes()">
+                                                                                <i class="flaticon-search"></i>
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-body" style="max-height: 550px;
+                                                        overflow: auto;min-height: 550px;">
+
+                                                            <ng-container  *ngIf="load_clientes">
+                                                                <div class="row">
+                                                                    <div class="col-12 text-center">
+                                                                        <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                                                            <span class="sr-only">Loading...</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </ng-container>
+                                                            <ng-container *ngIf="!load_clientes">
+                                                                <ng-container *ngIf="clientes.length == 0">
+                                                                    <h4 class="card-label">
+                                                                        <i class="flaticon-search"></i> 
+                                                                        Busqueda de clientes
+                                                                    </h4>
+                                                                    <p>Ingrese 
+                                                                        <code> un parametro de busqueda</code> para poder mostrar los clientes.
+                                                                    </p>
+                                                                </ng-container>
+                                                                <ng-container *ngIf="clientes.length >= 1">
+                                                                    <div class="d-flex align-items-center mb-10" *ngFor="let item of clientes">
+                                                                
+                                                                        <div class="symbol symbol-40 flex-shrink-0 mr-3" [ngClass]="{
+                                                                            'symbol-success': item.nombres.charAt(0) >='A' && item.nombres.charAt(0) <= 'H',
+                                                                            'symbol-info': item.nombres.charAt(0) >='I' && item.nombres.charAt(0) <= 'O',
+                                                                            'symbol-warning': item.nombres.charAt(0) >='P' && item.nombres.charAt(0) <= 'U',
+                                                                            'symbol-primary': item.nombres.charAt(0) >='V' && item.nombres.charAt(0) <= 'Z'}">
+                                                                            <div class="symbol-label">{{item.nombres.charAt(0)}}</div>								
+                                                                        </div>
+                                                                    
+                                                                        <div class="d-flex flex-column flex-grow-1 font-weight-bold">
+                                                                            <a class="text-dark text-hover-primary mb-1 font-size-lg">
+                                                                                {{item.fullnames}}
+
+                                                                                <span class="badge badge-primary ml-3" *ngIf="item.tipo == 'Socio'">S</span>
+                                                                                <span class="badge badge-warning ml-3" *ngIf="item.tipo == 'Prospecto'">P</span>
+                                                                            </a>
+                                                                            <span class="text-muted">{{item.email}}</span>
+                                                                        </div>
+                                                                
+                                                                        <button *ngIf="item.verify" class="btn btn-success btn-sm" (click)="seleccionar_cliente(item)">
+                                                                            Seleccionar
+                                                                        </button>
+                                                                        <button *ngIf="!item.verify" disabled class="btn btn-danger btn-sm">Seleccionar</button>
+                                                                    </div>
+                                                                </ng-container>
+                                                                
+                                                            </ng-container>
+                                                            
+                                                        
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row form-group">
+                                            <label class="col-lg-3 col-form-label text-lg-end">
+                                                <b>Canal:</b>
+                                            </label>
+                                            <div class="col-lg-9 col-xl-9">
+                                                <select class="custom-select form-control form-control-solid" name="canal" [(ngModel)]="venta.canal">
+                                                    <option value="" selected disabled>Seleccionar</option>
+                                                    <option value="{{item}}" *ngFor="let item of canales">{{item}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+            
+                                        <hr class="mb-7">
+                                        
+                                        <div class="row">
+                                            
+                                            <div class="col-12 form-group">
+                                                <h3 class="card-title" style="font-size: 1.3rem;">
+                                                    <span class="font-weight-bolder text-dark">Productos</span>
+                                                </h3>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control form-control-solid" placeholder="Buscar producto" name="filtro_variedad" [(ngModel)]="filtro_variedad">
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-primary" type="button" (click)="filtrar_variedades()">Go!</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="products-" style="min-height: 300px !important;
+                                                overflow: hidden;
+                                                max-height: 300px !important;
+                                                overflow-y: auto;">
+                                                    <table class="table" style="width: 100%;">
+                                                        <tbody *ngIf="!load_variedades">
+                                                            <!--begin::Cart Content-->
+                                                            <ng-container *ngFor="let item of variedades; let indice = index">
+                                                                <tr class="fila-variedad" id="variedad-{{indice}}">
+                                                                    <td class="d-flex align-items-center font-weight-bolder">
+                                                                        <!--begin::Symbol-->
+                                                                        <div class="symbol symbol-60 flex-shrink-0 mr-4 bg-light">
+                                                                            <div class="symbol-label" style="background-image: url('{{url}}get_image_productos/{{item.producto.portada}}')"></div>
+                                                                        </div>
+                                                                        <!--end::Symbol-->
+                                                                        <a href="#" class="text-dark text-hover-primary">
+                                                                            {{item.producto.titulo}} <br>
+                                                                            {{item.titulo}}
+                                                                        </a>
+                                                                    </td>
+                                                                    <td class="text-center align-middle">
+                                                                        <a (click)="disminuir_cantidad(indice)" *ngIf="item.cantidad_detalle >= 1" href="javascript:;" class="btn btn-xs btn-light-success btn-icon mr-2">
+                                                                            <i class="ki ki-minus icon-xs"></i>
+                                                                        </a>
+                                                                        <button disabled *ngIf="item.cantidad_detalle == 0" href="javascript:;" class="btn btn-xs btn-light-success btn-icon mr-2" style="cursor:not-allowed;">
+                                                                            <i class="ki ki-minus icon-xs"></i>
+                                                                        </button>
+                                                                        <span class="mr-2 font-weight-bolder">{{item.cantidad_detalle}}</span>
+                                                                        <a (click)="aumentar_cantidad(indice)" class="btn btn-xs btn-light-success btn-icon">
+                                                                            <i class="ki ki-plus icon-xs"></i>
+                                                                        </a>
+                                                                    </td>
+                                                                    <td class="text-right align-middle font-weight-bolder">{{item.producto.precio|currency:'USD'}}</td>
+                                                                    <td class="text-right align-middle">
+                                                                        <a style="cursor: pointer;" class="btn btn-info btn-sm font-weight-bolder font-size-sm" (click)="seleccionar_variedad(item,indice)">
+                                                                            <i class="flaticon2-add-1" style="font-size: 1rem;    padding-right: 0px;"></i>
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>
+                                                            </ng-container>
+                                                            
+                                                            
+                                                      
+                                                        </tbody>
+                                                        <tbody *ngIf="load_variedades">
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="row">
+                                                                        <div class="col-12 text-center">
+                                                                            <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                                                                <span class="sr-only">Loading...</span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div>
+                                                    <table class="table">
+                                                        <tfoot>
+                                                            <tr>
+                                                               
+                                                                <td colspan="4" class="border-0 text-right pt-10">
+                                                                    <a style="cursor: pointer;" (click)="agregar_detalle()" class="btn btn-success font-weight-bolder px-8">Agregar</a>
+                                                                </td>
+                                                            </tr>
+                                                        </tfoot>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                       
+                                    </div>
+                                   
+                                    
+                                </div>
+                            </div>
+            
+                            <div class="col-6">
+                                <div class="card card-custom card-stretch gutter-b">
+                                    <div class="card-header border-0 pt-5">
+                                        <h3 class="card-title">
+                                            <span class="font-weight-bolder text-dark">Orden de compra</span>
+                                        </h3>
+                                 
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row form-group">
+                                            <div class="col-12 form-group">
+                                              
+                                                <div class="detail-shop" style="min-height: 400px !important;
+                                                overflow: hidden;
+                                                max-height: 400px !important;
+                                                overflow-y: auto;">
+                                                    <table class="table">
+                                                        <tbody *ngFor="let item of detalles; let indice = index">
+                                                            <tr class="font-weight-boldest">
+                                                                <td class="border-0 pl-0 pt-7 d-flex align-items-center">
+                                                                    <!--begin::Symbol-->
+                                                                    <div class="symbol symbol-40 flex-shrink-0 mr-4 bg-light">
+                                                                        <div class="symbol-label" style="background-image: url('{{url}}get_image_productos/{{item.portada}}')"></div>
+                                                                    </div>
+                                                                    <!--end::Symbol-->
+                                                                    {{item.titulo}}
+                                                                    <br>
+                                                                    {{item.titulo_v}}
+                                                                </td>
+                                                                <td class="text-right pt-7 align-middle">{{item.cantidad}}</td>
+                                                                <td class="text-right pt-7 align-middle">{{item.precio|currency:'USD'}}</td>
+                                                                <td class="text-primary pr-0 pt-7 text-right align-middle">{{item.precio*item.cantidad|currency:'USD'}}</td>
+                                                                <td style="padding-top: 2.3rem;">
+                                                                    <i style="cursor: pointer;" class="flaticon2-trash text-danger" (click)="eliminar_detalle(indice,item.precio*item.cantidad)"></i>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div>
+                                                    <table class="table">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td colspan="2" class="border-0 pt-0"></td>
+                                                                <td class="border-0 pt-0 font-weight-bolder font-size-h5 text-right">Grand Total</td>
+                                                                <td class="border-0 pt-0 font-weight-bolder font-size-h5 text-success text-right pr-0">{{total|currency:'USD'}}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                
+                                                <div class="row">
+                                                    <div class="col-xl-6">
+                                                        <!--begin::Input-->
+                                                        <div class="form-group fv-plugins-icon-container">
+                                                            <label><b>Metodo</b></label>
+                                                            <div class="dropdown">
+                                                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMetodo" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: 100%;text-align: left;">
+                                                                    Seleccionar
+                                                                </button>
+                                                                <div class="dropdown-menu" style="width: 100%;" aria-labelledby="dropdownMetodo">
+                                                                    <a class="dropdown-item" style="cursor: pointer;" (click)="select_metodo('Paypal')">
+                                                                        <img src="assets/logos/paypal.png" style="width: 17px;">
+                                                                        &nbsp; Paypal
+                                                                    </a>
+                                                                    <a class="dropdown-item" style="cursor: pointer;" (click)="select_metodo('Transferencia')">
+                                                                        <img src="assets/logos/transferencia-de-dinero.png" style="width: 17px;">
+                                                                        &nbsp; Transferencia
+                                                                    </a>
+                                                                    <a class="dropdown-item" style="cursor: pointer;" (click)="select_metodo('Deposito')">
+                                                                        <img src="assets/logos/depositar.png" style="width: 17px;">
+                                                                        &nbsp; Deposito
+                                                                    </a>
+                                                                    <a class="dropdown-item" style="cursor: pointer;" (click)="select_metodo('Tarjeta crédito')">
+                                                                        <img src="assets/logos/tarjeta-de-credito.png" style="width: 17px;">
+                                                                        &nbsp; Tarjeta crédito
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                           
+                                                        </div>
+                                                        <!--end::Input-->
+                                                    </div>
+                                                    <div class="col-xl-6">
+                                                        <!--begin::Input-->
+                                                        <div class="form-group fv-plugins-icon-container">
+                                                            <label><b>Banco</b></label>
+                                                            <div class="dropdown">
+                                                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownBanco" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: 100%;text-align: left;">
+                                                                    Seleccionar
+                                                                </button>
+                                                                <div class="dropdown-menu" style="width: 100%;" aria-labelledby="dropdownBanco">
+                                                                    <a class="dropdown-item" style="cursor: pointer;" (click)="select_banco('BBVA')">
+                                                                        <img src="assets/logos/bbva.png" style="width: 17px;">
+                                                                        &nbsp; BBVA
+                                                                    </a>
+                                                                    <a class="dropdown-item" style="cursor: pointer;" (click)="select_banco('Interbank')">
+                                                                        <img src="assets/logos/interbank.png" style="width: 17px;">
+                                                                        &nbsp; Interbank
+                                                                    </a>
+                                                                    <a class="dropdown-item" style="cursor: pointer;" (click)="select_banco('Santander')">
+                                                                        <img src="assets/logos/santander.png" style="width: 17px;">
+                                                                        &nbsp; Santander
+                                                                    </a>
+                                                                   
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!--end::Input-->
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+            
+                                    </div>
+                                    <div class="card-footer">
+                                        <button type="button" class="btn btn-danger mr-3" data-dismiss="modal">Cancelar</button>
+                                        <button type="button" *ngIf="!load_btn" class="btn btn-primary" (click)="ingresar_venta()">Ingresar</button>
+                                        <button *ngIf="load_btn" class="btn btn-success font-weight-bolder px-9 py-4" type="button" disabled>
+                                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                            Ingresando...
+                                        </button>
+                                    </div> 
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        
+                       
+                        
+                        
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Entry-->
+            </div>
+            <!--end::Content-->
+        </div>
+    </div>
+</div>
+
+
+
+
+

@@ -1,0 +1,7 @@
+.bg-gris{
+    background: #ccc !important;
+}
+.dropdown-toggle.nav-link:after, .dropdown-toggle.btn:after {
+    float: right;
+    margin-top: 7px;
+}

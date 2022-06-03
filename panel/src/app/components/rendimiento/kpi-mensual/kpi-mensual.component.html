@@ -1,0 +1,161 @@
+<div class="d-flex flex-column flex-root">
+    <div class="d-flex flex-row flex-column-fluid page">
+        <app-sidebar></app-sidebar>
+        <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
+            <app-top></app-top>
+            
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Subheader-->
+                <div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
+                    <div class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+                        <!--begin::Info-->
+                        <div class="d-flex align-items-center flex-wrap mr-2">
+                            <!--begin::Page Title-->
+                            <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Dashboard</h5>
+                            <!--end::Page Title-->
+                            <!--begin::Actions-->
+                            <div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-4 bg-gray-200"></div>
+                            <span class="text-muted font-weight-bold mr-4">#XRS-45670</span>
+                            <a href="#" class="btn btn-light-warning font-weight-bolder btn-sm">Add New</a>
+                            <!--end::Actions-->
+                        </div>
+                        <!--end::Info-->
+                        
+                    </div>
+                </div>
+            
+                <div class="d-flex flex-column-fluid">
+                    <!--begin::Container-->
+                    <div class="container">
+                        <!--begin::Notice-->
+                       
+                        <!--end::Notice-->
+                        <!--begin::Card-->
+                        <div class="row">
+                            <div class="col-lg-12 mb-7">
+                                <div class="card card-custom">
+                                    <div class="card-header flex-wrap border-0 pt-6 pb-0">
+                                        <div class="card-title">
+                                            <h3 class="card-label">Rendimiento mensual
+                                            <span class="text-muted pt-2 font-size-sm d-block">Javascript array as data source</span></h3>
+                                        </div>
+                                       
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row align-items-center">
+                                            <div class="col-lg-9 col-xl-8">
+                                                <div class="row align-items-center">
+                                                    <div class="col-md-4 my-2 my-md-0">
+                                                        <div class="d-flex align-items-center">
+                                                            <label class="mr-3 mb-0 d-none d-md-block">Año:</label>
+                                                            <select class="form-control" name="year" [(ngModel)]="year">
+                                                                <option value="" selected disabled>Seleccionar</option>
+                                                                <option value="2022">2022</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4 my-2 my-md-0">
+                                                        <div class="d-flex align-items-center">
+                                                            <label class="mr-3 mb-0 d-none d-md-block">Mes:</label>
+                                                            <select class="form-control" name="month" [(ngModel)]="month">
+                                                                <option value="" selected disabled>Seleccionar</option>
+                                                                <option value="01">Enero</option>
+                                                                <option value="02">Febrero</option>
+                                                                <option value="03">Marzo</option>
+                                                                <option value="04">Abril</option>
+                                                                <option value="05">Mayo</option>
+                                                                <option value="06">Junio</option>
+                                                                <option value="07">Julio</option>
+                                                                <option value="08">Agosto</option>
+                                                                <option value="09">Septiembre</option>
+                                                                <option value="10">Octubre</option>
+                                                                <option value="11">Noviembre</option>
+                                                                <option value="12">Diciembre</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <a style="cursor: pointer;" (click)="search()" class="btn btn-light-primary px-6 font-weight-bold mr-3">
+                                                            <i class="flaticon-search" style="    padding-right: 0px;"></i>
+                                                        </a>
+                                                        <a style="cursor: pointer;" class="btn btn-light-primary px-6 font-weight-bold">
+                                                            <i class="flaticon2-refresh-button" style="    padding-right: 0px;"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--  -->
+                            <div class="col-lg-6">
+                                <!--begin::Card-->
+                                <div class="card card-custom card-stretch gutter-b">
+                                    <div class="card-header">
+                                        <div class="card-title">
+                                            <h3 class="card-label">Ingreso por tipo</h3>
+                                        </div>
+                                    </div>
+                                    <div class="card-body" id="content_chart_12">
+                                        <!--begin::Chart-->
+                                        <div id="chart_12" class="d-flex justify-content-center"></div>
+                                        <!--end::Chart-->
+                                    </div>
+                                </div>
+                                <!--end::Card-->
+                            </div>
+
+                            <div class="col-lg-6">
+                                <!--begin::Card-->
+                                <div class="card card-custom card-stretch gutter-b">
+                                    <div class="card-header">
+                                        <div class="card-title">
+                                            <h3 class="card-label">Ingreso por método de pago</h3>
+                                        </div>
+                                    </div>
+                                    <div class="card-body" id="content_chart_2">
+                                        <!--begin::Chart-->
+                                        <div id="chart_2" class="d-flex justify-content-center"></div>
+                                        <!--end::Chart-->
+                                    </div>
+                                </div>
+                                <!--end::Card-->
+                            </div>
+
+                            <div class="col-lg-12">
+                                <!--begin::Card-->
+                                <div class="card card-custom card-stretch gutter-b">
+                                    <div class="card-header">
+                                        <div class="card-title">
+                                            <h3 class="card-label">Ganancia por curso</h3>
+                                        </div>
+                                    </div>
+                                    <div class="card-body" id="content_chart_3">
+                                        <!--begin::Chart-->
+                                        <div id="chart_3" class="d-flex justify-content-center"></div>
+                                        <!--end::Chart-->
+                                    </div>
+                                </div>
+                                <!--end::Card-->
+                            </div>
+                        </div>
+                        <!--end::Card-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+            </div>
+            <!--end::Content-->
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+

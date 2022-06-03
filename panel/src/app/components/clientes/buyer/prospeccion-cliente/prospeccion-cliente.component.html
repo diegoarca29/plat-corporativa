@@ -1,0 +1,134 @@
+<div class="d-flex flex-column flex-root">
+    <div class="d-flex flex-row flex-column-fluid page">
+        <app-sidebar></app-sidebar>
+        <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
+            <app-top></app-top>
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Subheader-->
+                <div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
+                    <div class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+                        <!--begin::Info-->
+                        <div class="d-flex align-items-center flex-wrap mr-2">
+                            <!--begin::Page Title-->
+                            <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Clientes</h5>
+                            <!--end::Page Title-->
+                            <!--begin::Actions-->
+                            <div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-4 bg-gray-200"></div>
+                            <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+                                <li class="breadcrumb-item text-muted">
+                                    <a [routerLink]="['/cliente']"  class="text-muted">Listado de clientes</a>
+                                </li>
+                                <li class="breadcrumb-item text-muted">
+                                    <a [routerLink]="['/cliente/buyer/'+id+'/dashboard']" class="text-muted">Dashboard</a>
+                                </li>
+                                <li class="breadcrumb-item active">
+                                    <a class="text-muted">Actividades</a>
+                                </li>
+                            </ul>
+                            <!--end::Actions-->
+                        </div>
+                        <!--end::Info-->
+                        
+                    </div>
+                </div>
+                <!--end::Subheader-->
+                <!--begin::Entry-->
+                <div class="d-flex flex-column-fluid">
+                    <!--begin::Container-->
+                    <div class="container">
+                        <div class="d-flex flex-row">
+                            <!--begin::Aside-->
+                            <app-aside-cliente></app-aside-cliente>
+                            
+                            <!--end::Aside-->
+                            <!--begin::Content-->
+                            <div class="flex-row-fluid ml-lg-8">
+                                <!--begin::Card-->
+                                <div class="card card-custom">
+                                    <!--begin::Header-->
+                                    <div class="card-header py-3">
+                                        <div class="card-title align-items-start flex-column">
+                                            <h3 class="card-label font-weight-bolder text-dark">Actividades del cliente</h3>
+                                            <span class="text-muted font-weight-bold font-size-sm mt-1">Lorem ipsum, dolor sit amet.</span>
+                                        </div>
+                                        <div class="card-toolbar">
+                                            <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                                <a [routerLink]="['/cliente/buyer/'+id+'/prospeccion']"  class="btn btn-danger">Actividades</a>
+                                              <!--   <a [routerLink]="['/cliente/buyer/'+id+'/prospeccion/intereses']"  class="btn btn-warning">Interes</a> -->
+                                                <a [routerLink]="['/cliente/buyer/'+id+'/prospeccion/llamadas']"  class="btn btn-success">Llamadas</a>
+                                                <a [routerLink]="['/cliente/buyer/'+id+'/prospeccion/correos']"  class="btn btn-info">Correo</a>
+                                                <a [routerLink]="['/cliente/buyer/'+id+'/prospeccion/tareas']"  class="btn btn-dark">Tareas</a>
+                                              </div>
+                                        </div>
+                                    </div>
+                                    <!--end::Header-->
+                                    <!--begin::Form-->
+                                    <div class="card-body">
+                                        <div class="row mt-5 mb-6" *ngIf="load_data">
+                                            <div class="col-12 text-center">
+                                                <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                                    <span class="sr-only">Loading...</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <ng-container *ngIf="!load_data">
+                                            <div class="row">
+                                                <div class="col-12 mb-3" *ngFor="let item of actividades| slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
+                                                    <div class="timeline timeline-3">
+                                                        <div class="timeline-items">
+                                                            <div class="timeline-item">
+                                                                <div class="timeline-media">
+                                                                    <img *ngIf="item.tipo == 'Llamada'" alt="Pic" src="assets/images/llamada.png">
+                                                                    <img *ngIf="item.tipo == 'Correo'" alt="Pic" src="assets/images/email.png">
+                                                                    <img *ngIf="item.tipo == 'Tarea'" alt="Pic" src="assets/images/tarea.png">
+                                                                    <img *ngIf="item.tipo == 'Nota'" alt="Pic" src="assets/images/nota.png">
+                                                                </div>
+                                                                <div class="timeline-content">
+                                                                    <div class="d-flex align-items-center justify-content-between mb-3">
+                                                                        <div class="mr-2">
+                                                                            <a class="text-dark-75 text-hover-primary font-weight-bold">
+                                                                                {{item.tipo}}
+                                                                            </a>
+                                                                            <span class="text-muted ml-2">{{item.createdAt|date}}</span>
+                                                                            <span class="label label-light-success font-weight-bolder label-inline ml-2">
+                                            
+                                                                            </span>
+                                                                        </div>
+                                                                       
+                                                                    </div>
+                                                                    <p class="p-0">
+                                                                        {{item.actividad}}
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                          
+                                                        </div>
+                                                    </div>
+                                                </div>
+                              
+                                            </div>
+                                        </ng-container>
+                                        
+                                    </div>
+                                    <div class="card-footer">
+                                        <ngb-pagination [collectionSize]="actividades.length" [pageSize]="pageSize" [(page)]="page" [maxSize]="10" [rotate]="true" [boundaryLinks]="true"></ngb-pagination>
+                                    </div>
+                                    <!--end::Form-->
+                                </div>
+                            </div>
+                            <!--end::Content-->
+                        </div>
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Entry-->
+            </div>
+            <!--end::Content-->
+            
+        </div>
+    </div>
+</div>
+
+
+

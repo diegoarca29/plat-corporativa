@@ -1,0 +1,29 @@
+{
+  "name": "back",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.19.1",
+    "connect-multiparty": "^2.2.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.2",
+    "handlebars": "^4.7.7",
+    "jwt-simple": "^0.5.6",
+    "messagebird": "^3.7.2",
+    "moment": "^2.29.1",
+    "mongoose": "^6.1.5",
+    "nodemailer": "^6.7.2",
+    "nodemailer-smtp-transport": "^2.7.4",
+    "sib-api-v3-sdk": "^8.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}

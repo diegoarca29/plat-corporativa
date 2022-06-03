@@ -1,0 +1,194 @@
+<div class="d-flex flex-column flex-root">
+    <div class="d-flex flex-row flex-column-fluid page">
+        <app-sidebar></app-sidebar>
+        <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
+            <app-top></app-top>
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Subheader-->
+                <div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
+                    <div class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+                        <!--begin::Info-->
+                        <div class="d-flex align-items-center flex-wrap mr-2">
+                            <!--begin::Page Title-->
+                            <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Clientes</h5>
+                            <!--end::Page Title-->
+                            <!--begin::Actions-->
+                            <div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-4 bg-gray-200"></div>
+                            <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+                                <li class="breadcrumb-item text-muted">
+                                    <a [routerLink]="['/cliente']"  class="text-muted">Listado de clientes</a>
+                                </li>
+                                <li class="breadcrumb-item text-muted">
+                                    <a [routerLink]="['/cliente/buyer/'+id+'/dashboard']" class="text-muted">Dashboard</a>
+                                </li>
+                                <li class="breadcrumb-item active">
+                                    <a class="text-muted">Correo</a>
+                                </li>
+                            </ul>
+                            <!--end::Actions-->
+                        </div>
+                        <!--end::Info-->
+                        
+                    </div>
+                </div>
+                <!--end::Subheader-->
+                <!--begin::Entry-->
+                <div class="d-flex flex-column-fluid">
+                    <!--begin::Container-->
+                    <div class="container">
+                        <div class="d-flex flex-row">
+                            <!--begin::Aside-->
+                            <app-aside-cliente></app-aside-cliente>
+                            
+                            <!--end::Aside-->
+                            <!--begin::Content-->
+                            <div class="flex-row-fluid ml-lg-8">
+                                <!--begin::Card-->
+                                <div class="card card-custom">
+                                    <!--begin::Header-->
+                                    <div class="card-header py-3">
+                                        <div class="card-title align-items-start flex-column">
+                                            <h3 class="card-label font-weight-bolder text-dark">Correos del cliente</h3>
+                                            <span class="text-muted font-weight-bold font-size-sm mt-1">Lorem ipsum, dolor sit amet.</span>
+                                        </div>
+                                        <div class="card-toolbar">
+                                            <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                                <a [routerLink]="['/cliente/buyer/'+id+'/prospeccion']"  class="btn btn-danger">Actividades</a>
+                                                <!-- <a [routerLink]="['/cliente/buyer/'+id+'/prospeccion/intereses']"  class="btn btn-warning">Interes</a> -->
+                                                <a [routerLink]="['/cliente/buyer/'+id+'/prospeccion/llamadas']"  class="btn btn-success">Llamadas</a>
+                                                <a [routerLink]="['/cliente/buyer/'+id+'/prospeccion/correos']"  class="btn btn-info">Correo</a>
+                                                <a [routerLink]="['/cliente/buyer/'+id+'/prospeccion/tareas']"  class="btn btn-dark">Tareas</a>
+                                              </div>
+                                        </div>
+                                    </div>
+                                    <!--end::Header-->
+                                    <!--begin::Form-->
+                                    <div class="card-header">
+                                        <div class="card-toolbar">
+                                            <a *ngIf="!load_data" class="btn btn-info font-weight-bolder font-size-sm mr-3" style="cursor: pointer;" data-toggle="modal" [attr.data-target]="'#modalCorreo'">
+                                                Nuevo correo
+                                            </a>
+                                            <button *ngIf="load_data" disabled class="btn btn-info font-weight-bolder font-size-sm mr-3">Nuevo correo</button>
+                                    
+                                            <div class="modal fade" id="modalCorreo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" style="display: none;" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 600px !important;">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Nuevo correo</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <i aria-hidden="true" class="ki ki-close"></i>
+                                                            </button>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <div class="row">
+                                                                <div class="col-lg-12 form-group">
+                                                                    <input type="text" class="form-control form-control-solid" placeholder="Asunto" name="asunto" [(ngModel)]="correo.asunto">
+                                                                </div>
+                                                                <div class="col-lg-12 form-group">
+                                                                    <tinymce name="contenido" [(ngModel)]="correo.contenido"></tinymce>
+                                                                </div>
+                                                            </div>    
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Cerrar</button>
+                                                            <button *ngIf="!btn_enviar" (click)="enviar_correo()" type="button" class="btn btn-primary font-weight-bold">Crear</button>
+                                                            <button *ngIf="btn_enviar" type="button" class="btn btn-primary font-weight-bold spinner spinner-white spinner-left">
+                                                                Creando
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row mt-5 mb-6" *ngIf="load_data">
+                                            <div class="col-12 text-center">
+                                                <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                                    <span class="sr-only">Loading...</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <ng-container *ngIf="!load_data">
+                                            <div class="row" *ngIf="data">
+                                                <div *ngFor="let item of correos | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize" class="col-12">
+                                                    <div >
+                                                        <!--begin::Message-->
+                                                        <div class="cursor-pointer shadow-xs toggle-off mb-3" data-inbox="message">
+                                                            <!--begin::Info-->
+                                                            <div class="d-flex align-items-start card-spacer-x py-4">
+                                                                
+                                                                <!--end::User Photo-->
+                                                                <!--begin::User Details-->
+                                                                <div class="d-flex flex-column flex-grow-1 flex-wrap mr-2">
+                                                                    <div class="d-flex">
+                                                                        <a class="font-size-lg font-weight-bolder text-dark-75 text-hover-primary mr-2">
+                                                                            {{item.asunto}}
+                                                                        </a>
+                                                                        <div class="font-weight-bold text-muted">
+                                                                            <span class="label label-success label-dot mr-2">
+                                                                            </span>Enviado
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="d-flex flex-column">
+                                                                        <div class="text-muted font-weight-bold toggle-on-item" data-inbox="toggle">
+                                                                            <span class="label label-warning label-dot mr-2">
+                                                                            </span>Enviado por: {{item.asesor.fullnames}}
+                                                                        </div>
+                                                                        <div class="text-muted font-weight-bold toggle-on-item" data-inbox="toggle" (click)="toggleEmail(item._id)">
+                                                                            <a style="cursor: pointer;" class="text-primary" >Ver mensaje</a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="d-flex align-items-center">
+                                                                    <div class="font-weight-bold text-muted mr-2">
+                                                                        {{item.createdAt|date}}
+                                                                    </div>
+                                                                </div>
+                                                                <!--end::User Details-->
+                                                            </div>
+                                                            <!--end::Info-->
+                                                            <!--begin::Comment-->
+                                                            <div class="card-spacer-x pt-2 pb-5 toggle-off-item" [attr.id]="'card_'+item._id">
+                                                                <!--begin::Text-->
+                                                                <div class="mb-1" [innerHTML]="item.contenido">
+                                                                   
+                                                                </div>
+                                                            </div>
+                                                            <!--end::Comment-->
+                                                        </div>
+                                                        <!--end::Message-->
+                                                        
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12">
+                                                    <ngb-pagination [collectionSize]="correos.length" [pageSize]="pageSize" [(page)]="page" [maxSize]="10" [rotate]="true" [boundaryLinks]="true"></ngb-pagination>
+                                                </div>
+                                            </div>
+                                            <ng-container *ngIf="!data">
+                                                <app-notfound></app-notfound>
+                                            </ng-container>
+                                            
+                                        </ng-container>
+                                        
+                                    </div>
+                                    <!--end::Form-->
+                                </div>
+                            </div>
+                            <!--end::Content-->
+                        </div>
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Entry-->
+            </div>
+            <!--end::Content-->
+            
+        </div>
+    </div>
+</div>
+
+
+

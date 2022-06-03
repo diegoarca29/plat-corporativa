@@ -1,0 +1,304 @@
+<div class="d-flex flex-column flex-root">
+    <div class="d-flex flex-row flex-column-fluid page">
+        <app-sidebar></app-sidebar>
+        <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
+            <app-top></app-top>
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Subheader-->
+                <div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
+                    <div class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+                        <!--begin::Info-->
+                        <div class="d-flex align-items-center flex-wrap mr-2">
+                            <!--begin::Page Title-->
+                            <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Clientes</h5>
+                            <!--end::Page Title-->
+                            <!--begin::Actions-->
+                            <div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-4 bg-gray-200"></div>
+                            <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+                                <li class="breadcrumb-item text-muted">
+                                    <a [routerLink]="['/cliente']"  class="text-muted">Listado de clientes</a>
+                                </li>
+                                <li class="breadcrumb-item text-muted">
+                                    <a [routerLink]="['/cliente/buyer/'+id+'/dashboard']" class="text-muted">Dashboard</a>
+                                </li>
+                                <li class="breadcrumb-item active">
+                                    <a class="text-muted">Tareas</a>
+                                </li>
+                            </ul>
+                            <!--end::Actions-->
+                        </div>
+                        <!--end::Info-->
+                        
+                    </div>
+                </div>
+                <!--end::Subheader-->
+                <!--begin::Entry-->
+                <div class="d-flex flex-column-fluid">
+                    <!--begin::Container-->
+                    <div class="container">
+                        <div class="d-flex flex-row">
+                            <!--begin::Aside-->
+                            <app-aside-cliente></app-aside-cliente>
+                            
+                            <!--end::Aside-->
+                            <!--begin::Content-->
+                            <div class="flex-row-fluid ml-lg-8">
+                                <!--begin::Card-->
+                                <div class="card card-custom">
+                                    <!--begin::Header-->
+                                    <div class="card-header py-3">
+                                        <div class="card-title align-items-start flex-column">
+                                            <h3 class="card-label font-weight-bolder text-dark">Tareas del cliente</h3>
+                                            <span class="text-muted font-weight-bold font-size-sm mt-1">Lorem ipsum, dolor sit amet.</span>
+                                        </div>
+                                        <div class="card-toolbar">
+                                            <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                                <a [routerLink]="['/cliente/buyer/'+id+'/prospeccion']"  class="btn btn-danger">Actividades</a>
+                                                <!-- <a [routerLink]="['/cliente/buyer/'+id+'/prospeccion/intereses']"  class="btn btn-warning">Interes</a> -->
+                                                <a [routerLink]="['/cliente/buyer/'+id+'/prospeccion/llamadas']"  class="btn btn-success">Llamadas</a>
+                                                <a [routerLink]="['/cliente/buyer/'+id+'/prospeccion/correos']"  class="btn btn-info">Correo</a>
+                                                <a [routerLink]="['/cliente/buyer/'+id+'/prospeccion/tareas']"  class="btn btn-dark">Tareas</a>
+                                              </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-header">
+                                        <div class="card-toolbar">
+                                            <a *ngIf="!load_data" class="btn btn-info font-weight-bolder font-size-sm mr-3" style="cursor: pointer;" data-toggle="modal" [attr.data-target]="'#modalTarea'">
+                                                Nueva tarea
+                                            </a>
+                                            <button *ngIf="load_data" disabled class="btn btn-info font-weight-bolder font-size-sm mr-3">Nueva tarea</button>
+                                    
+                                            <div class="modal fade" id="modalTarea" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" style="display: none;" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Nueva tarea</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <i aria-hidden="true" class="ki ki-close"></i>
+                                                            </button>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <h3 class="font-size-lg text-dark font-weight-bold mb-6">1. General:</h3>
+                                                            <div class="mb-15">
+                                                                <div class="form-group row">
+                                                                    <label class="col-lg-4 col-form-label"><b>Asesor a cargo (*):</b></label>
+                                                                    <div class="col-lg-8">
+                                                                        <select class="form-control" name="asesor" [(ngModel)]="tarea.asesor">
+                                                                            <option value="" selected disabled>Seleccionar</option>
+                                                                            <option [value]="item._id" *ngFor="let item of asesores">{{item.fullnames}}</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <label class="col-lg-4 col-form-label"><b>Tarea (*):</b></label>
+                                                                    <div class="col-lg-8">
+                                                                        <input type="text" class="form-control" name="tarea" [(ngModel)]="tarea.tarea" placeholder="Llamar a cliente"/>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <label class="col-lg-4 col-form-label"><b>Acción (*):</b></label>
+                                                                    <div class="col-lg-8">
+                                                                        <input min="{{str_today}}" type="date" class="form-control" name="fecha" [(ngModel)]="tarea.fecha"/>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <label class="col-lg-4 col-form-label"><b>Hora (*):</b></label>
+                                                                    <div class="col-lg-8">
+                                                                        <ngb-timepicker [(ngModel)]="time"></ngb-timepicker>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <label class="col-lg-4 col-form-label"><b>Tipo (*):</b></label>
+                                                                    <div class="col-lg-8">
+                                                                        <select class="form-control" name="tipo" [(ngModel)]="tarea.tipo">
+                                                                            <option value="" selected disabled>Seleccionar</option>
+                                                                            <option value="Llamada">Llamada</option>
+                                                                            <option value="Correo">Correo</option>
+                                                                            <option value="Venta">Venta</option>
+                                                                            <option value="Otro">Otro</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <label class="col-lg-4 col-form-label"><b>Prioridad (*):</b></label>
+                                                                    <div class="col-lg-8">
+                                                                        <select class="form-control" name="prioridad" [(ngModel)]="tarea.prioridad">
+                                                                            <option value="" selected disabled>Seleccionar</option>
+                                                                            <option value="Ninguna">Ninguna</option>
+                                                                            <option value="Alta">Alta</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                   <div class="col-lg-12">
+                                                                    <textarea class="form-control" rows="3" placeholder="Alguna nota o información" name="nota" [(ngModel)]="tarea.nota"></textarea>
+                                                                   </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Cerrar</button>
+                                                            <button *ngIf="!btn_crear" type="button" (click)="registrar()" class="btn btn-primary font-weight-bold">Crear</button>
+                                                            <button *ngIf="btn_crear" type="button" class="btn btn-primary font-weight-bold spinner spinner-white spinner-left">
+                                                                Creando
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row mt-5 mb-6" *ngIf="load_data">
+                                            <div class="col-12 text-center">
+                                                <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                                    <span class="sr-only">Loading...</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div *ngIf="!load_data" class="row">
+                                            <div class="col-12" *ngIf="data">
+                                                <div class="table-responsive">
+                                                    <table class="table table-borderless table-vertical-center">
+                                                        <thead>
+                                                            <tr>
+                                                                <th class="p-0" style="width: 50px"></th>
+                                                                <th class="p-0" style="min-width: 200px"></th>
+                                                                <th class="p-0" style="min-width: 120px"></th>
+                                                                <th class="p-0" style="min-width: 120px"></th>
+                                                                <th class="p-0" style="min-width: 160px"></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <ng-container *ngFor="let item of tareas | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
+                                                                <tr>
+                                                                    <td class="p-0 py-4">
+                                                                        <!-- ESTADO == FALSE -->
+                                                                        <div *ngIf="!item.estado" class="symbol symbol-50 symbol-light mr-5">
+                                                                            <span class="symbol-label">
+                                                                                <i *ngIf="item.tipo == 'Venta'" class="flaticon-notepad text-primary icon-lg"></i> <!-- VENTA -->
+                                                                                <i *ngIf="item.tipo == 'Correo'" class="flaticon-email text-primary icon-lg"></i> <!-- CORREO -->
+                                                                                <i *ngIf="item.tipo == 'Llamada'" class="flaticon2-phone text-primary icon-lg"></i> <!-- LLAMADA -->
+                                                                            </span>
+                                                                        </div>
+                                                                            <!-- ESTADO == TRUE -->
+                                                                        <div *ngIf="item.estado" class="symbol symbol-50 symbol-light mr-5">
+                                                                            <span class="symbol-label" style="background-color: #3699ff;">
+                                                                                <i class="flaticon2-check-mark text-white icon-lg"></i>
+                                                                            </span>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td class="pl-0">
+                                                                        <a class="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg">
+                                                                            {{item.tarea}}
+                                                                        </a>
+                                                                        <div>
+                                                                            <span class="font-weight-bolder">Tipo de tarea:</span>
+                                                                            <a class="text-muted font-weight-bold text-hover-primary">&nbsp; {{item.tipo}}</a>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td class="text-right">
+                                                                        <span class="text-dark-75 font-weight-bolder d-block font-size-lg">
+                                                                            <!-- ASESOR -->
+                                                                            {{item.asesor.nombres}}
+                                                                        </span>
+                                                                        <!-- <span class="text-dark-75 font-weight-bolder d-block font-size-lg">
+                                                                            No asignado
+                                                                        </span> -->
+                                                                        <span class="text-muted font-weight-bold">Asesor</span>
+                                                                    </td>
+                                                                    
+                                                                    <td class="text-right">
+                                                                        <!-- PRIORIDAD -->
+                                                                        <span *ngIf="item.prioridad == 'Alta'" style="cursor: pointer;" class="label label-lg label-light-danger label-inline">
+                                                                            Alta
+                                                                        </span>
+                                                                        <span *ngIf="item.prioridad == 'Ninguna'" style="cursor: pointer;" class="label label-lg label-light-primary label-inline">
+                                                                            Ninguna
+                                                                        </span>
+                                                                    </td>
+                                                                    <td class="pr-0 text-right">
+                                                                        <span class="text-dark-75 font-weight-bolder d-block font-size-lg">
+                                                                           {{item.fecha|date}}
+                                                                        </span>
+                                                                        <span class="text-muted font-weight-bold"><b>Hora:</b>  {{item.hora}}</span>
+                                                                        
+                                                                    </td>
+                                                                </tr>
+                                                                
+                                                                <tr>
+                                                                    <td colspan="5" class="font-weight-bolder">
+                                                                        <!-- NOTA -->
+                                                                        <p>
+                                                                            {{item.nota}}
+                                                                        </p>
+                                                
+                                                                        <!-- MARCAR ENVIO -->
+                                                                        <a *ngIf="!item.estado" style="cursor: pointer;" class="text-success" data-toggle="modal"
+                                                                        [attr.data-target]="'#modalHecho-'+item._id">[Marcar como hecho]</a>
+                                                
+                                                                        <!-- ENVIO MARCADO -->
+                                                                        <a class="text-primary" *ngIf="item.estado">
+                                                                            <i class="flaticon-user text-primary mr-3"></i>  Marcado por {{item.marca_asesor.fullnames}}
+                                                                        </a>
+                                                
+                                                                        <div class="separator separator-dashed mt-8 mb-5"></div>
+                                                
+                                                                        <div class="modal fade" id="modalHecho-{{item._id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                            <div class="modal-dialog" role="document">
+                                                                                <div class="modal-content">
+                                                                                    <div class="modal-header">
+                                                                                        <h5 class="modal-title" id="exampleModalLabel">Realización de tarea</h5>
+                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                            <i aria-hidden="true" class="ki ki-close"></i>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                    <div class="modal-body">
+                                                                                        <p>Al aceptar esta marcando la realicación de la tarea con su cuenta.</p>
+                                                                                    </div>
+                                                                                    <div class="modal-footer">
+                                                                                        <button type="button" class="btn btn-warning font-weight-bold" data-dismiss="modal">Cerrar</button>
+                                                                                        <button *ngIf="!btn_marcar" type="button" class="btn btn-success font-weight-bold" (click)="marcar(item._id)">Marcar</button>
+                                                
+                                                                                        <button *ngIf="btn_marcar" class="btn btn-success" type="button" disabled>
+                                                                                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                                                                            Marcando...
+                                                                                        </button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </ng-container>
+                                                            
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <ngb-pagination [collectionSize]="tareas.length" [pageSize]="pageSize" [(page)]="page" [maxSize]="10" [rotate]="true" [boundaryLinks]="true"></ngb-pagination>
+                                            </div>
+                                            
+                                            <ng-container *ngIf="!data">
+                                                <app-notfound></app-notfound>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                    <!--end::Form-->
+                                </div>
+                            </div>
+                            <!--end::Content-->
+                        </div>
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Entry-->
+            </div>
+            <!--end::Content-->
+            
+        </div>
+    </div>
+</div>
+
+
+

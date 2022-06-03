@@ -1,0 +1,263 @@
+<div class="d-flex flex-column flex-root">
+    <div class="d-flex flex-row flex-column-fluid page">
+        <app-sidebar></app-sidebar>
+        <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
+            <app-top></app-top>
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Subheader-->
+                <div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
+                    <div class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+                        <!--begin::Info-->
+                        <div class="d-flex align-items-center flex-wrap mr-2">
+                            <!--begin::Page Title-->
+                            <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Dashboard</h5>
+                            <!--end::Page Title-->
+                            <!--begin::Actions-->
+                            <div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-4 bg-gray-200"></div>
+                            <span class="text-muted font-weight-bold mr-4">#XRS-45670</span>
+                            <a href="#" class="btn btn-light-warning font-weight-bolder btn-sm">Add New</a>
+                            <!--end::Actions-->
+                        </div>
+                        <!--end::Info-->
+                        
+                    </div>
+                </div>
+                <!--end::Subheader-->
+                <!--begin::Entry-->
+                <div class="d-flex flex-column-fluid">
+                    <!--begin::Container-->
+                    <div class="container">
+                        <!-- begin::Card-->
+                        <div *ngIf="load_data" class="card card-custom card-shadowless rounded-top-0 mb-7">
+                            <div class="card-body p-0">
+                                <div class="row">
+                                    <div class="col-12 text-center mt-7 mb-7">
+                                        <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                            <span class="sr-only">Loading...</span>
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <ng-container *ngIf="!load_data">
+                            <div class="card card-custom position-relative overflow-hidden" *ngIf="data">
+                                <!--begin::Shape-->
+                                <div class="position-absolute opacity-30">
+                                    <span class="svg-icon svg-icon-10x svg-logo-white">
+                                        <!--begin::Svg Icon | path:/metronic/theme/html/demo1/dist/assets/media/svg/shapes/abstract-8.svg-->
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="176" height="165" viewBox="0 0 176 165" fill="none">
+                                            <g clip-path="url(#clip0)">
+                                                <path d="M-10.001 135.168C-10.001 151.643 3.87924 165.001 20.9985 165.001C38.1196 165.001 51.998 151.643 51.998 135.168C51.998 118.691 38.1196 105.335 20.9985 105.335C3.87924 105.335 -10.001 118.691 -10.001 135.168Z" fill="#AD84FF"></path>
+                                                <path d="M28.749 64.3117C28.749 78.7296 40.8927 90.4163 55.8745 90.4163C70.8563 90.4163 83 78.7296 83 64.3117C83 49.8954 70.8563 38.207 55.8745 38.207C40.8927 38.207 28.749 49.8954 28.749 64.3117Z" fill="#AD84FF"></path>
+                                                <path d="M82.9996 120.249C82.9996 144.964 103.819 165 129.501 165C155.181 165 176 144.964 176 120.249C176 95.5342 155.181 75.5 129.501 75.5C103.819 75.5 82.9996 95.5342 82.9996 120.249Z" fill="#AD84FF"></path>
+                                                <path d="M98.4976 23.2928C98.4976 43.8887 115.848 60.5856 137.249 60.5856C158.65 60.5856 176 43.8887 176 23.2928C176 2.69692 158.65 -14 137.249 -14C115.848 -14 98.4976 2.69692 98.4976 23.2928Z" fill="#AD84FF"></path>
+                                                <path d="M-10.0011 8.37466C-10.0011 20.7322 0.409554 30.7493 13.2503 30.7493C26.0911 30.7493 36.5 20.7322 36.5 8.37466C36.5 -3.98287 26.0911 -14 13.2503 -14C0.409554 -14 -10.0011 -3.98287 -10.0011 8.37466Z" fill="#AD84FF"></path>
+                                                <path d="M-2.24881 82.9565C-2.24881 87.0757 1.22081 90.4147 5.50108 90.4147C9.78135 90.4147 13.251 87.0757 13.251 82.9565C13.251 78.839 9.78135 75.5 5.50108 75.5C1.22081 75.5 -2.24881 78.839 -2.24881 82.9565Z" fill="#AD84FF"></path>
+                                                <path d="M55.8744 12.1044C55.8744 18.2841 61.0788 23.2926 67.5001 23.2926C73.9196 23.2926 79.124 18.2841 79.124 12.1044C79.124 5.92653 73.9196 0.917969 67.5001 0.917969C61.0788 0.917969 55.8744 5.92653 55.8744 12.1044Z" fill="#AD84FF"></path>
+                                            </g>
+                                        </svg>
+                                        <!--end::Svg Icon-->
+                                    </span>
+                                </div>
+                                <!--end::Shape-->
+                                <!--begin::Invoice header-->
+                                <div class="row justify-content-center py-8 px-8 py-md-36 px-md-0 bg-primary">
+                                    <div class="col-md-9">
+                                        <div class="d-flex justify-content-between align-items-md-center flex-column flex-md-row">
+                                            <div class="d-flex flex-column px-0 order-2 order-md-1">
+                                                <!--begin::Logo-->
+                                               
+                                                <!--end::Logo-->
+                                                <span class="d-flex flex-column font-size-h5 font-weight-bold text-white">
+                                                    <span>Cecilia Chapman, 711-2880 Nulla St, Mankato</span>
+                                                    <span>Mississippi 96522</span>
+                                                </span>
+                                            </div>
+                                            <h1 class="display-3 font-weight-boldest text-white order-1 order-md-2">CONTRATO</h1>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--end::Invoice header-->
+                                <div class="row justify-content-center py-8 px-8 py-md-30 px-md-0">
+                                    <div class="col-md-9">
+                                        <!--begin::Invoice body-->
+                                        <div class="row pb-26">
+                                            <div class="col-md-3 border-right-md pr-md-10 py-md-10">
+                                                <!--begin::Invoice To-->
+                                                <div class="text-dark-50 font-size-lg font-weight-bold mb-3">CLIENTE.</div>
+                                                <div class="font-size-lg font-weight-bold mb-10">{{matricula.cliente.nombres}} {{matricula.cliente.apellidos}} 
+                                                <br>{{matricula.cliente.email}} </div>
+                                                <!--end::Invoice To-->
+                                                <!--begin::Invoice No-->
+                                                <div class="text-dark-50 font-size-lg font-weight-bold mb-3">ASESOR.</div>
+                                                <div class="font-size-lg font-weight-bold mb-10">{{matricula.asesor.nombres}} {{matricula.asesor.apellidos}} </div>
+                                                <!--end::Invoice No-->
+                                                <!--begin::Invoice Date-->
+                                                <div class="text-dark-50 font-size-lg font-weight-bold mb-3">FECHA</div>
+                                                <div class="font-size-lg font-weight-bold mb-7">{{matricula.createdAt|date}}</div>
+                                                <!--end::Invoice Date-->
+
+                                                <div class="row">
+                                                    <div class="col-12 text-center">
+                                                        <img [src]="url+'get_image_config/'+logotipo" alt="" style="width: 60%;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-9 py-10 pl-md-10">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <h4 class="font-weight-bold text-dark mb-4">Basic License</h4>
+                                                        <div class="text-dark-50 line-height-lg mb-8">
+                                                            <p>Windows 10 automatically downloads and installs updates to make sure your device is secure and up to date. This means you receive the latest fixes and security updates, helping your device run efficiently and stay protected. In most cases, restarting your device completes the update. Make sure your device is plugged in when you know updates will be installed.</p>
+                                                           
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <h4 class="font-weight-bold text-dark mb-4">Basic License</h4>
+                                                        <div class="text-dark-50 line-height-lg mb-8">
+                                                            <p>Windows 10 automatically downloads and installs updates to make sure your device is secure and up to date. This means you receive the latest fixes and security updates, helping your device run efficiently and stay protected. In most cases, restarting your device completes the update. Make sure your device is plugged in when you know updates will be installed.</p>
+                                                           
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <h4 class="font-weight-bold text-dark mb-4">Extended License</h4>
+                                                        <div class="text-dark-50 line-height-lg">
+                                                            <p>Windows 10 automatically downloads and installs updates to make sure your device is secure and up to date. This means you receive the latest fixes and security updates, helping your device run efficiently and stay protected. In most cases, restarting your device completes the update. Make sure your device is plugged in when you know updates will be installed.</p>
+                                                           
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--end::Invoice body-->
+                                        <!--begin::Invoice footer-->
+                                        <div class="row">
+                                            <div class="col-md-5 border-top pt-14 pb-10 pb-md-18">
+                                                <div class="d-flex flex-column flex-md-row">
+                                                    <div class="d-flex flex-column">
+                                                        <div class="font-weight-bold font-size-h6 mb-3">MATRICULA</div>
+                                                        <div class="d-flex justify-content-between font-size-lg mb-3">
+                                                            <span class="font-weight-bold mr-15">Código:</span>
+                                                            <span class="text-right">{{matricula._id}}</span>
+                                                        </div>
+                                                        <div class="d-flex justify-content-between font-size-lg mb-3">
+                                                            <span class="font-weight-bold mr-15">Canal:</span>
+                                                            <span class="text-right">{{matricula.canal}}</span>
+                                                        </div>
+                                                        <div class="d-flex justify-content-between font-size-lg">
+                                                            <span class="font-weight-bold mr-15">Origen:</span>
+                                                            <span class="text-right">{{matricula.origen}}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-7 pt-md-25 border-top">
+                                                <div class="bg-primary rounded d-flex align-items-center justify-content-between text-white max-w-350px position-relative ml-auto p-7">
+                                                    <!--begin::Shape-->
+                                                    <div class="position-absolute opacity-30 top-0 right-0">
+                                                        <span class="svg-icon svg-icon-2x svg-logo-white svg-icon-flip">
+                                                            <!--begin::Svg Icon | path:/metronic/theme/html/demo1/dist/assets/media/svg/shapes/abstract-8.svg-->
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="176" height="165" viewBox="0 0 176 165" fill="none">
+                                                                <g clip-path="url(#clip0)">
+                                                                    <path d="M-10.001 135.168C-10.001 151.643 3.87924 165.001 20.9985 165.001C38.1196 165.001 51.998 151.643 51.998 135.168C51.998 118.691 38.1196 105.335 20.9985 105.335C3.87924 105.335 -10.001 118.691 -10.001 135.168Z" fill="#AD84FF"></path>
+                                                                    <path d="M28.749 64.3117C28.749 78.7296 40.8927 90.4163 55.8745 90.4163C70.8563 90.4163 83 78.7296 83 64.3117C83 49.8954 70.8563 38.207 55.8745 38.207C40.8927 38.207 28.749 49.8954 28.749 64.3117Z" fill="#AD84FF"></path>
+                                                                    <path d="M82.9996 120.249C82.9996 144.964 103.819 165 129.501 165C155.181 165 176 144.964 176 120.249C176 95.5342 155.181 75.5 129.501 75.5C103.819 75.5 82.9996 95.5342 82.9996 120.249Z" fill="#AD84FF"></path>
+                                                                    <path d="M98.4976 23.2928C98.4976 43.8887 115.848 60.5856 137.249 60.5856C158.65 60.5856 176 43.8887 176 23.2928C176 2.69692 158.65 -14 137.249 -14C115.848 -14 98.4976 2.69692 98.4976 23.2928Z" fill="#AD84FF"></path>
+                                                                    <path d="M-10.0011 8.37466C-10.0011 20.7322 0.409554 30.7493 13.2503 30.7493C26.0911 30.7493 36.5 20.7322 36.5 8.37466C36.5 -3.98287 26.0911 -14 13.2503 -14C0.409554 -14 -10.0011 -3.98287 -10.0011 8.37466Z" fill="#AD84FF"></path>
+                                                                    <path d="M-2.24881 82.9565C-2.24881 87.0757 1.22081 90.4147 5.50108 90.4147C9.78135 90.4147 13.251 87.0757 13.251 82.9565C13.251 78.839 9.78135 75.5 5.50108 75.5C1.22081 75.5 -2.24881 78.839 -2.24881 82.9565Z" fill="#AD84FF"></path>
+                                                                    <path d="M55.8744 12.1044C55.8744 18.2841 61.0788 23.2926 67.5001 23.2926C73.9196 23.2926 79.124 18.2841 79.124 12.1044C79.124 5.92653 73.9196 0.917969 67.5001 0.917969C61.0788 0.917969 55.8744 5.92653 55.8744 12.1044Z" fill="#AD84FF"></path>
+                                                                </g>
+                                                            </svg>
+                                                            <!--end::Svg Icon-->
+                                                        </span>
+                                                    </div>
+                                                    <!--end::Shape-->
+                                                    <div class="font-weight-boldest font-size-h5">TOTAL</div>
+                                                    <div class="text-right d-flex flex-column">
+                                                        <span class="font-weight-boldest font-size-h3 line-height-sm">{{matricula.monto+matricula.matricula|currency:'USD'}}</span>
+                                                        <span class="font-size-sm">Incluido derecho matricula</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--end::Invoice footer-->
+                                        <div class="row" *ngIf="matricula.firma">
+                                            <div class="col-5 mx-auto">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <img [src]="matricula.firma" alt="" style="width: 100%;">
+                                                    </div>
+                                                    <div class="card-footer text-center">
+                                                        <h4 style="margin-bottom:0px">{{matricula.cliente.nombres}} {{matricula.cliente.apellidos}}</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- begin: Invoice action-->
+                                <div class="row justify-content-center border-top py-8 px-8 py-md-28 px-md-0">
+                                    <div class="col-md-9">
+                                        <div class="d-flex font-size-sm flex-wrap">
+                                            <button type="button" class="btn btn-primary font-weight-bolder py-4 mr-3 mr-sm-14 my-1" onclick="window.print();">Imprimir contrato</button>
+                                            <button *ngIf="!matricula.firma" type="button" class="btn btn-light-primary font-weight-bolder mr-3 my-1" data-toggle="modal" [attr.data-target]="'#firmaModal'">Firmar</button>
+
+                                            <button *ngIf="matricula.firma" type="button" class="btn btn-danger  font-weight-bolder mr-3 my-1" disabled>Contrato firmado</button>
+
+                                            <div class="modal fade" id="firmaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Firmar contrato</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <i aria-hidden="true" class="ki ki-close"></i>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <image-drawing
+                                                                [src]="'assets/firm.jpg'"
+                                                                [borderCss]="'1px solid black'"
+                                                                [showCancelButton]="false"
+                                                                outputMimeType="'image/jpeg'"
+                                                                (save)="save($event)"
+                                                                [i18n]="i18n"
+                                                                [drawingSizes]="{small:3, medium: 3, large:3, extra:3}"
+                                                                (cancel)="cancel()">
+                                                            </image-drawing>
+                                                            <input type="hidden" id="firma_img">
+                                                        </div>
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <button type="button" class="btn btn-warning font-weight-bolder ml-sm-auto my-1">Ir a matricula</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end: Invoice action-->
+                            </div>
+                            <ng-container *ngIf="!data">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <app-notfound></app-notfound>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </ng-container>
+                        
+                        <!-- end::Card-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Entry-->
+            </div>
+            <!--end::Content-->
+            
+        </div>
+    </div>
+</div>
+
+

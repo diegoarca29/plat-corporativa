@@ -1,0 +1,228 @@
+<div class="d-flex flex-column flex-root">
+    <div class="d-flex flex-row flex-column-fluid page">
+        <app-sidebar></app-sidebar>
+        <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
+            <app-top></app-top>
+            
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Subheader-->
+                <div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
+                    <div class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+                        <!--begin::Info-->
+                        <div class="d-flex align-items-center flex-wrap mr-2">
+                            <!--begin::Page Title-->
+                            <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Dashboard</h5>
+                            <!--end::Page Title-->
+                            <!--begin::Actions-->
+                            <div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-4 bg-gray-200"></div>
+                            <span class="text-muted font-weight-bold mr-4">#XRS-45670</span>
+                            <a href="#" class="btn btn-light-warning font-weight-bolder btn-sm">Add New</a>
+                            <!--end::Actions-->
+                        </div>
+                        <!--end::Info-->
+                        
+                    </div>
+                </div>
+                <!--end::Subheader-->
+                <!--begin::Entry-->
+                <div class="d-flex flex-column-fluid">
+                    <!--begin::Container-->
+                    <div class="container">
+                        
+                        <div class="card card-custom mb-7">
+                            <div class="card-header flex-wrap border-0 pt-6 pb-0">
+                                <div class="card-title">
+                                    <h3 class="card-label">Productos
+                                    <span class="text-muted pt-2 font-size-sm d-block">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugiat, tempore.</span></h3>
+                                </div>
+                                <div class="card-toolbar">
+                                    <a [routerLink]="['/productos/inventario']" class="btn btn-light-warning btn-sm font-weight-bold font-size-sm mr-3" style="cursor: pointer;">
+                                        <i class="flaticon-computer"></i> &nbsp; Inventario
+                                    </a>
+            
+                                    <a [routerLink]="['/productos/create']" class="btn btn-light-success btn-sm font-weight-bold font-size-sm">
+                                        <i class="flaticon-add-circular-button"></i>
+                                        Nuevo producto
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <!--begin: Search Form-->
+                                <!--begin::Search Form-->
+                                <div class="mb-7">
+                                    <div class="row align-items-center">
+                                        <div class="col-lg-9 col-xl-8">
+                                            <div class="row align-items-center">
+                                                <div class="col-md-4 my-2 my-md-0">
+                                                    <div class="input-icon">
+                                                        <input type="text" class="form-control" placeholder="Nombre del producto" name="filtro_producto" [(ngModel)]="filtro_producto">
+                                                        <span>
+                                                            <i class="flaticon2-search-1 text-muted"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 my-2 my-md-0">
+                                                    <div class="d-flex align-items-center">
+                                                        <label class="mr-3 mb-0 d-none d-md-block">Categoría:</label>
+                                                        <select class="form-control selectpicker" data-size="7" data-live-search="true" name="filtro_categoria" [(ngModel)]="filtro_categoria">
+                                                            <option value="" selected disabled>Seleccionar</option>
+                                                            <option value="Todos">Todos</option>
+                                                            <option [value]="item.titulo" *ngFor="let item of categorias">{{item.titulo}}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 my-2 my-md-0">
+                                                    <div class="d-flex align-items-center">
+                                                        <label class="mr-3 mb-0 d-none d-md-block">Estado:</label>
+                                                        <select class="form-control selectpicker" data-size="7" data-live-search="true" name="filtro_estado" [(ngModel)]="filtro_estado">
+                                                            <option value="" selected disabled>Seleccionar</option>
+                                                            <option value="Todos">Todos</option>
+                                                            <option value="Publicado">Publicado</option>
+                                                            <option value="Borrador">Borrador</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-xl-4 mt-5 mt-lg-0">
+                                            <a style="cursor: pointer;" class="btn btn-light-primary px-6 font-weight-bold" (click)="filtrar()">Buscar</a>
+                                        </div>
+                                    </div>
+                                </div>
+            
+                                <div class="table-responsive">
+                                    <table class="table table-head-custom table-vertical-center" id="kt_advance_table_widget_4">
+                                        <thead>
+                                            <tr class="text-left">
+                                             
+                                                <th class="pl-0" style="min-width: 320px">Producto</th>
+                                                <th style="min-width: 110px">Categoría</th>
+                                                <th style="min-width: 110px">Tipo</th>
+                                                <th style="min-width: 100px">Stock</th>
+                                                <th style="min-width: 100px">Precio</th>
+                                                <th style="min-width: 120px">Estado</th>
+                                                <th class="pr-0 text-right" style="min-width: 160px">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <ng-container *ngIf="load_data">
+                                           <tr>
+                                               <td colspan="7" class="text-center">
+                                                <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                                    <span class="sr-only">Loading...</span>
+                                                  </div>
+                                               </td>
+                                           </tr> 
+                                        </ng-container>
+                                        <ng-container *ngIf="!load_data">
+                                            <tbody *ngFor="let item of productos| slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
+                                                <tr>
+                                                
+                                                    <td class="pl-0 d-flex align-items-center">
+                                                        <!--begin::Symbol-->
+                                                        <div class="symbol symbol-40 flex-shrink-0 mr-4 bg-light">
+                                                            <div class="symbol-label" style="background-image: url('{{url}}get_image_productos/{{item.portada}}')"></div>
+                                                        </div>
+                                                        <!--end::Symbol-->
+                                                        <span class="text-dark-75 font-weight-bolder d-block font-size-lg">{{item.titulo}}</span>
+                                                    </td>
+                                                    <td>
+                                                        <span class="text-dark-75 font-weight-bolder d-block font-size-lg">{{item.categoria}}</span>
+                                            
+                                                    </td>
+                                                    <td>
+                                                        <span class="text-dark-75 font-weight-bolder d-block font-size-lg">{{item.tipo}}</span>
+                                              
+                                                    </td>
+                                                    <td>
+                                                        <span class="text-dark-75 font-weight-bolder d-block font-size-lg">{{item.stock}}</span>
+                                                        <span class="text-muted font-weight-bold">unidades</span>
+                                                    </td>
+                                                    <td>
+                                                        <span class="text-dark-75 font-weight-bolder d-block font-size-lg">{{item.precio|currency:'USD'}}</span>
+                                                    </td>
+                                                    <td>
+                                                        <span style="width: 108px;" *ngIf="!item.estado">
+                                                            <span class="label label-danger label-dot mr-2"></span>
+                                                            <span class="font-weight-bold text-danger">Borrador</span>
+                                                        </span>
+                                                        <span style="width: 108px;" *ngIf="item.estado">
+                                                            <span class="label label-primary label-dot mr-2"></span>
+                                                            <span class="font-weight-bold text-primary">Publicado</span>
+                                                        </span>
+                                                    </td>
+                                                    <td class="pr-0 text-right">
+                                                       
+                                                        <div class="dropdown dropdown-inline">
+                                                            <button type="button" class="btn btn-light-primary btn-icon btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                <i class="ki ki-bold-more-ver"></i>
+                                                            </button>
+                                                            <div class="dropdown-menu">
+                                                                <a [routerLink]="['/productos/edit',item._id]" routerLinkActive="router-link-active"  class="dropdown-item">
+                                                                    <i class="icon-1x text-dark-50 flaticon-edit"></i> &nbsp; Editar
+                                                                </a>
+                                                                <a style="cursor: pointer;" class="dropdown-item" *ngIf="item.estado" data-toggle="modal" [attr.data-target]="'#estado-'+item._id">
+                                                                    <i class="icon-1x text-dark-50 flaticon2-cross"></i> &nbsp; Desactivar
+                                                                </a>
+                                                                <a style="cursor: pointer;" class="dropdown-item" *ngIf="!item.estado"  data-toggle="modal" [attr.data-target]="'#estado-'+item._id">
+                                                                    <i class="icon-1x text-dark-50 flaticon2-check-mark"></i> &nbsp; Activar
+                                                                </a>
+                            
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="modal fade" id="estado-{{item._id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog" role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="exampleModalLabel">Title Modal</h5>
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                            <i aria-hidden="true" class="ki ki-close"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Atque vero odio sunt sequi. Fugit ipsum possimus placeat eum cum perspiciatis! Est, cupiditate nostrum maiores quo ad cumque consequatur laudantium? Excepturi.</p>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-warning font-weight-bold" data-dismiss="modal">Cerrar</button>
+                                                                        <button *ngIf="!load_estado" type="button" class="btn btn-danger font-weight-bold" (click)="set_state(item._id,item.estado)">Enviar</button>
+                                                        
+                                                                        <button *ngIf="load_estado" class="btn btn-danger" type="button" disabled>
+                                                                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                                                            Enviando...
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                               
+                                            </tbody>
+                                        </ng-container>
+                                        
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <ngb-pagination [collectionSize]="productos.length" [pageSize]="pageSize" [(page)]="page" [maxSize]="10" [rotate]="true" [boundaryLinks]="true"></ngb-pagination>
+                            </div>
+                        </div>
+                        
+                     
+                        
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Entry-->
+            </div>
+            <!--end::Content-->
+        </div>
+    </div>
+</div>
+
+
+
+
+
+

@@ -1,0 +1,269 @@
+<div class="d-flex flex-column flex-root">
+    <div class="d-flex flex-row flex-column-fluid page">
+        <app-sidebar></app-sidebar>
+        <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
+            <app-top></app-top>
+            
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Subheader-->
+                <div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
+                    <div class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+                        <!--begin::Info-->
+                        <div class="d-flex align-items-center flex-wrap mr-2">
+                            <!--begin::Page Title-->
+                            <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Dashboard</h5>
+                            <!--end::Page Title-->
+                            <!--begin::Actions-->
+                            <div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-4 bg-gray-200"></div>
+                            <span class="text-muted font-weight-bold mr-4">#XRS-45670</span>
+                            <a href="#" class="btn btn-light-warning font-weight-bolder btn-sm">Add New</a>
+                            <!--end::Actions-->
+                        </div>
+                        <!--end::Info-->
+                        
+                    </div>
+                </div>
+            
+                <div class="d-flex flex-column-fluid">
+                    <!--begin::Container-->
+                    <div class="container">
+                        <!--begin::Notice-->
+                        <div class="alert alert-custom alert-white alert-shadow gutter-b" role="alert">
+                            <div class="alert-icon">
+                                <span class="svg-icon svg-icon-primary svg-icon-xl">
+                                    <!--begin::Svg Icon | path:assets/media/svg/icons/Tools/Compass.svg-->
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                            <rect x="0" y="0" width="24" height="24" />
+                                            <path d="M7.07744993,12.3040451 C7.72444571,13.0716094 8.54044565,13.6920474 9.46808594,14.1079953 L5,23 L4.5,18 L7.07744993,12.3040451 Z M14.5865511,14.2597864 C15.5319561,13.9019016 16.375416,13.3366121 17.0614026,12.6194459 L19.5,18 L19,23 L14.5865511,14.2597864 Z M12,3.55271368e-14 C12.8284271,3.53749572e-14 13.5,0.671572875 13.5,1.5 L13.5,4 L10.5,4 L10.5,1.5 C10.5,0.671572875 11.1715729,3.56793164e-14 12,3.55271368e-14 Z" fill="#000000" opacity="0.3" />
+                                            <path d="M12,10 C13.1045695,10 14,9.1045695 14,8 C14,6.8954305 13.1045695,6 12,6 C10.8954305,6 10,6.8954305 10,8 C10,9.1045695 10.8954305,10 12,10 Z M12,13 C9.23857625,13 7,10.7614237 7,8 C7,5.23857625 9.23857625,3 12,3 C14.7614237,3 17,5.23857625 17,8 C17,10.7614237 14.7614237,13 12,13 Z" fill="#000000" fill-rule="nonzero" />
+                                        </g>
+                                    </svg>
+                                    <!--end::Svg Icon-->
+                                </span>
+                            </div>
+                            <div class="alert-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus vel ipsam perspiciatis in eius? Voluptate libero ullam aperiam, voluptates porro inventore pariatur assumenda eligendi id soluta velit excepturi? Eveniet assumenda, similique non quasi tenetur sunt rem nemo consequuntur sit impedit!</div>
+                        </div>
+                        <!--end::Notice-->
+                        <!--begin::Card-->
+                        <div class="card card-custom card-stretch gutter-b">
+                            <!--begin::Header-->
+                            <div class="card-header border-0 pt-5">
+                                <h3 class="card-title align-items-start flex-column">
+                                    <span class="card-label font-weight-bolder text-dark">Listas de contatos</span>
+                                    <span class="text-muted mt-3 font-weight-bold font-size-sm">More than 400+ new members</span>
+                                </h3>
+                                <div class="card-toolbar">
+                                    <a [routerLink]="['/marketing/email/campaigns']" class="btn btn-light-dark btn-md py-2 font-weight-bolder mr-3">Campañas</a>
+
+                                    <a style="cursor: pointer;" data-toggle="modal" data-target="#createList" class="btn btn-light-primary btn-md py-2 font-weight-bolder">Nueva lista</a>
+                                    <div class="modal fade" id="createList" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" style="display: none;" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Nueva lista de contacto</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <i aria-hidden="true" class="ki ki-close"></i>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <input type="text" class="form-control" placeholder="Título de la lista" name="name_list" [(ngModel)]="name_list">
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Cerrar</button>
+                                                    <button *ngIf="!btn_load" type="button" (click)="crear_lista()" class="btn btn-primary font-weight-bold">Crear</button>
+                                                    <button *ngIf="btn_load" class="btn btn-primary font-weight-bold" type="button" disabled>
+                                                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                                        Creando...
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <!--end::Header-->
+                            <!--begin::Body-->
+                            <div class="card-body pt-2 pb-0">
+                                <!--begin::Table-->
+                                <div class="table-responsive">
+                                    <table class="table table-head-custom table-vertical-center">
+                                        <thead>
+                                            <tr>
+                                                <th class="p-0" style="width: 50px"></th>
+                                                <th class="p-0" style="min-width: 150px"></th>
+                                                <th class="p-0" style="min-width: 140px"></th>
+                                                <th class="p-0" style="min-width: 100px"></th>
+                                                <th class="p-0" style="min-width: 40px"></th>
+                                            </tr>
+                                        </thead>
+                                        <ng-container *ngIf="load_data">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="text-center" colspan="5">
+                                                        <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                                            <span class="sr-only">Loading...</span>
+                                                          </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </ng-container>
+                                        <tbody *ngIf="!load_data">
+                                            <tr *ngFor="let item of listas">
+                                                <td class="pl-0 py-5">
+                                                    <div class="symbol symbol-45 symbol-light-info mr-2">
+                                                        <span class="symbol-label">
+                                                            <span class="svg-icon svg-icon-2x svg-icon-info">
+                                                                <!--begin::Svg Icon | path:/metronic/theme/html/demo1/dist/assets/media/svg/icons/Communication/Group.svg-->
+                                                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                                        <polygon points="0 0 24 0 24 24 0 24"></polygon>
+                                                                        <path d="M18,14 C16.3431458,14 15,12.6568542 15,11 C15,9.34314575 16.3431458,8 18,8 C19.6568542,8 21,9.34314575 21,11 C21,12.6568542 19.6568542,14 18,14 Z M9,11 C6.790861,11 5,9.209139 5,7 C5,4.790861 6.790861,3 9,3 C11.209139,3 13,4.790861 13,7 C13,9.209139 11.209139,11 9,11 Z" fill="#000000" fill-rule="nonzero" opacity="0.3"></path>
+                                                                        <path d="M17.6011961,15.0006174 C21.0077043,15.0378534 23.7891749,16.7601418 23.9984937,20.4 C24.0069246,20.5466056 23.9984937,21 23.4559499,21 L19.6,21 C19.6,18.7490654 18.8562935,16.6718327 17.6011961,15.0006174 Z M0.00065168429,20.1992055 C0.388258525,15.4265159 4.26191235,13 8.98334134,13 C13.7712164,13 17.7048837,15.2931929 17.9979143,20.2 C18.0095879,20.3954741 17.9979143,21 17.2466999,21 C13.541124,21 8.03472472,21 0.727502227,21 C0.476712155,21 -0.0204617505,20.45918 0.00065168429,20.1992055 Z" fill="#000000" fill-rule="nonzero"></path>
+                                                                    </g>
+                                                                </svg>
+                                                                <!--end::Svg Icon-->
+                                                            </span>
+                                                        </span>
+                                                    </div>
+                                                </td>
+                                                <td class="pl-0">
+                                                    <a href="#" class="text-dark font-weight-bolder text-hover-primary mb-1 font-size-lg">
+                                                        {{item.name}}
+                                                    </a>
+                                                </td>
+                                                <td class="text-right">
+                                                    <span class="text-muted font-weight-bold">#{{item.id}}</span>
+                                                </td>
+                                                <td class="text-right">
+                                                    <span class="text-muted font-weight-bold">{{item.uniqueSubscribers}} contactos</span>
+                                                </td>
+                                                <td class="text-right pr-0">
+                                                    <div class="dropdown dropleft ">
+                                                        <button class="btn btn-light-primary btn-icon btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                            <i class="ki ki-bold-more-ver"></i>
+                                                        </button>
+                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                            <a class="dropdown-item" style="cursor: pointer;" data-toggle="modal" [attr.data-target]="'#contactsImport'" (click)="openImport(item.id)">Importar</a>
+                                                            <a class="dropdown-item" style="cursor: pointer;" (click)="obtenerContatos(item.id)" data-toggle="modal" [attr.data-target]="'#Listcontacts'">Contactos</a>
+                                                            <a class="dropdown-item" style="cursor: pointer;" data-toggle="modal" [attr.data-target]="'#delete-'+item.id">Eliminar</a>
+                                                            
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="modal fade" id="delete-{{item.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="exampleModalLabel">Confirmación de eliminación</h5>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <i aria-hidden="true" class="ki ki-close"></i>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <p>Desea eliminar permanentemente la lista?.</p>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-warning font-weight-bold" data-dismiss="modal">Cerrar</button>
+                                                                    <button *ngIf="!load_delete" type="button" class="btn btn-danger font-weight-bold" (click)="eliminar_lista(item.id)">Eliminar</button>
+                                                    
+                                                                    <button *ngIf="load_delete" class="btn btn-danger" type="button" disabled>
+                                                                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                                                        Eliminando...
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!--end::table-->
+                            </div>
+                            <!--begin::Body-->
+                        </div>
+                        <!--end::Card-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+            </div>
+            <!--end::Content-->
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="contactsImport" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Importar contactos</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i aria-hidden="true" class="ki ki-close"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <textarea class="form-control" placeholder="Contenido a importar" name="str_import" [(ngModel)]="str_import" rows="10"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Cerrar</button>
+                <button *ngIf="!btn_load_import" type="button" (click)="importar_contactos()" class="btn btn-primary font-weight-bold">Importar</button>
+                <button *ngIf="btn_load_import" class="btn btn-primary font-weight-bold" type="button" disabled>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Importando...
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="Listcontacts" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 600px !important;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Listado de contactos contactos</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i aria-hidden="true" class="ki ki-close"></i>
+                </button>
+            </div>
+            <div class="modal-body" style="max-height: 500px;
+            overflow: hidden;
+            overflow-y: auto;">
+                <table class="table table-bordered table-striped table-hover">
+                    <thead>
+                        <th>NOMBRES</th>
+                        <th>APELLIDOS</th>
+                        <th>EMAIL</th>
+                    </thead>
+                    <ng-container *ngIf="load_contactos">
+                        <tbody>
+                            <tr>
+                                <td class="text-center" colspan="3">
+                                    <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                        <span class="sr-only">Loading...</span>
+                                      </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </ng-container>
+                    <tbody *ngIf="!load_contactos">
+                        <tr *ngFor="let item of contactos">
+                            <td>{{item.attributes.NOMBRE}}</td>
+                            <td>{{item.attributes.APELLIDOS}}</td>
+                            <td>{{item.email}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Cerrar</button>
+               
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,118 @@
+<div class="d-flex flex-column flex-root">
+    <div class="d-flex flex-row flex-column-fluid page">
+        <app-sidebar></app-sidebar>
+        <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
+            <app-top></app-top>
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Subheader-->
+                <div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
+                    <div class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+                        <!--begin::Info-->
+                        <div class="d-flex align-items-center flex-wrap mr-2">
+                            <!--begin::Page Title-->
+                            <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Dashboard</h5>
+                            <!--end::Page Title-->
+                            <!--begin::Actions-->
+                            <div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-4 bg-gray-200"></div>
+                            <span class="text-muted font-weight-bold mr-4">#XRS-45670</span>
+                            <a href="#" class="btn btn-light-warning font-weight-bolder btn-sm">Add New</a>
+                            <!--end::Actions-->
+                        </div>
+                        <!--end::Info-->
+                        
+                    </div>
+                </div>
+                <!--end::Subheader-->
+                <!--begin::Entry-->
+                <div class="d-flex flex-column-fluid">
+                    <!--begin::Container-->
+                    <div class="container">
+                        <div class="card card-custom card-shadowless rounded-top-0">
+                            <!--begin::Body-->
+                            <div class="card-header border-0 pt-5">
+                                <h3 class="card-title align-items-start flex-column">
+                                    <span class="card-label font-weight-bolder text-dark">Nuevo curso</span>
+                                    <span class="text-muted mt-3 font-weight-bold font-size-sm">Formulario de un nuevo curso</span>
+                                </h3>
+                                <div class="card-toolbar">
+                                   <a [routerLink]="['/cursos']" class="btn btn-primary">Regresar</a> 
+                                </div>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="row justify-content-center py-8 px-8 py-lg-15 px-lg-10">
+                                    <div class="col-xl-12 col-xxl-10">
+                                        <!--begin::Wizard Form-->
+                                        <form class="form" >
+                                            <div class="row justify-content-center">
+                                                <div class="col-xl-9">
+                                                    <!--begin::Wizard Step 1-->
+                                                    <div class="my-5 step">
+                                                        <h5 class="text-dark font-weight-bold mb-10">Datos generales:</h5>
+                                                        
+                                                        <!--begin::Group-->
+                                                        <div class="form-group row">
+                                                            <label class="col-xl-3 col-lg-3 col-form-label">Titulo (*)</label>
+                                                            <div class="col-lg-9 col-xl-9">
+                                                                <input required class="form-control form-control-solid form-control-lg" type="text" placeholder="Nombres" name="titulo" [(ngModel)]="curso.titulo"/>
+                                                            </div>
+                                                        </div>
+                                                        <!--end::Group-->
+                        
+                                                        <!--begin::Group-->
+                                                        <div class="form-group row">
+                                                            <label class="col-xl-3 col-lg-3 col-form-label">Descripción (*)</label>
+                                                            <div class="col-lg-9 col-xl-9">
+                                                                <textarea class="form-control form-control-solid form-control-lg" rows="3" placeholder="Una reseña del curso" name="descripcion" [(ngModel)]="curso.descripcion"></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <!--end::Group-->
+                                                       
+                                                        <!--begin::Group-->
+                                                        <div class="form-group row">
+                                                            <label class="col-xl-3 col-lg-3 col-form-label">Portada (*)</label>
+                                                            <div class="col-lg-9 col-xl-9">
+                                                                <input required class="form-control form-control-solid form-control-lg" type="file" (change)="fileEventChange($event)"/>
+                                                            </div>
+                                                        </div>
+                                                        <!--end::Group-->
+                                                       
+                                                    </div>
+                                                    <!--end::Wizard Step 1-->
+                                                 
+                                                    <!--begin::Wizard Actions-->
+                                                    <div class="d-flex justify-content-between border-top pt-10 mt-15">
+                                                        <div class="mr-2">
+                                                            <a  [routerLink]="['/cursos']" class="btn btn-light-primary font-weight-bolder px-9 py-4" >Regresar</a>
+                                                        </div>
+                                                        <div>
+                                                            <button *ngIf="!btn_load" (click)="actualizar()" type="submit" class="btn btn-success font-weight-bolder px-9 py-4">Actualizar</button>
+                                                            <button *ngIf="btn_load" class="btn btn-success font-weight-bolder px-9 py-4" type="button" disabled>
+                                                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                                                Actualizando...
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <!--end::Wizard Actions-->
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <!--end::Wizard Form-->
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end::Body-->
+                        </div>
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Entry-->
+            </div>
+            <!--end::Content-->
+            
+        </div>
+    </div>
+</div>
+
+
+
